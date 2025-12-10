@@ -10,7 +10,6 @@ import { DynamicFieldsGrid } from './DynamicFieldsGrid';
 import { openAIService } from '../../services/openAIService';
 import { emailService } from '../../services/emailService';
 import toast from 'react-hot-toast';
-import { format } from 'date-fns';
 
 export const CreateTicketForm: React.FC = () => {
   const navigate = useNavigate();
