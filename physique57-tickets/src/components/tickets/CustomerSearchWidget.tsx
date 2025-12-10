@@ -85,7 +85,13 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
   }, []);
 
   const handleCustomerSelect = async (customer: any) => {
-    setSelectedCustomer(customer);
+    // Format customer for display immediately
+    const displayCustomer = {
+      ...customer,
+      name: `${customer.firstName || ''} ${customer.lastName || ''}`.trim() || customer.email || 'Unknown Customer'
+    };
+    
+    setSelectedCustomer(displayCustomer);
     setShowResults(false);
     setSearchQuery('');
     setIsCollapsed(false);
@@ -208,9 +214,11 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
                         onClick={() => handleCustomerSelect(customer)}
                         className="w-full px-4 py-3 text-left hover:bg-teal-50 transition-colors border-b border-gray-100 last:border-b-0"
                       >
-                        <div className="font-medium text-gray-900">{customer.name}</div>
+                        <div className="font-medium text-gray-900">
+                          {`${customer.firstName || ''} ${customer.lastName || ''}`.trim() || customer.email || 'Unknown Customer'}
+                        </div>
                         <div className="text-sm text-gray-600">{customer.email}</div>
-                        <div className="text-sm text-gray-500">{customer.phone}</div>
+                        <div className="text-sm text-gray-500">{customer.phoneNumber || customer.phone}</div>
                         <div className="flex items-center gap-2 mt-1">
                           <span className={`text-xs px-2 py-1 rounded-full ${
                             customer.membershipStatus === 'Active'
@@ -251,7 +259,7 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white text-xl font-bold">
-                      {selectedCustomer.name.charAt(0).toUpperCase()}
+                      {selectedCustomer.name?.charAt(0)?.toUpperCase() || '?'}
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 text-lg">{selectedCustomer.name}</h4>
