@@ -112,9 +112,13 @@ export const LoginForm: React.FC = () => {
           <div className="mt-8 text-center">
             <p className="text-sm text-dark-600">
               Forgot your password?{' '}
-              <a href="#" className="text-dark-800 hover:text-dark-900 font-medium transition-colors">
+              <button 
+                type="button"
+                onClick={() => alert('Password reset feature coming soon!')}
+                className="text-dark-800 hover:text-dark-900 font-medium transition-colors underline cursor-pointer bg-transparent border-none p-0"
+              >
                 Reset it here
-              </a>
+              </button>
             </p>
           </div>
         </div>
