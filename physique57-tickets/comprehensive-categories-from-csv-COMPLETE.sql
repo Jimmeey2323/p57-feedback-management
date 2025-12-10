@@ -73,122 +73,122 @@ BEGIN
     RAISE NOTICE 'Step 2: Creating 10 categories...';
 
     -- Class Experience
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Class Experience',
         'Class quality, difficulty, variety, and overall experience',
         '🎯',
-        'teal'
+        '#14B8A6'
     )
     RETURNING id INTO v_cat_class_experience;
 
     -- Instructor Related
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Instructor Related',
         'Teaching quality, professionalism, and instructor interactions',
         '👨‍🏫',
-        'indigo'
+        '#6366F1'
     )
     RETURNING id INTO v_cat_instructor_related;
 
     -- Facility & Amenities
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Facility & Amenities',
         'Studio cleanliness, equipment, temperature, and facility maintenance',
         '🏢',
-        'cyan'
+        '#06B6D4'
     )
     RETURNING id INTO v_cat_facility_and_amenities;
 
     -- Membership & Billing
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Membership & Billing',
         'Billing issues, package problems, contracts, and membership matters',
         '💳',
-        'emerald'
+        '#10B981'
     )
     RETURNING id INTO v_cat_membership_and_billing;
 
     -- Booking & Technology
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Booking & Technology',
         'Issues related to app/website, bookings, payments, and technical systems',
         '💻',
-        'blue'
+        '#3B82F6'
     )
     RETURNING id INTO v_cat_booking_and_technology;
 
     -- Customer Service
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Customer Service',
         'Front desk service, response time, communication, and support quality',
         '🤝',
-        'green'
+        '#22C55E'
     )
     RETURNING id INTO v_cat_customer_service;
 
     -- Sales & Marketing
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Sales & Marketing',
         'Sales practices, marketing communications, trials, and promotional activities',
         '📢',
-        'purple'
+        '#A855F7'
     )
     RETURNING id INTO v_cat_sales_and_marketing;
 
     -- Health & Safety
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Health & Safety',
         'Hygiene, injuries, emergency preparedness, equipment safety, and health protocols',
         '🏥',
-        'red'
+        '#EF4444'
     )
     RETURNING id INTO v_cat_health_and_safety;
 
     -- Community & Culture
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Community & Culture',
         'Studio atmosphere, inclusivity, member behavior, and community events',
         '👥',
-        'pink'
+        '#EC4899'
     )
     RETURNING id INTO v_cat_community_and_culture;
 
     -- Retail & Merchandise
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Retail & Merchandise',
         'Product quality, availability, pricing, returns, and staff knowledge',
         '🛍️',
-        'orange'
+        '#F97316'
     )
     RETURNING id INTO v_cat_retail_and_merchandise;
 
     -- Special Programs
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Special Programs',
         'Workshops, private sessions, corporate programs, and specialized offerings',
         '⭐',
-        'yellow'
+        '#EAB308'
     )
     RETURNING id INTO v_cat_special_programs;
 
     -- Miscellaneous
-    INSERT INTO categories (name, description, icon, color)
+    INSERT INTO categories (name, description, icon, color_code)
     VALUES (
         'Miscellaneous',
         'Other issues including noise, policies, guest experience, and multi-location matters',
         '📋',
-        'gray'
+        '#6B7280'
     )
     RETURNING id INTO v_cat_miscellaneous;
 
