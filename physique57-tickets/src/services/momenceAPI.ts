@@ -234,8 +234,8 @@ class MomenceAPI {
         ...memberData,
         sessions: sessionsData.payload || [],
         activeMemberships: membershipsData.payload || [],
-        totalSessions: sessionsData.pagination?.totalCount || 0,
-        totalMemberships: membershipsData.pagination?.totalCount || 0
+        totalSessions: (sessionsData.payload || []).length,
+        totalMemberships: (membershipsData.payload || []).length
       };
 
       console.log('Momence API: Customer data fetched:', {
@@ -343,7 +343,6 @@ class MomenceAPI {
       membershipId: activeMembership?.membership?.id || '',
       joinDate: customer.firstSeen || null,
       lastVisit: customer.lastSeen || null,
-      totalBookings: customer.visits?.bookings || 0,
       notes: customer.notes || '',
     };
   }
