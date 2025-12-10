@@ -119,41 +119,70 @@ class MomenceAPI {
         }
       }
 
-      console.log('Momence API: Searching for:', query);
-      const searchUrl = `${this.baseURL}/host/members?search=${encodeURIComponent(query)}&pageSize=50`;
-      console.log('Momence API: Search URL:', searchUrl);
+      console.log('Momence API: Fetching all members for client-side search...');
       
-      const response = await fetch(searchUrl, {
-        method: 'GET',
-        headers: {
-          'accept': 'application/json',
-          'authorization': `Bearer ${this.accessToken}`,
-        },
-      });
+      // Fetch all members (like the HTML version) and filter client-side
+      let allMembers: any[] = [];
+      let page = 0;
+      let hasMoreData = true;
 
-      if (response.status === 401) {
-        console.log('Momence API: Token expired, refreshing...');
-        const refreshSuccess = await this.refreshAccessToken();
-        if (refreshSuccess) {
-          return this.searchCustomers(query);
+      while (hasMoreData && page < 10) { // Limit to 10 pages (1000 members) to prevent infinite loops
+        const fetchUrl = `${this.baseURL}/host/members?page=${page}&pageSize=100`;
+        console.log('Momence API: Fetching page:', page, fetchUrl);
+        
+        const response = await fetch(fetchUrl, {
+          method: 'GET',
+          headers: {
+            'accept': 'application/json',
+            'authorization': `Bearer ${this.accessToken}`,
+          },
+        });
+
+        if (response.status === 401) {
+          console.log('Momence API: Token expired, refreshing...');
+          const refreshSuccess = await this.refreshAccessToken();
+          if (refreshSuccess) {
+            continue; // Retry this page
+          } else {
+            console.warn('Momence API: Token refresh failed');
+            break;
+          }
+        }
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('Momence fetch failed:', response.status, response.statusText, errorText);
+          break;
+        }
+
+        const data = await response.json();
+        const pageMembers = data.payload || [];
+        allMembers = allMembers.concat(pageMembers);
+        
+        console.log(`Momence API: Page ${page} fetched ${pageMembers.length} members, total: ${allMembers.length}`);
+        
+        // Stop if we got less than the page size (last page)
+        if (pageMembers.length < 100) {
+          hasMoreData = false;
         } else {
-          console.warn('Momence API: Token refresh failed');
-          return [];
+          page++;
         }
       }
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Momence search failed:', response.status, response.statusText, errorText);
-        throw new Error('Search failed');
-      }
-
-      const data = await response.json();
-      console.log('Momence API: Search response:', { 
-        resultsCount: data.payload?.length || 0,
-        hasPayload: !!data.payload 
+      // Filter members client-side based on the search query
+      const searchLower = query.toLowerCase().trim();
+      const filteredMembers = allMembers.filter(member => {
+        const name = `${member.firstName || ''} ${member.lastName || ''}`.toLowerCase();
+        const email = (member.email || '').toLowerCase();
+        const phone = (member.phone || '').toString();
+        
+        return name.includes(searchLower) || 
+               email.includes(searchLower) || 
+               phone.includes(searchLower);
       });
-      return data.payload || [];
+
+      console.log(`Momence API: Found ${filteredMembers.length} matches for "${query}"`);
+      return filteredMembers.slice(0, 50); // Limit to 50 results for UI performance
     } catch (error) {
       console.error('Customer search error:', error);
       return [];
