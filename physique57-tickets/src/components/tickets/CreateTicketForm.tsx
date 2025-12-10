@@ -6,6 +6,7 @@ import { Category, Subcategory } from '../../types';
 import { Button } from '../ui/Button';
 import { GlobalFieldsSection } from './GlobalFieldsSection';
 import { CustomerSearchWidget } from './CustomerSearchWidget';
+import { SessionDetailsWidget } from './SessionDetailsWidget';
 import { DynamicFieldsGrid } from './DynamicFieldsGrid';
 import { openAIService } from '../../services/openAIService';
 import { emailService } from '../../services/emailService';
@@ -143,6 +144,29 @@ export const CreateTicketForm: React.FC = () => {
 
   const handleCustomerSelect = (customer: any) => {
     console.log('Customer selected:', customer);
+  };
+
+  const handleSessionSelect = (session: any) => {
+    console.log('Session selected:', session);
+    setFormData(prev => ({
+      ...prev,
+      relatedSessionId: session.id,
+      relatedSessionName: session.name,
+      relatedTeacher: session.teacher?.fullName || '',
+      sessionType: session.type,
+      sessionDate: session.startsAt,
+      sessionLocation: session.isInPerson ? session.inPersonLocation?.name : 'Online',
+      sessionCapacity: session.capacity,
+      sessionBookings: session.bookingCount,
+      className: session.name,
+      teacherName: session.teacher?.fullName || '',
+      classDateTime: session.startsAt,
+    }));
+    
+    toast.success(`Session "${session.name}" selected for ticket context`, {
+      duration: 3000,
+      icon: '📅',
+    });
   };
 
   const handleDescriptionBlur = async () => {
@@ -482,6 +506,13 @@ export const CreateTicketForm: React.FC = () => {
         {/* Customer Search Widget */}
         <CustomerSearchWidget
           onCustomerSelect={handleCustomerSelect}
+          formData={formData}
+          setFormData={setFormData}
+        />
+
+        {/* Session Details Widget */}
+        <SessionDetailsWidget
+          onSessionSelect={handleSessionSelect}
           formData={formData}
           setFormData={setFormData}
         />

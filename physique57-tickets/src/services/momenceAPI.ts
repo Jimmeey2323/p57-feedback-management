@@ -365,6 +365,210 @@ class MomenceAPI {
     if (totalVisits <= 50) return 'frequent';
     return 'vip';
   }
+
+  // Session management methods
+  async getSessions(page: number = 0, pageSize: number = 200): Promise<any> {
+    try {
+      // Early return if no credentials
+      if (!this.authToken || !this.username || !this.password) {
+        console.warn('Momence API: Sessions fetch disabled - missing environment variables');
+        return { payload: [], pagination: { totalCount: 0, page: 0, pageSize: 0 } };
+      }
+
+      if (!this.accessToken) {
+        console.log('Momence API: No access token for sessions, authenticating...');
+        const authSuccess = await this.authenticate();
+        if (!authSuccess) {
+          console.warn('Momence API: Authentication failed for sessions');
+          return { payload: [], pagination: { totalCount: 0, page: 0, pageSize: 0 } };
+        }
+      }
+
+      console.log(`Momence API: Fetching sessions page ${page} with pageSize ${pageSize}`);
+      
+      const response = await fetch(`${this.baseURL}/host/sessions?page=${page}&pageSize=${pageSize}&sortOrder=DESC&sortBy=startsAt&includeCancelled=false`, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'authorization': `Bearer ${this.accessToken}`,
+        },
+      });
+
+      if (response.status === 401) {
+        console.log('Momence API: Token expired during sessions fetch, refreshing...');
+        const refreshSuccess = await this.refreshAccessToken();
+        if (refreshSuccess) {
+          return this.getSessions(page, pageSize);
+        } else {
+          console.warn('Momence API: Token refresh failed for sessions');
+          return { payload: [], pagination: { totalCount: 0, page: 0, pageSize: 0 } };
+        }
+      }
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Momence sessions fetch failed:', response.status, response.statusText, errorText);
+        return { payload: [], pagination: { totalCount: 0, page: 0, pageSize: 0 } };
+      }
+
+      const data = await response.json();
+      console.log(`Momence API: Successfully fetched ${data.payload?.length || 0} sessions`);
+      return data;
+    } catch (error) {
+      console.error('Get sessions error:', error);
+      return { payload: [], pagination: { totalCount: 0, page: 0, pageSize: 0 } };
+    }
+  }
+
+  async getSessionById(sessionId: string): Promise<any> {
+    try {
+      // Early return if no credentials
+      if (!this.authToken || !this.username || !this.password) {
+        console.warn('Momence API: Session details fetch disabled - missing environment variables');
+        return null;
+      }
+
+      if (!this.accessToken) {
+        console.log('Momence API: No access token for session details, authenticating...');
+        const authSuccess = await this.authenticate();
+        if (!authSuccess) {
+          console.warn('Momence API: Authentication failed for session details');
+          return null;
+        }
+      }
+
+      console.log(`Momence API: Fetching session details for ${sessionId}`);
+      
+      const response = await fetch(`${this.baseURL}/host/sessions/${sessionId}`, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'authorization': `Bearer ${this.accessToken}`,
+        },
+      });
+
+      if (response.status === 401) {
+        console.log('Momence API: Token expired during session details fetch, refreshing...');
+        const refreshSuccess = await this.refreshAccessToken();
+        if (refreshSuccess) {
+          return this.getSessionById(sessionId);
+        } else {
+          console.warn('Momence API: Token refresh failed for session details');
+          return null;
+        }
+      }
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Momence session ${sessionId} fetch failed:`, response.status, response.statusText, errorText);
+        return null;
+      }
+
+      const data = await response.json();
+      console.log(`Momence API: Successfully fetched details for session ${sessionId}`);
+      return data;
+    } catch (error) {
+      console.error('Get session details error:', error);
+      return null;
+    }
+  }
+
+  async getAllSessionsWithDetails(maxPages: number = 5): Promise<any[]> {
+    try {
+      let allSessions: any[] = [];
+      let currentPage = 0;
+      let hasMoreData = true;
+
+      console.log(`Momence API: Starting to fetch all sessions with details (max ${maxPages} pages)`);
+
+      while (hasMoreData && currentPage < maxPages) {
+        const response = await this.getSessions(currentPage, 200);
+        
+        if (response.payload && response.payload.length > 0) {
+          console.log(`Momence API: Processing page ${currentPage} with ${response.payload.length} sessions`);
+          
+          // Fetch detailed information for each session
+          const sessionsWithDetails = await Promise.all(
+            response.payload.map(async (session: any) => {
+              try {
+                const detailedSession = await this.getSessionById(session.id);
+                return {
+                  ...session,
+                  detailedInfo: detailedSession
+                };
+              } catch (error) {
+                console.error(`Error fetching details for session ${session.id}:`, error);
+                return session; // Return original session if detailed fetch fails
+              }
+            })
+          );
+
+          allSessions = [...allSessions, ...sessionsWithDetails];
+          
+          // Check if we've reached the end
+          if (response.payload.length < 200 || response.pagination?.totalCount <= (currentPage + 1) * 200) {
+            hasMoreData = false;
+          } else {
+            currentPage++;
+          }
+        } else {
+          hasMoreData = false;
+        }
+      }
+
+      console.log(`Momence API: Fetched total of ${allSessions.length} sessions with details`);
+      return allSessions;
+    } catch (error) {
+      console.error('Error fetching all sessions with details:', error);
+      return [];
+    }
+  }
+
+  formatSessionData(session: any): any {
+    if (!session) return null;
+
+    const detailed = session.detailedInfo || session;
+    
+    return {
+      id: session.id,
+      name: session.name,
+      description: session.description,
+      type: session.type,
+      startsAt: session.startsAt,
+      endsAt: session.endsAt,
+      durationInMinutes: session.durationInMinutes,
+      capacity: detailed.capacity || session.capacity,
+      bookingCount: detailed.bookingCount || session.bookingCount,
+      waitlistCapacity: detailed.waitlistCapacity,
+      waitlistBookingCount: detailed.waitlistBookingCount,
+      teacher: {
+        id: session.teacher?.id,
+        firstName: session.teacher?.firstName,
+        lastName: session.teacher?.lastName,
+        fullName: `${session.teacher?.firstName || ''} ${session.teacher?.lastName || ''}`.trim(),
+        email: detailed.teacher?.email || session.teacher?.email,
+        pictureUrl: session.teacher?.pictureUrl
+      },
+      originalTeacher: detailed.originalTeacher,
+      additionalTeachers: detailed.additionalTeachers || [],
+      isRecurring: session.isRecurring,
+      isCancelled: session.isCancelled,
+      isInPerson: session.isInPerson,
+      isDraft: session.isDraft,
+      inPersonLocation: session.inPersonLocation,
+      zoomLink: detailed.zoomLink,
+      zoomMeetingId: detailed.zoomMeetingId,
+      zoomMeetingPassword: detailed.zoomMeetingPassword,
+      onlineStreamUrl: session.onlineStreamUrl || detailed.onlineStreamUrl,
+      onlineStreamPassword: session.onlineStreamPassword || detailed.onlineStreamPassword,
+      bannerImageUrl: session.bannerImageUrl,
+      hostPhotoUrl: session.hostPhotoUrl,
+      tags: session.tags || [],
+      availableSpots: (detailed.capacity || session.capacity || 0) - (detailed.bookingCount || session.bookingCount || 0),
+      utilizationRate: detailed.capacity ? Math.round(((detailed.bookingCount || 0) / detailed.capacity) * 100) : 0,
+      sessionStatus: session.isCancelled ? 'Cancelled' : session.isDraft ? 'Draft' : 'Active'
+    };
+  }
 }
 
 export const momenceAPI = new MomenceAPI();
