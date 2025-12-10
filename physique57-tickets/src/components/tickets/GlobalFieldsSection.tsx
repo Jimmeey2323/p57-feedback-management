@@ -23,14 +23,15 @@ export const GlobalFieldsSection: React.FC<GlobalFieldsSectionProps> = ({
   const [estimatedClosure, setEstimatedClosure] = useState<Date | null>(null);
 
   useEffect(() => {
-    // Auto-fill date reported
-    if (!formData.dateReported) {
-      setFormData({
-        ...formData,
+    // Auto-fill date reported once on mount using functional update
+    setFormData((prev: any) => {
+      if (prev && prev.dateReported) return prev;
+      return {
+        ...(prev || {}),
         dateReported: new Date().toISOString(),
-      });
-    }
-  }, []);
+      };
+    });
+  }, [setFormData]);
 
   useEffect(() => {
     // Calculate estimated closure date when priority changes
@@ -40,12 +41,9 @@ export const GlobalFieldsSection: React.FC<GlobalFieldsSectionProps> = ({
         formData.dateReported ? new Date(formData.dateReported) : new Date()
       );
       setEstimatedClosure(closureDate);
-      setFormData({
-        ...formData,
-        estimatedClosureDate: closureDate.toISOString(),
-      });
+      setFormData((prev: any) => ({ ...(prev || {}), estimatedClosureDate: closureDate.toISOString() }));
     }
-  }, [priority]);
+  }, [priority, formData.dateReported, setFormData]);
 
   const studioLocations = [
     'Kwality House Kemps Corner',
