@@ -26,13 +26,14 @@ REACT_APP_OPENAI_API_KEY = sk-proj-...your-key...
 ```
 **Get your key at**: https://platform.openai.com/api-keys
 
-#### SendGrid API (Email Notifications)
+#### Mailtrap API (Email Notifications)
 ```
-REACT_APP_SENDGRID_API_KEY = SG...your-key...
-REACT_APP_FROM_EMAIL = noreply@physique57.com
-REACT_APP_NOTIFY_EMAIL = admin@physique57.com
+REACT_APP_MAILTRAP_API_TOKEN = a3194c911caceef1b76b500e5c8fe989
+REACT_APP_FROM_EMAIL = hello@demomailtrap.co
+REACT_APP_FROM_NAME = Physique 57 Tickets
+REACT_APP_NOTIFY_EMAIL = jimmeey@physique57india.com
 ```
-**Get your key at**: https://app.sendgrid.com/settings/api_keys
+**Get your token at**: https://mailtrap.io/api-tokens
 
 ### 3. Redeploy
 After adding variables, click **"Redeploy"** in Vercel dashboard or just push a new commit.
@@ -53,7 +54,7 @@ After adding variables, click **"Redeploy"** in Vercel dashboard or just push a 
 ❌ Customer search (Momence API)  
 ❌ AI auto-tagging (OpenAI)  
 ❌ AI priority suggestions (OpenAI)  
-❌ Email notifications (SendGrid)  
+❌ Email notifications (Mailtrap API)  
 
 **Note**: The form will still work perfectly, just without these advanced features. They fail gracefully with console errors only.
 
@@ -78,14 +79,8 @@ After adding variables, click **"Redeploy"** in Vercel dashboard or just push a 
 3. Create API key
 4. Cost: ~$0.002 per ticket analysis (very cheap)
 
-### SendGrid
-1. Go to https://signup.sendgrid.com/
-2. Free tier: 100 emails/day
-3. Create API key with "Mail Send" permission
-4. Verify sender email address
-
-### Momence
-Already have credentials extracted from your HTML file!
+### Mailtrap
+Already have token extracted from your request!
 
 ---
 

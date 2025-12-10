@@ -1,4 +1,4 @@
-// Email Notification Service using SendGrid
+// Email Notification Service using Mailtrap
 
 interface EmailRecipient {
   email: string;
@@ -24,44 +24,58 @@ interface TicketEmailData {
 }
 
 class EmailService {
-  private apiKey: string;
+  private apiToken: string;
   private fromEmail: string;
-  private baseURL = 'https://api.sendgrid.com/v3/mail/send';
+  private fromName: string;
+  private baseURL = 'https://send.api.mailtrap.io/api/send';
 
   constructor() {
-    this.apiKey = process.env.REACT_APP_SENDGRID_API_KEY || '';
-    this.fromEmail = process.env.REACT_APP_FROM_EMAIL || 'tickets@physique57.com';
+    this.apiToken = process.env.REACT_APP_MAILTRAP_API_TOKEN || '';
+    this.fromEmail = process.env.REACT_APP_FROM_EMAIL || 'hello@demomailtrap.co';
+    this.fromName = process.env.REACT_APP_FROM_NAME || 'Physique 57 Tickets';
+    
+    if (!this.apiToken) {
+      console.warn('Mailtrap API: Token not configured. Email notifications will be disabled.');
+    }
   }
 
   async sendTicketCreatedNotification(ticketData: TicketEmailData, recipients: EmailRecipient[]): Promise<boolean> {
     try {
+      if (!this.apiToken) {
+        console.warn('Mailtrap API: Cannot send email - no API token configured');
+        return false;
+      }
+
       const emailContent = this.buildTicketCreatedEmail(ticketData);
 
       const response = await fetch(this.baseURL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiKey}`,
+          'Authorization': `Bearer ${this.apiToken}`,
         },
         body: JSON.stringify({
-          personalizations: recipients.map(recipient => ({
-            to: [{ email: recipient.email, name: recipient.name }],
-          })),
           from: {
             email: this.fromEmail,
-            name: 'Physique 57 Ticketing System',
+            name: this.fromName,
           },
+          to: recipients.map(recipient => ({
+            email: recipient.email,
+            name: recipient.name || recipient.email,
+          })),
           subject: `🎫 New Ticket #${ticketData.ticketNumber}: ${ticketData.title}`,
-          content: [
-            {
-              type: 'text/html',
-              value: emailContent,
-            },
-          ],
+          html: emailContent,
+          category: 'Ticket Notification',
         }),
       });
 
-      return response.ok;
+      if (!response.ok) {
+        console.error('Mailtrap API error:', response.status, response.statusText);
+        return false;
+      }
+
+      console.log('Email sent successfully via Mailtrap');
+      return true;
     } catch (error) {
       console.error('Email sending error:', error);
       return false;
