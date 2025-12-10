@@ -14,10 +14,26 @@ class MomenceAPI {
     this.authToken = process.env.REACT_APP_MOMENCE_AUTH_TOKEN || '';
     this.username = process.env.REACT_APP_MOMENCE_USERNAME || '';
     this.password = process.env.REACT_APP_MOMENCE_PASSWORD || '';
+    
+    // Debug: Check if environment variables are set
+    if (!this.authToken || !this.username || !this.password) {
+      console.warn('Momence API: Missing environment variables. Customer search will be disabled.');
+      console.warn({
+        hasAuthToken: !!this.authToken,
+        hasUsername: !!this.username,
+        hasPassword: !!this.password
+      });
+    }
   }
 
   async authenticate(): Promise<boolean> {
     try {
+      // Check if credentials are available
+      if (!this.authToken || !this.username || !this.password) {
+        console.warn('Momence API: Cannot authenticate - missing credentials');
+        return false;
+      }
+
       const response = await fetch(`${this.baseURL}/auth/token`, {
         method: 'POST',
         headers: {
@@ -33,6 +49,7 @@ class MomenceAPI {
       });
 
       if (!response.ok) {
+        console.error('Momence auth failed:', response.status, response.statusText);
         throw new Error('Authentication failed');
       }
 
@@ -79,8 +96,18 @@ class MomenceAPI {
 
   async searchCustomers(query: string): Promise<any[]> {
     try {
+      // Early return if no credentials
+      if (!this.authToken || !this.username || !this.password) {
+        console.warn('Momence API: Customer search disabled - missing environment variables');
+        return [];
+      }
+
       if (!this.accessToken) {
-        await this.authenticate();
+        const authSuccess = await this.authenticate();
+        if (!authSuccess) {
+          console.warn('Momence API: Authentication failed, skipping search');
+          return [];
+        }
       }
 
       const response = await fetch(
@@ -95,11 +122,17 @@ class MomenceAPI {
       );
 
       if (response.status === 401) {
-        await this.refreshAccessToken();
-        return this.searchCustomers(query);
+        const refreshSuccess = await this.refreshAccessToken();
+        if (refreshSuccess) {
+          return this.searchCustomers(query);
+        } else {
+          console.warn('Momence API: Token refresh failed');
+          return [];
+        }
       }
 
       if (!response.ok) {
+        console.error('Momence search failed:', response.status, response.statusText);
         throw new Error('Search failed');
       }
 

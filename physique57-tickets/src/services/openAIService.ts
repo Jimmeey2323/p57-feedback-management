@@ -14,6 +14,10 @@ class OpenAIService {
 
   constructor() {
     this.apiKey = process.env.REACT_APP_OPENAI_API_KEY || '';
+    
+    if (!this.apiKey) {
+      console.warn('OpenAI API: API key not configured. AI features will be disabled.');
+    }
   }
 
   async analyzeTicket(ticketData: {
@@ -24,6 +28,11 @@ class OpenAIService {
     formData?: any;
   }): Promise<TicketAnalysis> {
     try {
+      if (!this.apiKey) {
+        console.warn('OpenAI API: API key not available, using fallback analysis');
+        return this.getFallbackAnalysis(ticketData);
+      }
+
       const prompt = this.buildAnalysisPrompt(ticketData);
 
       const response = await fetch(this.apiURL, {

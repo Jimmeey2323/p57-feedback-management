@@ -19,13 +19,28 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
   const [selectedCustomer, setSelectedCustomer] = useState<any>(null);
   const [showManualEntry, setShowManualEntry] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [apiAvailable, setApiAvailable] = useState(true);
   
   const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Check if Momence API is configured
+  useEffect(() => {
+    const hasRequiredEnvVars = !!(
+      process.env.REACT_APP_MOMENCE_AUTH_TOKEN &&
+      process.env.REACT_APP_MOMENCE_USERNAME &&
+      process.env.REACT_APP_MOMENCE_PASSWORD
+    );
+    setApiAvailable(hasRequiredEnvVars);
+    
+    if (!hasRequiredEnvVars) {
+      console.warn('Momence API not configured - customer search disabled');
+    }
+  }, []);
+
   // Debounced search
   useEffect(() => {
-    if (searchQuery.length < 2) {
+    if (!apiAvailable || searchQuery.length < 2) {
       setSearchResults([]);
       setShowResults(false);
       return;
@@ -40,10 +55,11 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
       try {
         const results = await momenceAPI.searchCustomers(searchQuery);
         setSearchResults(results);
-        setShowResults(true);
+        setShowResults(results.length > 0);
       } catch (error) {
         console.error('Customer search failed:', error);
         setSearchResults([]);
+        setShowResults(false);
       } finally {
         setIsSearching(false);
       }
@@ -54,7 +70,7 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
         clearTimeout(searchTimeoutRef.current);
       }
     };
-  }, [searchQuery]);
+  }, [searchQuery, apiAvailable]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -151,13 +167,29 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   🔍 Search Customer
                 </label>
+                
+                {!apiAvailable && (
+                  <div className="mb-3 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                    <div className="flex items-center gap-2 text-amber-700">
+                      <span>⚠️</span>
+                      <span className="text-sm font-medium">Customer search unavailable</span>
+                    </div>
+                    <p className="text-xs text-amber-600 mt-1">
+                      Environment variables not configured. Use manual entry below.
+                    </p>
+                  </div>
+                )}
+                
                 <div className="relative">
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by name, email, or phone..."
-                    className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                    placeholder={apiAvailable ? "Search by name, email, or phone..." : "Search disabled - use manual entry"}
+                    disabled={!apiAvailable}
+                    className={`w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all ${
+                      !apiAvailable ? 'bg-gray-100 cursor-not-allowed' : ''
+                    }`}
                   />
                   {isSearching && (
                     <div className="absolute right-3 top-1/2 -translate-y-1/2">
