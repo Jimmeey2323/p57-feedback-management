@@ -323,10 +323,12 @@ export const CreateTicketForm: React.FC = () => {
             category: selectedCategory?.name || 'Unknown',
             subcategory: selectedSubcategory?.name || 'Unknown',
             reportedBy: formData.associate,
-            studioLocation: formData.studioLocation,
+            owner: formData.owner,
             tags: aiTags,
             createdAt: new Date().toISOString(),
-          },
+            estimatedClosure: formData.estimatedClosureDate || '',
+            ticketUrl: `${window.location.origin}/tickets/${ticket.id}`,
+          } as any,
           recipients
         );
       } catch (emailError) {
