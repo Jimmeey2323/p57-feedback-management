@@ -25,7 +25,7 @@ interface TicketEmailData {
 
 class EmailService {
   private apiKey: string;
-  private from Email: string;
+  private fromEmail: string;
   private baseURL = 'https://api.sendgrid.com/v3/mail/send';
 
   constructor() {
