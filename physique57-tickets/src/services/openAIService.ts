@@ -133,15 +133,16 @@ Provide ONLY the JSON response, no additional text.
     // Sentiment-based tags
     if (ticketData.customerSentiment === 'Angry' || ticketData.customerSentiment === 'Frustrated') {
       tags.push('customer-retention-risk');
-      if (priority === 'low') priority = 'medium';
-      if (priority === 'medium') priority = 'high';
+      // Use safe comparisons with a cast to avoid TypeScript narrowing issues
+      if ((priority as any) === 'low') (priority as any) = 'medium';
+      if ((priority as any) === 'medium') (priority as any) = 'high';
     }
 
     // Description keywords
     const description = ticketData.description?.toLowerCase() || '';
     if (description.includes('urgent') || description.includes('immediately')) {
       tags.push('urgent');
-      if (priority === 'low') priority = 'medium';
+      if ((priority as any) === 'low') (priority as any) = 'medium';
     }
     if (description.includes('cancel') || description.includes('refund')) {
       tags.push('cancellation-risk');
