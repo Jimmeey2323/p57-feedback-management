@@ -34,6 +34,7 @@ class MomenceAPI {
         return false;
       }
 
+      console.log('Momence API: Attempting authentication...');
       const response = await fetch(`${this.baseURL}/auth/token`, {
         method: 'POST',
         headers: {
@@ -49,13 +50,20 @@ class MomenceAPI {
       });
 
       if (!response.ok) {
-        console.error('Momence auth failed:', response.status, response.statusText);
+        const errorText = await response.text();
+        console.error('Momence auth failed:', response.status, response.statusText, errorText);
         throw new Error('Authentication failed');
       }
 
       const data = await response.json();
+      console.log('Momence auth success:', { 
+        hasAccessToken: !!data.access_token,
+        hasRefreshToken: !!data.refresh_token || !!data.refreshToken,
+        tokenType: data.token_type 
+      });
+      
       this.accessToken = data.access_token;
-      this.refreshToken = data.refreshToken;
+      this.refreshToken = data.refresh_token || data.refreshToken;
       
       return true;
     } catch (error) {
@@ -103,6 +111,7 @@ class MomenceAPI {
       }
 
       if (!this.accessToken) {
+        console.log('Momence API: No access token, authenticating...');
         const authSuccess = await this.authenticate();
         if (!authSuccess) {
           console.warn('Momence API: Authentication failed, skipping search');
@@ -110,18 +119,20 @@ class MomenceAPI {
         }
       }
 
-      const response = await fetch(
-        `${this.baseURL}/host/members?search=${encodeURIComponent(query)}&pageSize=50`,
-        {
-          method: 'GET',
-          headers: {
-            'accept': 'application/json',
-            'authorization': `Bearer ${this.accessToken}`,
-          },
-        }
-      );
+      console.log('Momence API: Searching for:', query);
+      const searchUrl = `${this.baseURL}/host/members?search=${encodeURIComponent(query)}&pageSize=50`;
+      console.log('Momence API: Search URL:', searchUrl);
+      
+      const response = await fetch(searchUrl, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'authorization': `Bearer ${this.accessToken}`,
+        },
+      });
 
       if (response.status === 401) {
+        console.log('Momence API: Token expired, refreshing...');
         const refreshSuccess = await this.refreshAccessToken();
         if (refreshSuccess) {
           return this.searchCustomers(query);
@@ -132,11 +143,16 @@ class MomenceAPI {
       }
 
       if (!response.ok) {
-        console.error('Momence search failed:', response.status, response.statusText);
+        const errorText = await response.text();
+        console.error('Momence search failed:', response.status, response.statusText, errorText);
         throw new Error('Search failed');
       }
 
       const data = await response.json();
+      console.log('Momence API: Search response:', { 
+        resultsCount: data.payload?.length || 0,
+        hasPayload: !!data.payload 
+      });
       return data.payload || [];
     } catch (error) {
       console.error('Customer search error:', error);
