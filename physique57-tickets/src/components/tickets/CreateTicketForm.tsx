@@ -159,7 +159,7 @@ export const CreateTicketForm: React.FC = () => {
         formData,
       });
       
-      setAiTags(analysis.suggestedTags);
+      setAiTags(analysis.tags);
       setAiPriority(analysis.suggestedPriority);
       
       toast.success('✨ AI analysis complete! Review suggested tags and priority.', {
