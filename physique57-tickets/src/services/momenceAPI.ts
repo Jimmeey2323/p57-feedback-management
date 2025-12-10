@@ -170,7 +170,10 @@ class MomenceAPI {
         await this.authenticate();
       }
 
-      const response = await fetch(
+      console.log('Momence API: Fetching comprehensive customer data for ID:', memberId);
+
+      // Fetch basic member details
+      const memberResponse = await fetch(
         `${this.baseURL}/host/members/${memberId}`,
         {
           method: 'GET',
@@ -181,17 +184,67 @@ class MomenceAPI {
         }
       );
 
-      if (response.status === 401) {
+      if (memberResponse.status === 401) {
         await this.refreshAccessToken();
         return this.getCustomerById(memberId);
       }
 
-      if (!response.ok) {
+      if (!memberResponse.ok) {
         throw new Error('Failed to fetch customer details');
       }
 
-      const data = await response.json();
-      return data;
+      const memberData = await memberResponse.json();
+
+      // Fetch customer sessions
+      const sessionsResponse = await fetch(
+        `${this.baseURL}/host/members/${memberId}/sessions?page=0&pageSize=100&sortOrder=ASC&sortBy=startsAt&includeCancelled=true`,
+        {
+          method: 'GET',
+          headers: {
+            'accept': 'application/json',
+            'authorization': `Bearer ${this.accessToken}`,
+          },
+        }
+      );
+
+      let sessionsData = { payload: [] };
+      if (sessionsResponse.ok) {
+        sessionsData = await sessionsResponse.json();
+      }
+
+      // Fetch active memberships
+      const membershipsResponse = await fetch(
+        `${this.baseURL}/host/members/${memberId}/bought-memberships/active?page=0&pageSize=200`,
+        {
+          method: 'GET',
+          headers: {
+            'accept': 'application/json',
+            'authorization': `Bearer ${this.accessToken}`,
+          },
+        }
+      );
+
+      let membershipsData = { payload: [] };
+      if (membershipsResponse.ok) {
+        membershipsData = await membershipsResponse.json();
+      }
+
+      // Combine all data
+      const comprehensiveData = {
+        ...memberData,
+        sessions: sessionsData.payload || [],
+        activeMemberships: membershipsData.payload || [],
+        totalSessions: sessionsData.pagination?.totalCount || 0,
+        totalMemberships: membershipsData.pagination?.totalCount || 0
+      };
+
+      console.log('Momence API: Customer data fetched:', {
+        memberId,
+        sessionsCount: comprehensiveData.sessions.length,
+        membershipsCount: comprehensiveData.activeMemberships.length
+      });
+
+      return comprehensiveData;
     } catch (error) {
       console.error('Get customer error:', error);
       return null;
@@ -233,22 +286,85 @@ class MomenceAPI {
   }
 
   formatCustomerData(customer: any) {
+    const activeMembership = customer.activeMemberships?.[0];
+    const recentSessions = customer.sessions?.slice(-5) || [];
+    const lastSession = customer.sessions?.[customer.sessions.length - 1];
+    
     return {
       id: customer.id,
       firstName: customer.firstName || '',
       lastName: customer.lastName || '',
       email: customer.email || '',
       phone: customer.phoneNumber || customer.phone || '',
-      membershipId: customer.membershipNumber || '',
-      membershipStatus: customer.membershipStatus || 'inactive',
-      joinDate: customer.firstSeen || customer.createdAt || null,
-      lastVisit: customer.lastSeen || customer.lastBookingDate || null,
-      totalVisits: customer.visits?.total || customer.totalBookings || 0,
-      totalBookings: customer.visits?.bookings || customer.totalBookings || 0,
-      customerTags: customer.customerTags || [],
+      pictureUrl: customer.pictureUrl || '',
+      
+      // Timeline data
+      firstSeen: customer.firstSeen || null,
+      lastSeen: customer.lastSeen || null,
+      
+      // Visit statistics
+      totalVisits: customer.visits?.total || 0,
+      totalAppointments: customer.visits?.appointments || 0,
+      totalBookings: customer.visits?.bookings || 0,
+      appointmentVisits: customer.visits?.appointmentsVisits || 0,
+      bookingVisits: customer.visits?.bookingsVisits || 0,
+      openAreaVisits: customer.visits?.openAreaVisits || 0,
+      
+      // Session data
+      sessions: customer.sessions || [],
+      totalSessions: customer.totalSessions || 0,
+      recentSessions: recentSessions,
+      lastSessionDate: lastSession?.session?.startsAt || null,
+      lastSessionName: lastSession?.session?.name || null,
+      
+      // Membership data
+      activeMemberships: customer.activeMemberships || [],
+      totalMemberships: customer.totalMemberships || 0,
+      currentMembershipName: activeMembership?.membership?.name || null,
+      currentMembershipType: activeMembership?.type || null,
+      membershipStartDate: activeMembership?.startDate || null,
+      membershipEndDate: activeMembership?.endDate || null,
+      membershipFrozen: activeMembership?.isFrozen || false,
+      creditsLeft: activeMembership?.eventCreditsLeft || null,
+      sessionsUsed: activeMembership?.usedSessions || 0,
+      sessionsLimit: activeMembership?.usageLimitForSessions || null,
+      appointmentsUsed: activeMembership?.usedAppointments || 0,
+      appointmentsLimit: activeMembership?.usageLimitForAppointments || null,
+      
+      // Custom fields and tags
       customerFields: customer.customerFields || [],
+      customerTags: customer.customerTags || [],
+      
+      // Computed status
+      membershipStatus: this.getMembershipStatus(activeMembership),
+      activityLevel: this.getActivityLevel(customer.visits?.total || 0),
+      
+      // Legacy fields for compatibility
+      membershipId: activeMembership?.membership?.id || '',
+      joinDate: customer.firstSeen || null,
+      lastVisit: customer.lastSeen || null,
+      totalBookings: customer.visits?.bookings || 0,
       notes: customer.notes || '',
     };
+  }
+
+  private getMembershipStatus(membership: any): string {
+    if (!membership) return 'inactive';
+    if (membership.isFrozen) return 'frozen';
+    
+    const endDate = membership.endDate ? new Date(membership.endDate) : null;
+    const now = new Date();
+    
+    if (endDate && endDate < now) return 'expired';
+    return 'active';
+  }
+
+  private getActivityLevel(totalVisits: number): string {
+    if (totalVisits === 0) return 'new';
+    if (totalVisits <= 5) return 'beginner';
+    if (totalVisits <= 20) return 'regular';
+    if (totalVisits <= 50) return 'frequent';
+    return 'vip';
   }
 }
 
