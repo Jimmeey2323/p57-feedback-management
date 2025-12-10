@@ -153,11 +153,10 @@ export const CreateTicketForm: React.FC = () => {
     setIsAnalyzing(true);
     try {
       const analysis = await openAIService.analyzeTicket({
-        title: formData.title,
         description: formData.description,
         category: selectedCategory?.name || '',
         subcategory: selectedSubcategory?.name || '',
-        priority,
+        formData,
       });
       
       setAiTags(analysis.suggestedTags);
