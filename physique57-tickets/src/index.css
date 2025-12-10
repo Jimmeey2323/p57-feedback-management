@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+    font-family: 'Plus Jakarta Sans', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(32, 40, 62, 0.08), transparent),
+                radial-gradient(1200px 600px at 90% 10%, rgba(89, 97, 249, 0.08), transparent),
+                linear-gradient(135deg, #ffffff 0%, #f7f8fb 100%);
+    min-height: 100vh;
+  }
+  
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  /* Glassmorphic Base */
+  .glass-morphic {
+    @apply bg-white/85 border border-white/30;
+    backdrop-filter: blur(16px) saturate(120%);
+    box-shadow: 0 20px 60px -20px rgba(32, 40, 62, 0.16);
+    border-radius: 16px;
+  }
+  
+  .glass-morphic-hover {
+    @apply hover:bg-white/95 hover:-translate-y-0.5 transition-all duration-300;
+    box-shadow: 0 28px 80px -24px rgba(32, 40, 62, 0.22);
+  }
+  
+  /* Elevated Card */
+  .card-elevated {
+    @apply bg-white/90 border border-white/40;
+    backdrop-filter: blur(20px) saturate(120%);
+    box-shadow: 0 30px 80px -30px rgba(32, 40, 62, 0.25);
+    border-radius: 18px;
+  }
+
+  /* Container */
+  .container-pro {
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-10;
+  }
+
+  /* Headings */
+  .heading-xl {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+  .heading-lg {
+    @apply text-xl sm:text-2xl font-semibold tracking-tight;
+    letter-spacing: -0.01em;
+  }
+  .subtle {
+    @apply text-dark-600;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100/50 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-dark-700 to-dark-900 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply from-dark-600 to-dark-800;
+  }
+  
+  /* Refined Input Focus */
+  .input-focus {
+    @apply focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all duration-200;
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #1f2937 0%, #0f172a 60%, #5961f9 100%);
+  }
+  
+  /* Shimmer Effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  /* Loading Skeleton */
+  .skeleton {
+    @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-shimmer rounded;
+  }
+
+  /* Soft shadow hover */
+  .hover-glow {
+    transition: box-shadow 250ms ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 24px 72px -28px rgba(17, 24, 39, 0.28);
+  }
+
+  /* Subtle divider */
+  .divider {
+    @apply border-t border-white/30;
+  }
+  
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
