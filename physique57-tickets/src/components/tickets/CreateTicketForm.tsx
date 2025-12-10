@@ -351,29 +351,30 @@ export const CreateTicketForm: React.FC = () => {
                                 selectedCategory?.name === 'Trainer Related';
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Create New Ticket</h1>
-        <p className="text-gray-600">Fill out the form below to submit a new support ticket</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
+      <div className="max-w-5xl mx-auto px-6 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">Create New Ticket</h1>
+          <p className="text-slate-600">Fill out the form below to submit a new support ticket</p>
+        </div>
 
-      <form onSubmit={onSubmit} className="space-y-8">
-        {/* Category & Subcategory Selection */}
-        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm space-y-6">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <span>🎯</span>
-            Select Issue Type
-          </h2>
+        <form onSubmit={onSubmit} className="space-y-8">
+          {/* Category & Subcategory Selection */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 shadow-lg hover:shadow-xl transition-all duration-300 space-y-6">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span>🎯</span>
+              Select Issue Type
+            </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 Category <span className="text-red-500">*</span>
               </label>
               <select
                 value={selectedCategoryId}
                 onChange={(e) => setSelectedCategoryId(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm transition-all"
                 required
               >
                 <option value="">Select a category...</option>
@@ -386,13 +387,13 @@ export const CreateTicketForm: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 Subcategory <span className="text-red-500">*</span>
               </label>
               <select
                 value={selectedSubcategoryId}
                 onChange={(e) => setSelectedSubcategoryId(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm transition-all"
                 required
                 disabled={!selectedCategoryId}
               >
@@ -411,7 +412,7 @@ export const CreateTicketForm: React.FC = () => {
           {/* Title & Description */}
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 Ticket Title <span className="text-red-500">*</span>
               </label>
               <input
@@ -419,18 +420,18 @@ export const CreateTicketForm: React.FC = () => {
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 placeholder="Brief summary of the issue"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm transition-all"
                 required
                 minLength={5}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center justify-between">
+              <label className="block text-sm font-medium text-slate-700 mb-2 flex items-center justify-between">
                 <span>Description</span>
                 {isAnalyzing && (
-                  <span className="text-xs text-indigo-600 flex items-center gap-1">
-                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-indigo-600"></div>
+                  <span className="text-xs text-blue-600 flex items-center gap-1">
+                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-blue-600"></div>
                     Analyzing with AI...
                   </span>
                 )}
@@ -441,7 +442,7 @@ export const CreateTicketForm: React.FC = () => {
                 onBlur={handleDescriptionBlur}
                 placeholder="Provide detailed information about the issue..."
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/70 backdrop-blur-sm transition-all"
               />
               {aiTags.length > 0 && (
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -521,6 +522,7 @@ export const CreateTicketForm: React.FC = () => {
           </Button>
         </div>
       </form>
+      </div>
     </div>
   );
 };

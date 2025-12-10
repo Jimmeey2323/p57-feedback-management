@@ -303,16 +303,16 @@ class MomenceAPI {
       lastSeen: customer.lastSeen || null,
       
       // Visit statistics
-      totalVisits: customer.visits?.total || 0,
+      totalVisits: (customer.sessions || []).length || customer.visits?.total || 0,
       totalAppointments: customer.visits?.appointments || 0,
-      totalBookings: customer.visits?.bookings || 0,
+      totalBookings: (customer.sessions || []).filter((s: any) => s.session).length || customer.visits?.bookings || 0,
       appointmentVisits: customer.visits?.appointmentsVisits || 0,
-      bookingVisits: customer.visits?.bookingsVisits || 0,
+      bookingVisits: (customer.sessions || []).filter((s: any) => s.checkedIn).length || customer.visits?.bookingsVisits || 0,
       openAreaVisits: customer.visits?.openAreaVisits || 0,
       
       // Session data
       sessions: customer.sessions || [],
-      totalSessions: customer.totalSessions || 0,
+      totalSessions: (customer.sessions || []).length || customer.totalSessions || 0,
       recentSessions: recentSessions,
       lastSessionDate: lastSession?.session?.startsAt || null,
       lastSessionName: lastSession?.session?.name || null,
