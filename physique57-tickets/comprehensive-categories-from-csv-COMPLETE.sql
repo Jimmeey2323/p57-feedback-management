@@ -2332,5 +2332,3 @@ FROM categories c
 LEFT JOIN subcategories s ON s.category_id = c.id
 GROUP BY c.id, c.name
 ORDER BY c.name;
-
-RAISE NOTICE 'Database seeding verification complete. Check the results above.';
