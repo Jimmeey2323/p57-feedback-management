@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd physique57-tickets && npm install && npm run build",
+  "outputDirectory": "physique57-tickets/build",
+  "installCommand": "cd physique57-tickets && npm install",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
