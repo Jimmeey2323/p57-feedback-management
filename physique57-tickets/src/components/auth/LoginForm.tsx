@@ -29,33 +29,25 @@ export const LoginForm: React.FC = () => {
   };
   
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 -z-10"></div>
-      
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden bg-gradient-primary">
       {/* Floating glass orbs (decoration) */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-dark-700/5 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-dark-800/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      
+      <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
       <div className="max-w-md w-full animate-fade-in">
         <div 
           className="glass-morphic rounded-3xl p-10"
-          style={{ boxShadow: '0 12px 48px 0 rgba(31, 38, 135, 0.12)' }}
+          style={{ boxShadow: 'var(--shadow-2)' }}
         >
           {/* Logo and Title */}
           <div className="text-center mb-10">
             <div className="flex justify-center mb-6">
-              <div 
-                className="w-20 h-20 bg-gradient-to-br from-dark-800 to-dark-900 rounded-2xl flex items-center justify-center transform hover:scale-105 transition-transform duration-300"
-                style={{ boxShadow: '0 4px 20px 0 rgba(0, 0, 0, 0.1)' }}
-              >
-                <span className="text-white text-3xl font-bold">P57</span>
-              </div>
+              <img src="https://d.imgvision.net/jimmeey/Logo.png" alt="Physique 57" className="h-20 w-20 rounded-2xl object-contain transform hover:scale-105 transition-transform duration-300" style={{ boxShadow: 'var(--shadow-3)' }} />
             </div>
-            <h2 className="text-4xl font-bold gradient-text mb-3">
+            <h2 className="lux-heading-xl mb-3">
               Physique 57 India
             </h2>
-            <p className="text-dark-700 text-lg">
+            <p className="lux-body text-[#616161]">
               Ticket Management System
             </p>
           </div>
@@ -98,13 +90,12 @@ export const LoginForm: React.FC = () => {
             )}
             
             <Button
-              type="submit"
               variant="primary"
               size="lg"
               isLoading={isLoading}
-              className="w-full mt-6"
+              className="w-full"
             >
-              Sign In
+              Login
             </Button>
           </form>
           

@@ -4,6 +4,12 @@ import { useAuthStore } from '../stores/authStore';
 import { MainLayout } from '../components/layout/MainLayout';
 import { Button } from '../components/ui/Button';
 import { Plus, BarChart3 } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const pageTitleAnimation = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -13,10 +19,15 @@ export const DashboardPage: React.FC = () => {
     <MainLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={pageTitleAnimation}
+            className="text-5xl font-bold mb-3 bg-gradient-primary text-transparent bg-clip-text"
+          >
             Welcome back, {user?.full_name}!
-          </h1>
-          <p className="mt-2 text-gray-600">
+          </motion.h1>
+          <p className="mt-2 text-gray-600 text-lg">
             Here's what's happening with your tickets today.
           </p>
         </div>
@@ -74,8 +85,8 @@ export const DashboardPage: React.FC = () => {
                 <p className="text-sm font-medium text-gray-600">SLA Compliance</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">94%</p>
               </div>
-              <div className="bg-purple-100 rounded-full p-3">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-[#E3F2FD] rounded-full p-3">
+                <svg className="w-6 h-6 text-[#1A4D99]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
@@ -85,53 +96,53 @@ export const DashboardPage: React.FC = () => {
         </div>
         
         {/* Quick Actions */}
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <h2 className="lux-heading-lg mb-4">Quick Actions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <button 
               onClick={() => navigate('/tickets/create')}
-              className="flex items-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-red-500 hover:bg-red-50 transition-colors"
+              className="flex items-center p-4 border-2 border-dashed border-[#C5D1E0] rounded-lg hover:border-[#1A4D99] hover:bg-[#E3F2FD] transition-all"
             >
-              <div className="bg-red-100 rounded-full p-2 mr-3">
-                <Plus className="w-5 h-5 text-red-600" />
+              <div className="bg-[#E3F2FD] rounded-full p-2 mr-3">
+                <Plus className="w-5 h-5 text-[#1A4D99]" />
               </div>
-              <span className="font-medium text-gray-700">Create New Ticket</span>
+              <span className="lux-body">Create New Ticket</span>
             </button>
-            
+
             <button 
               onClick={() => navigate('/tickets')}
-              className="flex items-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-red-500 hover:bg-red-50 transition-colors"
+              className="flex items-center p-4 border-2 border-dashed border-[#C5D1E0] rounded-lg hover:border-[#1A4D99] hover:bg-[#E3F2FD] transition-all"
             >
-              <div className="bg-blue-100 rounded-full p-2 mr-3">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-[#E3F2FD] rounded-full p-2 mr-3">
+                <svg className="w-5 h-5 text-[#1A4D99]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <span className="font-medium text-gray-700">View All Tickets</span>
+              <span className="lux-body">View All Tickets</span>
             </button>
-            
+
             <button 
               onClick={() => navigate('/analytics')}
-              className="flex items-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-red-500 hover:bg-red-50 transition-colors"
+              className="flex items-center p-4 border-2 border-dashed border-[#C5D1E0] rounded-lg hover:border-[#1A4D99] hover:bg-[#E3F2FD] transition-all"
             >
-              <div className="bg-green-100 rounded-full p-2 mr-3">
-                <BarChart3 className="w-5 h-5 text-green-600" />
+              <div className="bg-[#E3F2FD] rounded-full p-2 mr-3">
+                <BarChart3 className="w-5 h-5 text-[#1A4D99]" />
               </div>
-              <span className="font-medium text-gray-700">View Analytics</span>
+              <span className="lux-body">View Analytics</span>
             </button>
           </div>
         </div>
         
         {/* Recent Tickets Placeholder */}
-        <div className="bg-white rounded-lg shadow">
-          <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-            <h2 className="text-xl font-bold text-gray-900">Recent Tickets</h2>
-            <Button variant="glass" onClick={() => navigate('/tickets')}>
+        <div className="bg-white rounded-xl shadow-lg">
+          <div className="p-6 border-b border-[#C5D1E0] flex justify-between items-center">
+            <h2 className="lux-heading-lg">Recent Tickets</h2>
+            <Button variant="primary" onClick={() => navigate('/tickets')}>
               View All
             </Button>
           </div>
           <div className="p-6">
-            <p className="text-gray-500 text-center py-8">
+            <p className="lux-muted text-center py-8">
               No recent tickets. Create your first ticket to get started!
             </p>
           </div>

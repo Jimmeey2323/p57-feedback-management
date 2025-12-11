@@ -3,11 +3,12 @@ import React from 'react';
 interface FormField {
   name: string;
   label: string;
-  type: 'text' | 'textarea' | 'select' | 'number' | 'date' | 'time' | 'email' | 'tel';
+  type: 'text' | 'textarea' | 'select' | 'dropdown' | 'number' | 'date' | 'time' | 'datetime' | 'email' | 'tel' | 'checkbox' | 'radio' | 'multiselect' | 'file' | 'readonly';
   required?: boolean;
   options?: string[];
   placeholder?: string;
   helpText?: string;
+  description?: string;
 }
 
 interface DynamicFieldsGridProps {
@@ -35,11 +36,18 @@ export const DynamicFieldsGrid: React.FC<DynamicFieldsGridProps> = ({
       text: '📝',
       textarea: '📄',
       select: '📋',
+      dropdown: '📋',
       number: '🔢',
       date: '📅',
       time: '⏰',
+      datetime: '🗓️',
       email: '📧',
       tel: '📞',
+      checkbox: '☑️',
+      radio: '🔘',
+      multiselect: '✅',
+      file: '📎',
+      readonly: '🔒',
     };
     return icons[type] || '📝';
   };
@@ -83,6 +91,7 @@ export const DynamicFieldsGrid: React.FC<DynamicFieldsGridProps> = ({
         );
 
       case 'select':
+      case 'dropdown':
         return (
           <div className="relative">
             <select
@@ -111,6 +120,161 @@ export const DynamicFieldsGrid: React.FC<DynamicFieldsGridProps> = ({
           </div>
         );
 
+      case 'checkbox':
+        return (
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              checked={fieldValue === true || fieldValue === 'true' || fieldValue === 'Yes'}
+              onChange={(e) => handleFieldChange(field.name, e.target.checked)}
+              required={field.required}
+              className="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            />
+            <span className="ml-2 text-sm text-gray-600">{field.description || field.placeholder || 'Check if applicable'}</span>
+          </div>
+        );
+
+      case 'radio':
+        return (
+          <div className="space-y-2">
+            {field.options?.map((option) => (
+              <label key={option} className="flex items-center">
+                <input
+                  type="radio"
+                  name={field.name}
+                  value={option}
+                  checked={fieldValue === option}
+                  onChange={(e) => handleFieldChange(field.name, e.target.value)}
+                  required={field.required}
+                  className="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                />
+                <span className="ml-2 text-sm text-gray-700">{option}</span>
+              </label>
+            ))}
+          </div>
+        );
+
+      case 'multiselect':
+        return (
+          <div className="space-y-2 max-h-48 overflow-y-auto border border-gray-300 rounded-lg p-3">
+            {field.options?.map((option) => (
+              <label key={option} className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={Array.isArray(fieldValue) && fieldValue.includes(option)}
+                  onChange={(e) => {
+                    const currentValues = Array.isArray(fieldValue) ? fieldValue : [];
+                    const newValues = e.target.checked
+                      ? [...currentValues, option]
+                      : currentValues.filter((v) => v !== option);
+                    handleFieldChange(field.name, newValues);
+                  }}
+                  className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <span className="ml-2 text-sm text-gray-700">{option}</span>
+              </label>
+            ))}
+          </div>
+        );
+
+      case 'datetime':
+        return (
+          <div className="relative">
+            <input
+              type="datetime-local"
+              value={fieldValue}
+              onChange={(e) => handleFieldChange(field.name, e.target.value)}
+              required={field.required}
+              className={baseInputClasses}
+            />
+            {isValid && (
+              <div className="absolute top-3 right-3 text-green-500">
+                ✓
+              </div>
+            )}
+            {hasError && (
+              <div className="absolute top-3 right-3 text-red-500">
+                ✗
+              </div>
+            )}
+          </div>
+        );
+
+      case 'date':
+        return (
+          <div className="relative">
+            <input
+              type="date"
+              value={fieldValue}
+              onChange={(e) => handleFieldChange(field.name, e.target.value)}
+              required={field.required}
+              className={baseInputClasses}
+            />
+            {isValid && (
+              <div className="absolute top-3 right-3 text-green-500">
+                ✓
+              </div>
+            )}
+            {hasError && (
+              <div className="absolute top-3 right-3 text-red-500">
+                ✗
+              </div>
+            )}
+          </div>
+        );
+
+      case 'time':
+        return (
+          <div className="relative">
+            <input
+              type="time"
+              value={fieldValue}
+              onChange={(e) => handleFieldChange(field.name, e.target.value)}
+              required={field.required}
+              className={baseInputClasses}
+            />
+            {isValid && (
+              <div className="absolute top-3 right-3 text-green-500">
+                ✓
+              </div>
+            )}
+            {hasError && (
+              <div className="absolute top-3 right-3 text-red-500">
+                ✗
+              </div>
+            )}
+          </div>
+        );
+
+      case 'file':
+        return (
+          <div className="relative">
+            <input
+              type="file"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  handleFieldChange(field.name, file);
+                }
+              }}
+              required={field.required}
+              className={`${baseInputClasses} file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100`}
+            />
+          </div>
+        );
+
+      case 'readonly':
+        return (
+          <div className="relative">
+            <input
+              type="text"
+              value={fieldValue}
+              readOnly
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
+            />
+          </div>
+        );
+
       case 'number':
         return (
           <div className="relative">
@@ -135,11 +299,60 @@ export const DynamicFieldsGrid: React.FC<DynamicFieldsGridProps> = ({
           </div>
         );
 
+      case 'email':
+        return (
+          <div className="relative">
+            <input
+              type="email"
+              value={fieldValue}
+              onChange={(e) => handleFieldChange(field.name, e.target.value)}
+              placeholder={field.placeholder}
+              required={field.required}
+              className={baseInputClasses}
+            />
+            {isValid && (
+              <div className="absolute top-3 right-3 text-green-500">
+                ✓
+              </div>
+            )}
+            {hasError && (
+              <div className="absolute top-3 right-3 text-red-500">
+                ✗
+              </div>
+            )}
+          </div>
+        );
+
+      case 'tel':
+        return (
+          <div className="relative">
+            <input
+              type="tel"
+              value={fieldValue}
+              onChange={(e) => handleFieldChange(field.name, e.target.value)}
+              placeholder={field.placeholder}
+              required={field.required}
+              className={baseInputClasses}
+            />
+            {isValid && (
+              <div className="absolute top-3 right-3 text-green-500">
+                ✓
+              </div>
+            )}
+            {hasError && (
+              <div className="absolute top-3 right-3 text-red-500">
+                ✗
+              </div>
+            )}
+          </div>
+        );
+
+      case 'text':
       default:
         return (
           <div className="relative">
             <input
-              type={field.type}
+              type="text"
               value={fieldValue}
               onChange={(e) => handleFieldChange(field.name, e.target.value)}
               placeholder={field.placeholder}
@@ -172,9 +385,8 @@ export const DynamicFieldsGrid: React.FC<DynamicFieldsGridProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl p-6 text-white">
-        <h2 className="text-2xl font-bold mb-2">📝 Category-Specific Details</h2>
-        <p className="text-purple-100">Fill in the relevant information below</p>
+      <div className="bg-gradient-to-r from-[#1A4D99] to-[#0F3A7D] rounded-xl p-6 text-white">
+        <p className="text-[#E8EAED]">Fill in the relevant information below</p>
       </div>
 
       {/* Regular Fields Grid */}

@@ -1,13 +1,6 @@
 import React from 'react';
-import { CreateTicketForm } from '../components/tickets/CreateTicketForm';
-import { MainLayout } from '../components/layout/MainLayout';
+import { CreateTicketFormNew } from '../components/tickets/CreateTicketFormNew';
 
 export const CreateTicketPage: React.FC = () => {
-  return (
-    <MainLayout>
-      <div className="max-w-4xl mx-auto py-8 px-4">
-        <CreateTicketForm />
-      </div>
-    </MainLayout>
-  );
+  return <CreateTicketFormNew />;
 };

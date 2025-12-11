@@ -153,7 +153,7 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
     <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-slate-200/50 shadow-xl overflow-hidden">
       {/* Header */}
       <div
-        className="bg-gradient-to-br from-slate-900/90 via-blue-900/90 to-purple-900/90 backdrop-blur-sm p-6 cursor-pointer flex items-center justify-between"
+        className="bg-gradient-to-br from-[#005dff] via-[#0400ff] to-[#00339b] backdrop-blur-sm p-6 cursor-pointer flex items-center justify-between"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         <div className="flex items-center gap-4">
@@ -164,7 +164,7 @@ export const CustomerSearchWidget: React.FC<CustomerSearchWidgetProps> = ({
           </div>
           <div>
             <h3 className="text-xl font-bold text-white">Customer Information</h3>
-            <p className="text-blue-200 text-sm">Search Momence database or enter manually</p>
+            <p className="text-[#e5e5e5] text-sm">Search Momence database or enter manually</p>
           </div>
         </div>
         <button type="button" className="text-white/70 hover:text-white hover:bg-white/20 rounded-xl p-2 transition-all duration-300 border border-white/10 backdrop-blur-sm">

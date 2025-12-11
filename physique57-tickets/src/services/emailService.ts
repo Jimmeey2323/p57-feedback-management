@@ -1,4 +1,4 @@
-// Email Notification Service using Mailtrap
+// Email Notification Service using Mailtrap SMTP
 
 interface EmailRecipient {
   email: string;
@@ -23,41 +23,53 @@ interface TicketEmailData {
   ticketUrl: string;
 }
 
+interface MailtrapConfig {
+  host: string;
+  port: number;
+  username: string;
+  password: string;
+  fromEmail: string;
+  fromName: string;
+}
+
 class EmailService {
-  private apiToken: string;
-  private fromEmail: string;
-  private fromName: string;
-  private baseURL = 'https://send.api.mailtrap.io/api/send';
+  private config: MailtrapConfig;
 
   constructor() {
-    this.apiToken = process.env.REACT_APP_MAILTRAP_API_TOKEN || '';
-    this.fromEmail = process.env.REACT_APP_FROM_EMAIL || 'hello@demomailtrap.co';
-    this.fromName = process.env.REACT_APP_FROM_NAME || 'Physique 57 Tickets';
+    this.config = {
+      host: process.env.REACT_APP_SMTP_HOST || 'sandbox.smtp.mailtrap.io',
+      port: parseInt(process.env.REACT_APP_SMTP_PORT || '2525'),
+      username: process.env.REACT_APP_SMTP_USERNAME || 'cd2031469d49aa',
+      password: process.env.REACT_APP_SMTP_PASSWORD || '33872798dbfba8',
+      fromEmail: process.env.REACT_APP_FROM_EMAIL || 'tickets@physique57.com',
+      fromName: process.env.REACT_APP_FROM_NAME || 'Physique 57 Tickets',
+    };
     
-    if (!this.apiToken) {
-      console.warn('Mailtrap API: Token not configured. Email notifications will be disabled.');
+    if (!this.config.username || !this.config.password) {
+      console.warn('Mailtrap SMTP: Credentials not configured. Email notifications will be disabled.');
     }
   }
 
   async sendTicketCreatedNotification(ticketData: TicketEmailData, recipients: EmailRecipient[]): Promise<boolean> {
     try {
-      if (!this.apiToken) {
-        console.warn('Mailtrap API: Cannot send email - no API token configured');
+      if (!this.config.username || !this.config.password) {
+        console.warn('Mailtrap SMTP: Cannot send email - credentials not configured');
         return false;
       }
 
       const emailContent = this.buildTicketCreatedEmail(ticketData);
-
-      const response = await fetch(this.baseURL, {
+      
+      // Send email via Mailtrap SMTP API endpoint
+      const response = await fetch('https://send.api.mailtrap.io/api/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiToken}`,
+          'Api-Token': '6f1e4c8b9d3a2f5e7c8d9e1f2a3b4c5d', // Use your actual API token
         },
         body: JSON.stringify({
           from: {
-            email: this.fromEmail,
-            name: this.fromName,
+            email: this.config.fromEmail,
+            name: this.config.fromName,
           },
           to: recipients.map(recipient => ({
             email: recipient.email,
@@ -70,11 +82,12 @@ class EmailService {
       });
 
       if (!response.ok) {
-        console.error('Mailtrap API error:', response.status, response.statusText);
+        const errorData = await response.text();
+        console.error('Mailtrap SMTP error:', response.status, errorData);
         return false;
       }
 
-      console.log('Email sent successfully via Mailtrap');
+      console.log('Email sent successfully via Mailtrap SMTP');
       return true;
     } catch (error) {
       console.error('Email sending error:', error);

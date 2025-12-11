@@ -103,15 +103,15 @@ export const GlobalFieldsSection: React.FC<GlobalFieldsSectionProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl p-6 text-white">
+      <div className="bg-gradient-to-r from-[#1A4D99] via-[#0F3A7D] to-[#2C5AA0] rounded-xl p-6 text-white">
         <h2 className="text-2xl font-bold mb-2">📋 Ticket Information</h2>
-        <p className="text-indigo-100">Global fields for all tickets</p>
+        <p className="text-[#E8EAED]">Global fields for all tickets</p>
       </div>
 
       {/* Auto-filled Fields */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-        <h3 className="text-sm font-semibold text-indigo-900 uppercase tracking-wide mb-4 flex items-center gap-2">
-          <span className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span>
+      <div className="bg-gradient-to-br from-[#E3F2FD] to-[#F0F2F5] rounded-xl p-6 border border-[#C5D1E0]">
+        <h3 className="text-sm font-semibold text-[#1A4D99] uppercase tracking-wide mb-4 flex items-center gap-2">
+          <span className="w-2 h-2 bg-[#1A4D99] rounded-full animate-pulse"></span>
           Auto-Generated Fields
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

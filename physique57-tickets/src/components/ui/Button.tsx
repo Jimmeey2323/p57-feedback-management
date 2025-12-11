@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'glass';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
@@ -22,21 +22,21 @@ export const Button: React.FC<ButtonProps> = ({
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group';
   
   const variantStyles = {
-    primary: 'text-white bg-[linear-gradient(135deg,#1f2937_0%,#0f172a_50%,#5961f9_100%)] hover:-translate-y-0.5 focus:ring-indigo-500/30',
-    secondary: 'glass-morphic text-dark-800 hover:bg-white/95 hover:-translate-y-0.5 focus:ring-indigo-500/20',
-    danger: 'text-white bg-[linear-gradient(135deg,#dc2626_0%,#b91c1c_100%)] hover:-translate-y-0.5 focus:ring-red-500/30',
-    ghost: 'text-dark-700 hover:bg-white/60 focus:ring-indigo-500/20',
-    glass: 'glass-morphic text-dark-800 hover:bg-white/95 hover:-translate-y-0.5',
+    primary: 'text-white bg-[linear-gradient(135deg,#1A4D99_0%,#0F3A7D_70%,#2C5AA0_100%)] hover:-translate-y-0.5 focus:ring-[#1A4D99]/30',
+    secondary: 'bg-white text-[#0F3A7D] border border-[#E8EAED] hover:bg-[#E8EAED] hover:-translate-y-0.5 focus:ring-[#1A4D99]/20',
+    danger: 'text-white bg-[linear-gradient(135deg,#D32F2F_0%,#B71C1C_100%)] hover:-translate-y-0.5 focus:ring-red-500/30',
+    ghost: 'text-[#0F3A7D] hover:bg-[#E8EAED] focus:ring-[#1A4D99]/20',
+    glass: 'card-lux text-[#0F3A7D] hover:-translate-y-0.5'
   };
   
   const getVariantShadow = (variant: string, isHovered: boolean = false) => {
     if (variant === 'primary') {
-      return isHovered ? '0 24px 72px -24px rgba(17, 24, 39, 0.35)' : '0 18px 56px -22px rgba(17, 24, 39, 0.28)';
+      return isHovered ? '0 20px 40px rgba(15,58,125,0.28)' : '0 14px 32px rgba(15,58,125,0.22)';
     }
     if (variant === 'danger') {
       return isHovered ? '0 24px 72px -24px rgba(220, 38, 38, 0.45)' : '0 18px 56px -22px rgba(220, 38, 38, 0.3)';
     }
-    return '0 16px 44px -20px rgba(32, 40, 62, 0.18)';
+    return '0 14px 32px rgba(0,0,0,0.12)';
   };
   
   const sizeStyles = {

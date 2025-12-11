@@ -110,7 +110,7 @@ export const TicketList: React.FC = () => {
   const getStatusBadge = (status: string) => {
     const styles = {
       new: 'bg-blue-100 text-blue-700',
-      assigned: 'bg-purple-100 text-purple-700',
+      assigned: 'bg-[#E3F2FD] text-[#1A4D99]',
       in_progress: 'bg-yellow-100 text-yellow-700',
       pending: 'bg-orange-100 text-orange-700',
       resolved: 'bg-green-100 text-green-700',

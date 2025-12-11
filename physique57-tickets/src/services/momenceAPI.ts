@@ -367,7 +367,7 @@ class MomenceAPI {
   }
 
   // Session management methods
-  async getSessions(page: number = 0, pageSize: number = 200): Promise<any> {
+  async getSessions(page: number = 0, pageSize: number = 200, startsBefore?: string): Promise<any> {
     try {
       // Early return if no credentials
       if (!this.authToken || !this.username || !this.password) {
@@ -384,9 +384,17 @@ class MomenceAPI {
         }
       }
 
-      console.log(`Momence API: Fetching sessions page ${page} with pageSize ${pageSize}`);
+      // Default startsBefore to tomorrow to avoid future classes
+      let startsBeforeParam = startsBefore;
+      if (!startsBeforeParam) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        startsBeforeParam = `${tomorrow.toISOString().split('.')[0]}Z`;
+      }
+
+      console.log(`Momence API: Fetching sessions page ${page} with pageSize ${pageSize} before ${startsBeforeParam}`);
       
-      const response = await fetch(`${this.baseURL}/host/sessions?page=${page}&pageSize=${pageSize}&sortOrder=DESC&sortBy=startsAt&includeCancelled=false`, {
+      const response = await fetch(`${this.baseURL}/host/sessions?page=${page}&pageSize=${pageSize}&sortOrder=DESC&sortBy=startsAt&includeCancelled=false&startsBefore=${encodeURIComponent(startsBeforeParam)}`, {
         method: 'GET',
         headers: {
           'accept': 'application/json',
@@ -398,7 +406,7 @@ class MomenceAPI {
         console.log('Momence API: Token expired during sessions fetch, refreshing...');
         const refreshSuccess = await this.refreshAccessToken();
         if (refreshSuccess) {
-          return this.getSessions(page, pageSize);
+          return this.getSessions(page, pageSize, startsBeforeParam);
         } else {
           console.warn('Momence API: Token refresh failed for sessions');
           return { payload: [], pagination: { totalCount: 0, page: 0, pageSize: 0 } };
@@ -473,7 +481,7 @@ class MomenceAPI {
     }
   }
 
-  async getAllSessionsWithDetails(maxPages: number = 5): Promise<any[]> {
+  async getAllSessionsWithDetails(maxPages: number = 5, startsBefore?: string): Promise<any[]> {
     try {
       let allSessions: any[] = [];
       let currentPage = 0;
@@ -482,7 +490,7 @@ class MomenceAPI {
       console.log(`Momence API: Starting to fetch all sessions with details (max ${maxPages} pages)`);
 
       while (hasMoreData && currentPage < maxPages) {
-        const response = await this.getSessions(currentPage, 200);
+        const response = await this.getSessions(currentPage, 200, startsBefore);
         
         if (response.payload && response.payload.length > 0) {
           console.log(`Momence API: Processing page ${currentPage} with ${response.payload.length} sessions`);
