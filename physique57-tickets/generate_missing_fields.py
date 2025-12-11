@@ -355,6 +355,96 @@ missing_fields = {
         ("MS-GE-005", "Guest Feedback", "Long Text", "", "What did the guest say", True),
         ("MS-GE-006", "Conversion Likelihood", "Dropdown", "Will join | Considering | Unlikely | Definitely not", "Will guest become member", True),
     ],
+    # Additional missing subcategories found during validation (17 missing)
+    "Accessibility": [
+        ("FA-AC-001", "Accessibility Issue", "Multi-select Checkbox", "No ramp | Narrow passages | No elevator | Poor signage | Inaccessible washrooms | Other", "What accessibility problem", True),
+        ("FA-AC-002", "Area Affected", "Dropdown", "Entrance | Studio floor | Changing rooms | Washrooms | Parking | All areas", "Where is the issue", True),
+        ("FA-AC-003", "Impact on Visit", "Dropdown", "Could not enter | Had to leave | Unable to use facilities | Required assistance | Other", "How it affected the person", True),
+        ("FA-AC-004", "Suggested Fix", "Text", "", "What would make the studio accessible", False),
+    ],
+    "Maintenance Issues": [
+        ("FA-MI-001", "Issue Type", "Multi-select Checkbox", "Leak | Broken fixture | Electrical problem | Door/window issue | Paint/finish damage | Other", "Type of maintenance problem", True),
+        ("FA-MI-002", "Location", "Dropdown", "Studio floor | Reception | Changing rooms | Washroom | Outside/parking | Other", "Where was the problem", True),
+        ("FA-MI-003", "Severity", "Dropdown", "Low | Medium | High | Safety risk", "How severe is this", True),
+        ("FA-MI-004", "Photo Attached", "Radio Button", "Yes - attached | No", "Is there a photo", False),
+    ],
+    "Modifications Offered": [
+        ("CE-MO-001", "Modifications Available", "Radio Button", "Yes - adequate | Yes - inadequate | No modifications offered", "Were suitable modifications offered", True),
+        ("CE-MO-002", "Type Needed", "Multi-select Checkbox", "Lower impact options | Prop alternatives | Pregnancy modifications | Injury accommodations | Beginner variations | Other", "Which modifications were needed", True),
+        ("CE-MO-003", "Instructor Offered", "Radio Button", "Yes | No | Not sure", "Did instructor give options", False),
+        ("CE-MO-004", "Outcome", "Dropdown", "Got a suitable modification | Tried anyway | Had to stop participating | Other", "What happened", False),
+    ],
+    "Motivation & Energy": [
+        ("IR-ME-001", "Instructor Energy Level", "Dropdown", "High | Moderate | Low | Inconsistent", "How energetic was the instructor", True),
+        ("IR-ME-002", "Motivational Comments", "Multi-select Checkbox", "Encouraging | Neutral | Discouraging | None | Other", "Type of motivational behavior", True),
+        ("IR-ME-003", "Specific Example", "Long Text", "", "Describe what was said or done", False),
+    ],
+    "Music & Playlist": [
+        ("CE-MP-001", "Music Issue", "Multi-select Checkbox", "Volume too loud | Volume too low | Inappropriate lyrics | Outdated playlist | Wrong genre | Other", "What was wrong with the music", True),
+        ("CE-MP-002", "Preferred Music Style", "Text", "", "What music would you prefer", False),
+        ("CE-MP-003", "Impact on Class", "Dropdown", "Distracting | Reduced enjoyment | Couldn't follow beat | Neutral | Other", "How music affected the class", False),
+    ],
+    "Parking": [
+        ("FA-PK-001", "Parking Issue", "Multi-select Checkbox", "No parking available | Paid parking only | Unsafe parking | Valet issues | Signage unclear | Other", "What parking problem", True),
+        ("FA-PK-002", "Parking Location", "Text", "", "Where did you park/try to park", False),
+        ("FA-PK-003", "Time of Day", "Dropdown", "Morning | Afternoon | Evening | Night", "When issue occurred", False),
+    ],
+    "Payment Issues": [
+        ("MB-PI-001", "Payment Problem", "Multi-select Checkbox", "Declined transaction | Timeout | Duplicate charge | Refund not processed | Card not saved | Gateway error | Other", "Which payment problem", True),
+        ("MB-PI-002", "Platform", "Dropdown", "iOS App | Android App | Website | POS at studio | Other", "Where payment was attempted", True),
+        ("MB-PI-003", "Transaction Reference", "Text", "", "Transaction ID if available", False),
+        ("MB-PI-004", "Amount", "Number", "", "Amount involved (INR)", False),
+    ],
+    "Professionalism": [
+        ("IR-PF-001", "Professionalism Issue", "Multi-select Checkbox", "Late arrival | Inappropriate language | Unprepared | Poor hygiene | Dress code violation | Other", "What professionalism issue", True),
+        ("IR-PF-002", "Staff Role", "Dropdown", "Instructor | Front desk | Support staff | Management | Other", "Who behaved unprofessionally", False),
+        ("IR-PF-003", "Details", "Long Text", "", "Describe the incident", True),
+    ],
+    "Renewal Issues": [
+        ("MB-RI-001", "Renewal Problem", "Multi-select Checkbox", "Auto-renewal without notice | Can't renew | Wrong price shown | Renewal failed | Duplicate renewal | Other", "What happened during renewal", True),
+        ("MB-RI-002", "Membership Type", "Dropdown", "All package types", "Which membership", True),
+        ("MB-RI-003", "Expected Renewal Date", "Date", "", "When it should have renewed", False),
+    ],
+    "Safety & Injury Prevention": [
+        ("HS-SI-001", "Safety Concern", "Multi-select Checkbox", "Unsafe cues | Pushing beyond limits | Ignoring medical disclosure | Unsafe equipment | No first aid | Slippery floors | Other", "What safety issues", True),
+        ("HS-SI-002", "Injury Occurred", "Radio Button", "Yes | No", "Did an injury happen", True),
+        ("HS-SI-003", "Injury Details", "Long Text", "", "Describe injury if any", False),
+    ],
+    "Studio Cleanliness": [
+        ("FA-SC-001", "Area Affected", "Multi-select Checkbox", "Studio floor | Changing room | Washroom | Reception | Equipment | All areas", "Where cleanliness issue is", True),
+        ("FA-SC-002", "Issue Type", "Multi-select Checkbox", "Dust/dirt | Smells | Stains | Trash not emptied | Equipment unclean | Towels dirty | Other", "What's wrong", True),
+        ("FA-SC-003", "When Observed", "Dropdown", "Morning | Afternoon | Evening | Night", "When seen", False),
+    ],
+    "Studio Layout": [
+        ("FA-SL2-001", "Layout Issue", "Multi-select Checkbox", "Obstructed flow | Visibility issues | Equipment blocking | Bad sightlines | Congestion | Other", "What layout problem", True),
+        ("FA-SL2-002", "Area", "Dropdown", "Main studio | Second studio | Reception | Waiting area | Changing rooms | Other", "Which area is affected", True),
+        ("FA-SL2-003", "Suggested Change", "Text", "", "What layout change would help", False),
+    ],
+    "Teaching Quality": [
+        ("IR-TQ-001", "Teaching Issue", "Multi-select Checkbox", "Lack of clear cues | Poor sequencing | Unsafe instruction | Not demonstrating | Wrong technique | Other", "What teaching problem", True),
+        ("IR-TQ-002", "Instructor", "Dropdown", "All trainers", "Who taught the class", False),
+        ("IR-TQ-003", "Example/Time", "Text", "", "When did this happen (date/time)", False),
+    ],
+    "Temperature Control": [
+        ("FA-TC-001", "Temperature Issue", "Radio Button", "Too hot | Too cold | Fluctuating | AC not working | Poor ventilation", "What temperature problem", True),
+        ("FA-TC-002", "Area", "Dropdown", "Main studio | Changing rooms | Reception | All areas | Other", "Where it was noticed", True),
+        ("FA-TC-003", "Health Impact", "Radio Button", "None | Felt uncomfortable | Caused dizziness | Caused breathing issues | Other", "Any health effects", False),
+    ],
+    "Upgrade/Downgrade": [
+        ("MB-UD-001", "Request Type", "Radio Button", "Upgrade | Downgrade | Confusion over applied change | Billing mismatch", "What change is requested", True),
+        ("MB-UD-002", "Current Package", "Dropdown", "All package types", "Which package client currently has", True),
+        ("MB-UD-003", "Requested Package", "Text", "", "Desired package/plan", False),
+    ],
+    "Washroom/Shower": [
+        ("FA-WS-001", "Washroom Issue", "Multi-select Checkbox", "No hot water | Dirty | No supplies | Broken shower | Drainage problem | No soap | Other", "What washroom/shower issue", True),
+        ("FA-WS-002", "Location", "Dropdown", "Studio washroom | Changing room shower | Staff washroom | Other", "Which washroom", True),
+        ("FA-WS-003", "Time Observed", "Dropdown", "Morning | Afternoon | Evening | Night", "When noticed", False),
+    ],
+    "Water & Refreshments": [
+        ("FA-WR-001", "Refreshment Issue", "Multi-select Checkbox", "No water available | Water tastes bad | Dispenser broken | No cups/containers | No refreshments available | Other", "What refreshment problem", True),
+        ("FA-WR-002", "Area", "Dropdown", "Reception | Studio floor | Changing room | All areas", "Where issue observed", False),
+        ("FA-WR-003", "Staff Notified", "Radio Button", "Yes | No", "Was staff alerted", False),
+    ],
 }
 
 # Read existing fields.csv

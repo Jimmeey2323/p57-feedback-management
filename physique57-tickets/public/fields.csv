@@ -1171,3 +1171,269 @@ Hosting Member	Text		Guest Experience	Miscellaneous	MS-GE-003	Name of member who
 Staff Involved	Text		Guest Experience	Miscellaneous	MS-GE-004	Who interacted with guest	No	No
 Guest Feedback	Long Text		Guest Experience	Miscellaneous	MS-GE-005	What did the guest say	Yes	No
 Conversion Likelihood	Dropdown	Will join | Considering | Unlikely | Definitely not	Guest Experience	Miscellaneous	MS-GE-006	Will guest become member	Yes	No
+Instructor Name	Dropdown	All trainers	Class Quality	Class Experience	CE-CQ-001	Which instructor taught the class	Yes	No
+Class Type	Dropdown	All class types	Class Quality	Class Experience	CE-CQ-002	Which class format	Yes	No
+Quality Issue Type	Multi-select Checkbox	Poor instruction | Unclear cues | Wrong technique demonstrated | Low energy | Music issues | Choreography problems | Rushed transitions | Other	Class Quality	Class Experience	CE-CQ-003	What aspects had quality issues	Yes	No
+Specific Details	Long Text		Class Quality	Class Experience	CE-CQ-004	Detailed description of quality issues	Yes	No
+Client Satisfaction Level	Dropdown	Very Dissatisfied | Dissatisfied | Neutral | Satisfied | Very Satisfied	Class Quality	Class Experience	CE-CQ-005	How satisfied was the client	Yes	No
+Would Client Recommend	Radio Button	Yes | No | Unsure	Class Quality	Class Experience	CE-CQ-006	Would they recommend this class	No	No
+Scheduling Issue Type	Multi-select Checkbox	Not enough classes | Timing conflicts | Classes full | Cancellations | Schedule changes | Holiday schedule unclear | Peak hour congestion | Other	Class Scheduling	Class Experience	CE-CS-001	What scheduling issues occurred	Yes	No
+Preferred Time Slot	Text		Class Scheduling	Class Experience	CE-CS-002	What time would work better	No	No
+Class Type Affected	Dropdown	All class types | Multiple classes	Class Scheduling	Class Experience	CE-CS-003	Which class types are affected	Yes	No
+Frequency of Issue	Dropdown	One-time | Weekly | Daily | Ongoing	Class Scheduling	Class Experience	CE-CS-004	How often does this occur	Yes	No
+Impact on Client	Dropdown	Minor inconvenience | Unable to attend preferred classes | Considering canceling membership | Already reduced visits	Class Scheduling	Class Experience	CE-CS-005	How this impacts the client	Yes	No
+Class Type	Dropdown	All class types	Class Overcrowding	Class Experience	CE-CO-001	Which class was overcrowded	Yes	No
+Instructor Name	Dropdown	All trainers	Class Overcrowding	Class Experience	CE-CO-002	Who taught the class	Yes	No
+Number of Participants	Number		Class Overcrowding	Class Experience	CE-CO-003	Approximate number of people	No	No
+Studio Capacity	Number		Class Overcrowding	Class Experience	CE-CO-004	What should be the maximum	No	No
+Specific Issues	Multi-select Checkbox	Not enough space | Equipment shortage | Can't see instructor | Uncomfortable proximity | Can't move freely | Collisions with others | Other	Class Overcrowding	Class Experience	CE-CO-005	What problems did overcrowding cause	Yes	No
+Client Action	Dropdown	Completed class uncomfortably | Left class early | Unable to participate fully | Other	Class Overcrowding	Class Experience	CE-CO-006	How did client respond	Yes	No
+Class Type	Dropdown	All class types	Class Level Appropriateness	Class Experience	CE-LA-001	Which class	Yes	No
+Issue Type	Radio Button	Too difficult/advanced | Too easy/basic | Mixed levels confusing | Unclear level description	Class Level Appropriateness	Class Experience	CE-LA-002	What was the mismatch	Yes	No
+Client Experience Level	Dropdown	Complete beginner | Beginner | Intermediate | Advanced | Expert	Class Level Appropriateness	Class Experience	CE-LA-003	Client's fitness level	Yes	No
+Modifications Offered	Radio Button	Yes - adequate | Yes - inadequate | No modifications offered	Class Level Appropriateness	Class Experience	CE-LA-004	Were modifications provided	Yes	No
+Suggested Solution	Text		Class Level Appropriateness	Class Experience	CE-LA-005	What would make this better	No	No
+Current Concern	Multi-select Checkbox	Limited class formats | Repetitive routines | Same music repeatedly | Lack of new instructors | Need more advanced options | Need more beginner options | Want specialty formats | Other	Class Variety	Class Experience	CE-CV-001	What variety is lacking	Yes	No
+Requested Format	Text		Class Variety	Class Experience	CE-CV-002	What new class format would you like	No	No
+Frequency Attending	Dropdown	1-2 times/week | 3-4 times/week | 5+ times/week | Daily	Class Variety	Class Experience	CE-CV-003	How often client attends	No	No
+How Long Member	Dropdown	Less than 1 month | 1-3 months | 3-6 months | 6-12 months | 1+ years	Class Variety	Class Experience	CE-CV-004	How long they've been a member	No	No
+Class Type	Dropdown	All class types	Class Duration	Class Experience	CE-CD-001	Which class	Yes	No
+Duration Issue	Radio Button	Too short | Too long | Rushed transitions | Inadequate warm-up | Inadequate cool-down	Class Duration	Class Experience	CE-CD-002	What's the duration problem	Yes	No
+Current Duration	Number		Class Duration	Class Experience	CE-CD-003	Current class length in minutes	No	No
+Preferred Duration	Number		Class Duration	Class Experience	CE-CD-004	Ideal length in minutes	No	No
+Specific Feedback	Long Text		Class Duration	Class Experience	CE-CD-005	Detailed feedback on pacing	Yes	No
+Class Type	Dropdown	All class types	Class Pacing	Class Experience	CE-CP-001	Which class	Yes	No
+Instructor Name	Dropdown	All trainers	Class Pacing	Class Experience	CE-CP-002	Who taught the class	Yes	No
+Pacing Issue	Multi-select Checkbox	Too fast overall | Too slow overall | Insufficient rest periods | Transitions too rushed | Unbalanced muscle targeting | Not enough recovery time | Other	Class Pacing	Class Experience	CE-CP-003	What pacing problems occurred	Yes	No
+Client Fitness Level	Dropdown	Beginner | Intermediate | Advanced	Class Pacing	Class Experience	CE-CP-004	Client's fitness level	No	No
+Impact	Dropdown	Couldn't keep up | Got injured | Too easy/boring | Muscle fatigue/soreness | Other	Class Pacing	Class Experience	CE-CP-005	How did this affect the client	Yes	No
+Class Type	Dropdown	All class types	Warm-up/Cool-down	Class Experience	CE-WC-001	Which class	Yes	No
+Instructor Name	Dropdown	All trainers	Warm-up/Cool-down	Class Experience	CE-WC-002	Who taught the class	Yes	No
+Issue Type	Radio Button	No warm-up | Inadequate warm-up | No cool-down | Inadequate cool-down | Rushed stretching	Warm-up/Cool-down	Class Experience	CE-WC-003	What was inadequate	Yes	No
+Physical Impact	Text		Warm-up/Cool-down	Class Experience	CE-WC-004	Did this cause injury or discomfort	No	No
+Specific Feedback	Long Text		Warm-up/Cool-down	Class Experience	CE-WC-005	What should be improved	Yes	No
+Instructor Name	Dropdown	All trainers	Attention & Correction	Instructor Related	IR-AC-001	Which instructor	Yes	No
+Class Type	Dropdown	All class types	Attention & Correction	Instructor Related	IR-AC-002	Which class	Yes	No
+Issue Type	Multi-select Checkbox	No individual attention | No form corrections | Favoritism observed | Ignoring raised hands | Not checking on beginners | Only helping certain members | Other	Attention & Correction	Instructor Related	IR-AC-003	What attention issues occurred	Yes	No
+Client Attempted Contact	Radio Button	Yes - raised hand | Yes - approached after class | No - afraid to ask | Other	Attention & Correction	Instructor Related	IR-AC-004	Did client try to get attention	No	No
+Impact on Experience	Dropdown	Minor frustration | Poor workout form | Risk of injury | Felt ignored | Considering not returning	Attention & Correction	Instructor Related	IR-AC-005	How this affected client	Yes	No
+Instructor Name	Dropdown	All trainers	Communication	Instructor Related	IR-CM-001	Which instructor	Yes	No
+Communication Issue	Multi-select Checkbox	Rude behavior | Dismissive attitude | Condescending tone | Language barrier | Poor English fluency | Poor Hindi fluency | Unclear instructions | Other	Communication	Instructor Related	IR-CM-002	What communication problems occurred	Yes	No
+Specific Incident	Long Text		Communication	Instructor Related	IR-CM-003	Describe what was said or done	Yes	No
+Witness Present	Radio Button	Yes | No	Communication	Instructor Related	IR-CM-004	Were there witnesses	No	No
+Client Emotional Response	Dropdown	Upset | Offended | Frustrated | Angry | Embarrassed | Other	Communication	Instructor Related	IR-CM-005	How client felt	Yes	No
+Instructor Name	Dropdown	All trainers	Instructor Cancellations	Instructor Related	IR-IC-001	Which instructor	Yes	No
+Class Type	Dropdown	All class types	Instructor Cancellations	Instructor Related	IR-IC-002	Which class was cancelled	Yes	No
+Notice Given	Dropdown	No notice | Less than 1 hour | 1-3 hours | 3-12 hours | 12-24 hours | More than 24 hours	Instructor Cancellations	Instructor Related	IR-IC-003	How much advance notice	Yes	No
+Frequency	Dropdown	First time | 2nd time | 3rd time | Frequent pattern	Instructor Cancellations	Instructor Related	IR-IC-004	How often does this instructor cancel	Yes	No
+Substitute Provided	Radio Button	Yes - good substitute | Yes - poor substitute | No substitute	Instructor Cancellations	Instructor Related	IR-IC-005	Was a replacement instructor offered	Yes	No
+Client Impact	Multi-select Checkbox	Wasted travel time | Disrupted schedule | Credits/payment issue | Disappointed | Other	Instructor Cancellations	Instructor Related	IR-IC-006	How this impacted the client	Yes	No
+Instructor Name	Dropdown	All trainers	Knowledge & Expertise	Instructor Related	IR-KE-001	Which instructor	Yes	No
+Knowledge Gap	Multi-select Checkbox	Limited anatomy knowledge | Can't answer technique questions | Incorrect form demonstration | Unsafe cues given | Can't modify for injuries | Inexperienced | Other	Knowledge & Expertise	Instructor Related	IR-KE-002	What knowledge issues observed	Yes	No
+Specific Example	Long Text		Knowledge & Expertise	Instructor Related	IR-KE-003	Describe the incident	Yes	No
+Safety Concern	Radio Button	Yes | No	Knowledge & Expertise	Instructor Related	IR-KE-004	Was there a safety risk	Yes	No
+Client Concern Level	Dropdown	Minor | Moderate | Serious | Very Serious	Knowledge & Expertise	Instructor Related	IR-KE-005	How concerned is the client	Yes	No
+Instructor Name	Dropdown	All trainers	Personal Boundaries	Instructor Related	IR-PB-001	Which instructor	Yes	No
+Boundary Issue	Multi-select Checkbox	Physical adjustments without asking | Inappropriate touching | Overly personal questions | Unwanted physical contact | Making client uncomfortable | Other	Personal Boundaries	Instructor Related	IR-PB-002	What boundary was crossed	Yes	No
+Incident Description	Long Text		Personal Boundaries	Instructor Related	IR-PB-003	Describe exactly what happened	Yes	No
+Client Gave Consent	Radio Button	Not asked | Asked and declined | Asked and agreed but uncomfortable | Other	Personal Boundaries	Instructor Related	IR-PB-004	Was consent requested	Yes	No
+Witness Present	Radio Button	Yes | No	Personal Boundaries	Instructor Related	IR-PB-005	Were others present	No	No
+Action Requested	Dropdown	Verbal warning | Written warning | Retraining required | Do not assign to me again | Other	Personal Boundaries	Instructor Related	IR-PB-006	What action does client want	Yes	No
+Instructor Name	Dropdown	All trainers	Punctuality	Instructor Related	IR-PT-001	Which instructor	Yes	No
+Class Type	Dropdown	All class types	Punctuality	Instructor Related	IR-PT-002	Which class	Yes	No
+Punctuality Issue	Radio Button	Started late | Ended early | Both started late and ended early | Extended beyond scheduled time	Punctuality	Instructor Related	IR-PT-003	What was the issue	Yes	No
+Minutes Late/Early	Number		Punctuality	Instructor Related	IR-PT-004	How many minutes	Yes	No
+Frequency	Dropdown	First time | Occasional | Frequent | Every class	Punctuality	Instructor Related	IR-PT-005	How often does this occur	Yes	No
+Impact	Text		Punctuality	Instructor Related	IR-PT-006	How this affected clients	No	No
+Issue Type	Multi-select Checkbox	Cleanliness poor | Lockers broken | Insufficient space | No privacy | Missing amenities | Overcrowded | Maintenance needed | Other	Changing Room Issues	Facility & Amenities	FA-CR-001	What changing room issues exist	Yes	No
+Specific Location	Text		Changing Room Issues	Facility & Amenities	FA-CR-002	Which changing room/area	Yes	No
+Time Observed	Dropdown	Morning | Afternoon | Evening | All day	Changing Room Issues	Facility & Amenities	FA-CR-003	When was issue noticed	Yes	No
+Photographic Evidence	Radio Button	Yes - Attached | No	Changing Room Issues	Facility & Amenities	FA-CR-004	Do you have photos	No	No
+Staff Notified	Radio Button	Yes | No	Changing Room Issues	Facility & Amenities	FA-CR-005	Was staff informed	Yes	No
+Equipment Type	Multi-select Checkbox	Weights | Mats | Bands | Balls | Blocks | Barres | Bikes | Benches | Other	Equipment Issues	Facility & Amenities	FA-EI-001	Which equipment has issues	Yes	No
+Issue Type	Multi-select Checkbox	Broken/damaged | Insufficient quantity | Dirty/unhygienic | Worn out | Missing items | Unsafe | Other	Equipment Issues	Facility & Amenities	FA-EI-002	What's wrong with equipment	Yes	No
+Specific Details	Long Text		Equipment Issues	Facility & Amenities	FA-EI-003	Describe the equipment issue	Yes	No
+Equipment Removed	Radio Button	Yes | No | Unknown	Equipment Issues	Facility & Amenities	FA-EI-004	Was it taken out of use	No	No
+Safety Risk	Radio Button	Yes | No	Equipment Issues	Facility & Amenities	FA-EI-005	Is this a safety concern	Yes	No
+Missing Items	Multi-select Checkbox	Hand wash/soap | Sanitizer | Tissues | Toilet paper | Paper towels | Feminine products | Other	Hygiene Supplies	Facility & Amenities	FA-HS-001	What supplies are missing	Yes	No
+Location	Multi-select Checkbox	Washroom | Changing room | Studio floor | Reception | All areas	Hygiene Supplies	Facility & Amenities	FA-HS-002	Where are supplies missing	Yes	No
+Frequency	Dropdown	One time | Occasional | Frequent | Always out	Hygiene Supplies	Facility & Amenities	FA-HS-003	How often are supplies missing	Yes	No
+Staff Notified	Radio Button	Yes | No	Hygiene Supplies	Facility & Amenities	FA-HS-004	Was staff informed	Yes	No
+Issue Type	Multi-select Checkbox	Too bright | Too dim | Lights flickering | Bulbs out | Mirrors dirty/cracked | Sound system issues | No ambiance | Other	Lighting & Ambiance	Facility & Amenities	FA-LA-001	What lighting/ambiance issues	Yes	No
+Area Affected	Multi-select Checkbox	Main studio | Second studio | Reception | Changing rooms | Washrooms | All areas	Lighting & Ambiance	Facility & Amenities	FA-LA-002	Where is the issue	Yes	No
+Impact on Class	Radio Button	Couldn't see properly | Distracting | Uncomfortable | Migraine/headache | Other	Lighting & Ambiance	Facility & Amenities	FA-LA-003	How did this affect experience	Yes	No
+Staff Aware	Radio Button	Yes | No | Unknown	Lighting & Ambiance	Facility & Amenities	FA-LA-004	Does staff know	No	No
+Issue Type	Multi-select Checkbox	Insufficient seating | Uncomfortable seats | Dirty/unclean | Too crowded | No privacy | Poor layout | Other	Seating & Waiting Area	Facility & Amenities	FA-SW-001	What's the issue	Yes	No
+Time Noticed	Dropdown	Morning | Afternoon | Evening | All times	Seating & Waiting Area	Facility & Amenities	FA-SW-002	When is this a problem	Yes	No
+Number of People Waiting	Number		Seating & Waiting Area	Facility & Amenities	FA-SW-003	Approximate number waiting	No	No
+Suggested Improvement	Text		Seating & Waiting Area	Facility & Amenities	FA-SW-004	What would make this better	No	No
+Issue Type	Multi-select Checkbox	Insufficient lockers | Broken locks | Lockers too small | No charging points | Can't fit belongings | Locker assignment unclear | Other	Storage & Lockers	Facility & Amenities	FA-SL-001	What locker issues exist	Yes	No
+Specific Locker Number	Text		Storage & Lockers	Facility & Amenities	FA-SL-002	Which locker (if applicable)	No	No
+Frequency	Dropdown	One-time issue | Occasional | Frequent | Always a problem	Storage & Lockers	Facility & Amenities	FA-SL-003	How often does this occur	Yes	No
+Items Lost/Damaged	Radio Button	Yes | No	Storage & Lockers	Facility & Amenities	FA-SL-004	Were belongings lost or damaged	Yes	No
+Error Type	Multi-select Checkbox	Incorrect amount charged | Duplicate charge | Wrong package applied | GST calculation error | Unexpected charge | Other	Billing Errors	Membership & Billing	MB-BE-001	What billing error occurred	Yes	No
+Expected Amount	Number		Billing Errors	Membership & Billing	MB-BE-002	What should have been charged (INR)	Yes	No
+Actual Amount	Number		Billing Errors	Membership & Billing	MB-BE-003	What was actually charged (INR)	Yes	No
+Transaction Date	Date		Billing Errors	Membership & Billing	MB-BE-004	When did transaction occur	Yes	No
+Invoice Number	Text		Billing Errors	Membership & Billing	MB-BE-005	Invoice or receipt number	No	No
+Resolution Requested	Radio Button	Refund | Adjustment | Correction | Explanation	Billing Errors	Membership & Billing	MB-BE-006	What resolution is needed	Yes	No
+Concern Type	Multi-select Checkbox	Unclear terms | Disagreement on clause | Lock-in period dispute | Cancellation terms unclear | Auto-renewal issue | Hidden charges | Other	Contract Terms	Membership & Billing	MB-CT-001	What contract issue exists	Yes	No
+Specific Clause	Text		Contract Terms	Membership & Billing	MB-CT-002	Which contract term is unclear/disputed	Yes	No
+Contract Date	Date		Contract Terms	Membership & Billing	MB-CT-003	When was contract signed	No	No
+What Client Understood	Long Text		Contract Terms	Membership & Billing	MB-CT-004	What did client think the terms were	Yes	No
+Requested Action	Dropdown	Clarification | Amendment | Contract review | Cancellation | Other	Contract Terms	Membership & Billing	MB-CT-005	What does client want	Yes	No
+Issue Type	Multi-select Checkbox	Credits expired | Unused credits | Can't transfer credits | Credit balance incorrect | Pack terms unclear | Other	Credits/Class Pack	Membership & Billing	MB-CP-001	What credit/pack issue	Yes	No
+Package Type	Dropdown	All package types	Credits/Class Pack	Membership & Billing	MB-CP-002	Which package/pack	Yes	No
+Credits Remaining	Number		Credits/Class Pack	Membership & Billing	MB-CP-003	How many credits left	No	No
+Expiry Date	Date		Credits/Class Pack	Membership & Billing	MB-CP-004	When do/did credits expire	No	No
+Resolution Requested	Dropdown	Extension | Refund | Transfer | Freeze | Other	Credits/Class Pack	Membership & Billing	MB-CP-005	What solution is needed	Yes	No
+Issue Type	Multi-select Checkbox	Missing invoice | Incorrect details on invoice | GST issues | Wrong amount | Delayed generation | Need duplicate | Other	Invoice/Receipt	Membership & Billing	MB-IR-001	What invoice issue	Yes	No
+Transaction Date	Date		Invoice/Receipt	Membership & Billing	MB-IR-002	Date of transaction	Yes	No
+Amount	Number		Invoice/Receipt	Membership & Billing	MB-IR-003	Transaction amount (INR)	Yes	No
+What's Needed	Radio Button	Generate invoice | Correct existing | GST invoice | Duplicate copy | Other	Invoice/Receipt	Membership & Billing	MB-IR-004	What is required	Yes	No
+Urgency	Dropdown	Urgent - tax filing | Urgent - reimbursement | Routine request	Invoice/Receipt	Membership & Billing	MB-IR-005	How urgent	No	No
+Cancellation Reason	Dropdown	Relocating | Financial reasons | Health issues | Switching studios | Service dissatisfaction | Other	Membership Cancellation	Membership & Billing	MB-MC-001	Why cancelling	Yes	No
+Difficulty Type	Multi-select Checkbox	Can't find cancellation option | Process too complex | Not allowed to cancel | Penalty too high | Refund refused | No response to request | Other	Membership Cancellation	Membership & Billing	MB-MC-002	What's making cancellation difficult	Yes	No
+Membership Type	Dropdown	All package types	Membership Cancellation	Membership & Billing	MB-MC-003	Current membership	Yes	No
+Requested Cancellation Date	Date		Membership Cancellation	Membership & Billing	MB-MC-004	When should membership end	Yes	No
+Refund Expected	Radio Button	Yes | No | Unsure	Membership Cancellation	Membership & Billing	MB-MC-005	Expecting a refund	No	No
+Resolution Sought	Dropdown	Cancel immediately | Cancel at period end | Partial refund | Full refund | Other	Membership Cancellation	Membership & Billing	MB-MC-006	What outcome is wanted	Yes	No
+Freeze Reason	Dropdown	Medical/health | Travel | Pregnancy | Temporary relocation | Financial | Other	Membership Freeze	Membership & Billing	MB-MF-001	Why freeze membership	Yes	No
+Freeze Duration Requested	Dropdown	1 month | 2 months | 3 months | Longer	Membership Freeze	Membership & Billing	MB-MF-002	How long to freeze	Yes	No
+Issue Type	Multi-select Checkbox	Request denied | Process too complicated | Charges during freeze | Can't unfreeze | Freeze terms unclear | Other	Membership Freeze	Membership & Billing	MB-MF-003	What freeze issue occurred	Yes	No
+Current Status	Radio Button	Freeze not yet processed | Freeze denied | Freeze active but issues | Other	Membership Freeze	Membership & Billing	MB-MF-004	Current freeze status	Yes	No
+Supporting Documentation	Radio Button	Yes - attached | No | Not required	Membership Freeze	Membership & Billing	MB-MF-005	Do you have supporting docs	No	No
+Confusion Type	Multi-select Checkbox	Unclear package terms | Misleading information | Hidden charges | Validity confusion | Usage limits unclear | Multi-studio access unclear | Other	Package/Plan Confusion	Membership & Billing	MB-PC-001	What's confusing	Yes	No
+Package Name	Dropdown	All package types	Package/Plan Confusion	Membership & Billing	MB-PC-002	Which package	Yes	No
+What Client Understood	Long Text		Package/Plan Confusion	Membership & Billing	MB-PC-003	What did client think package included	Yes	No
+Actual Terms	Long Text		Package/Plan Confusion	Membership & Billing	MB-PC-004	What are the actual terms (if known)	No	No
+Where Information From	Dropdown	Sales rep | Website | Email | Phone call | Social media | Other	Package/Plan Confusion	Membership & Billing	MB-PC-005	Where did client get info	Yes	No
+Offer Type	Text		Promotional Offers	Membership & Billing	MB-PO-001	Which promotion/offer	Yes	No
+Issue Type	Multi-select Checkbox	Not honored | Misleading terms | Eligibility dispute | Promo code not working | Discount not applied | Other	Promotional Offers	Membership & Billing	MB-PO-002	What offer issue occurred	Yes	No
+Offer Source	Dropdown	Email | SMS | Social media | Website | Sales rep | Referral | Other	Promotional Offers	Membership & Billing	MB-PO-003	Where did client see offer	Yes	No
+Promo Code	Text		Promotional Offers	Membership & Billing	MB-PO-004	Promo code used (if applicable)	No	No
+Expected Benefit	Text		Promotional Offers	Membership & Billing	MB-PO-005	What discount/benefit was expected	Yes	No
+What Actually Happened	Long Text		Promotional Offers	Membership & Billing	MB-PO-006	What occurred instead	Yes	No
+Check-in Issue	Multi-select Checkbox	QR code not scanning | Manual check-in delays | Attendance not recorded | System error | Staff unavailable to help | Other	Class Check-in	Booking & Technology	BT-CI-001	What check-in problem occurred	Yes	No
+Class Type	Dropdown	All class types	Class Check-in	Booking & Technology	BT-CI-002	Which class	Yes	No
+Check-in Method Attempted	Radio Button	QR code | Manual at desk | App check-in | Other	Class Check-in	Booking & Technology	BT-CI-003	How did client try to check in	Yes	No
+Result	Dropdown	Eventually checked in | Not checked in | Charged for no-show | Other	Class Check-in	Booking & Technology	BT-CI-004	What was the outcome	Yes	No
+Visibility Issue	Multi-select Checkbox	Favorite instructors not showing | Schedule not updating | Wrong studio displayed | Classes missing | Filters not working | Other	Class Visibility	Booking & Technology	BT-CV-001	What visibility problem exists	Yes	No
+Platform	Dropdown	iOS App | Android App | Website - Desktop | Website - Mobile	Class Visibility	Booking & Technology	BT-CV-002	Where is the issue	Yes	No
+Specific Example	Text		Class Visibility	Booking & Technology	BT-CV-003	What specifically can't you see	Yes	No
+Workaround Found	Radio Button	Yes | No	Class Visibility	Booking & Technology	BT-CV-004	Did you find another way	No	No
+Notification Issue	Multi-select Checkbox	Missing class reminders | No cancellation alerts | Spam notifications | Too many notifications | Wrong notification content | Notification timing wrong | Other	Notifications	Booking & Technology	BT-NT-001	What notification problem	Yes	No
+Notification Type	Multi-select Checkbox	Class reminders | Cancellations | Booking confirmations | Promotional | Waitlist | Other	Notifications	Booking & Technology	BT-NT-002	Which notifications affected	Yes	No
+Platform	Dropdown	Push notifications | Email | SMS | All	Notifications	Booking & Technology	BT-NT-003	Which notification method	Yes	No
+Client Preference	Radio Button	Want more notifications | Want fewer | Want different content | Want better timing	Notifications	Booking & Technology	BT-NT-004	What change is wanted	Yes	No
+Profile Issue	Multi-select Checkbox	Can't update details | Incorrect information displayed | Photo upload issues | Email change problems | Phone number issues | Password reset problems | Other	Profile Management	Booking & Technology	BT-PM-001	What profile issue exists	Yes	No
+Specific Field	Text		Profile Management	Booking & Technology	BT-PM-002	Which profile field has issues	Yes	No
+Error Message	Text		Profile Management	Booking & Technology	BT-PM-003	Any error message shown	No	No
+Platform	Dropdown	iOS App | Android App | Website - Desktop | Website - Mobile	Profile Management	Booking & Technology	BT-PM-004	Where is the issue	Yes	No
+Complaint About	Text		Complaint Handling	Customer Service	CS-CH-001	Original complaint topic	Yes	No
+Handling Issue	Multi-select Checkbox	Dismissive attitude | Defensive response | No escalation option | Not taken seriously | Blamed customer | No follow-up | Other	Complaint Handling	Customer Service	CS-CH-002	How was complaint mishandled	Yes	No
+Who Handled	Text		Complaint Handling	Customer Service	CS-CH-003	Staff member who handled complaint	No	No
+Date of Original Complaint	Date		Complaint Handling	Customer Service	CS-CH-004	When was complaint first made	Yes	No
+Resolution Status	Dropdown	Unresolved | Partially resolved | Unsatisfactory resolution | Ignored | Other	Complaint Handling	Customer Service	CS-CH-005	Current status	Yes	No
+Support Issue	Multi-select Checkbox	Slow response | Generic replies | Issue unresolved | Multiple follow-ups needed | Transferred repeatedly | No response | Other	Email/Chat Support	Customer Service	CS-EC-001	What support issue occurred	Yes	No
+Channel Used	Radio Button	Email | WhatsApp | Chat on website | Other	Email/Chat Support	Customer Service	CS-EC-002	How did you contact support	Yes	No
+Original Query Date	Date		Email/Chat Support	Customer Service	CS-EC-003	When did you first contact support	Yes	No
+Response Time	Dropdown	No response yet | Hours | 1 day | 2-3 days | More than 3 days	Email/Chat Support	Customer Service	CS-EC-004	How long to get response	Yes	No
+Number of Followups	Number		Email/Chat Support	Customer Service	CS-EC-005	How many times did you follow up	No	No
+Newcomer Type	Dropdown	First-time visitor | Trial class | New member	Newcomer Experience	Customer Service	CS-NE-001	Client status	Yes	No
+Issue Type	Multi-select Checkbox	Poor onboarding | No orientation | Lack of guidance | Not welcomed | Felt lost/confused | Too rushed | No studio tour | Other	Newcomer Experience	Customer Service	CS-NE-002	What newcomer issues occurred	Yes	No
+Who Interacted	Text		Newcomer Experience	Customer Service	CS-NE-003	Staff members who helped (or didn't)	No	No
+Impact on Experience	Dropdown	Very negative | Somewhat negative | Neutral | Positive overall despite issue	Newcomer Experience	Customer Service	CS-NE-004	How this affected first impression	Yes	No
+Likelihood to Return	Dropdown	Will not return | Unsure | Will return despite issue | Will return	Newcomer Experience	Customer Service	CS-NE-005	Will they come back	Yes	No
+Unprofessional Behavior	Multi-select Checkbox	Gossiping | Using personal phone | Eating at desk | Inappropriate conversations | Ignoring clients | Dress code violation | Other	Staff Professionalism	Customer Service	CS-SP-001	What unprofessional behavior observed	Yes	No
+Staff Member	Text		Staff Professionalism	Customer Service	CS-SP-002	Which staff member (if known)	No	No
+Location	Dropdown	Reception | Front desk | Studio floor | Changing room | Other	Staff Professionalism	Customer Service	CS-SP-003	Where did this occur	Yes	No
+Frequency	Dropdown	One-time | Occasional | Frequent | Consistent pattern	Staff Professionalism	Customer Service	CS-SP-004	How often is this happening	Yes	No
+Impact	Dropdown	Minor annoyance | Unprofessional atmosphere | Felt ignored | Other	Staff Professionalism	Customer Service	CS-SP-005	How this affected client	Yes	No
+Event Name	Text		Events & Workshops	Sales & Marketing	SM-EW-001	Which event or workshop	Yes	No
+Event Date	Date		Events & Workshops	Sales & Marketing	SM-EW-002	When was/is the event	Yes	No
+Issue Type	Multi-select Checkbox	Poor organization | Event cancelled | Misleading event details | Registration issues | Quality didn't match promise | Other	Events & Workshops	Sales & Marketing	SM-EW-003	What event issue occurred	Yes	No
+Specific Details	Long Text		Events & Workshops	Sales & Marketing	SM-EW-004	Describe what went wrong	Yes	No
+Event Fee Paid	Number		Events & Workshops	Sales & Marketing	SM-EW-005	Amount paid (if applicable)	No	No
+Refund Requested	Radio Button	Yes | No	Events & Workshops	Sales & Marketing	SM-EW-006	Requesting a refund	No	No
+Issue Type	Multi-select Checkbox	Guest pass issues | Referral benefit not credited | Restrictions not mentioned | Can't use pass | Pass expired | Referral code not working | Other	Guest Passes/Referrals	Sales & Marketing	SM-GR-001	What guest/referral issue	Yes	No
+Pass/Referral Code	Text		Guest Passes/Referrals	Sales & Marketing	SM-GR-002	Guest pass number or referral code	No	No
+When Obtained	Date		Guest Passes/Referrals	Sales & Marketing	SM-GR-003	When was pass/referral given	No	No
+Expected Benefit	Text		Guest Passes/Referrals	Sales & Marketing	SM-GR-004	What benefit was promised	Yes	No
+What Happened	Long Text		Guest Passes/Referrals	Sales & Marketing	SM-GR-005	What actually occurred	Yes	No
+Event Name	Text		Community Events	Community & Culture	CC-CE-001	Which community event	Yes	No
+Event Date	Date		Community Events	Community & Culture	CC-CE-002	When was the event	Yes	No
+Issue Type	Multi-select Checkbox	Poor organization | Low attendance | Lack of engagement | Event cancelled | Doesn't foster community | Too infrequent | Other	Community Events	Community & Culture	CC-CE-003	What event issue occurred	Yes	No
+Attendance	Number		Community Events	Community & Culture	CC-CE-004	How many people attended	No	No
+Feedback	Long Text		Community Events	Community & Culture	CC-CE-005	What could be improved	Yes	No
+Issue Type	Multi-select Checkbox	Product features unknown | Sizing info wrong | Pricing unclear | Availability info incorrect | Wrong recommendations | Can't answer questions | Other	Staff Knowledge	Retail & Merchandise	RM-SK-001	What knowledge gap exists	Yes	No
+Product	Text		Staff Knowledge	Retail & Merchandise	RM-SK-002	Which product were you asking about	Yes	No
+Staff Member	Text		Staff Knowledge	Retail & Merchandise	RM-SK-003	Who provided information	No	No
+Impact	Dropdown	Minor inconvenience | Wrong purchase made | Delayed purchase | Lost sale | Other	Staff Knowledge	Retail & Merchandise	RM-SK-004	How did this affect client	Yes	No
+Program Type	Multi-select Checkbox	Prenatal | Postnatal | Seniors | Injury recovery | Adaptive fitness | Other special needs	Special Needs Programs	Special Programs	SP-SN-001	Which special needs program	Yes	No
+Issue Type	Multi-select Checkbox	Program not offered | Limited availability | Inadequate modifications | Instructor not trained | Unsafe practices | Not accommodating enough | Other	Special Needs Programs	Special Programs	SP-SN-002	What is the issue	Yes	No
+Specific Need	Long Text		Special Needs Programs	Special Programs	SP-SN-003	What accommodation is needed	Yes	No
+Modification Requested	Long Text		Special Needs Programs	Special Programs	SP-SN-004	What modification was needed	No	No
+Safety Concern	Radio Button	Yes | No	Special Needs Programs	Special Programs	SP-SN-005	Is there a safety issue	Yes	No
+Program Demand	Dropdown	Single request | Occasional requests | Frequent requests | High demand	Special Needs Programs	Special Programs	SP-SN-006	How often is this requested	No	No
+Guest Type	Dropdown	Hosted class guest | Trial visitor | Drop-in | Brought by member | Corporate guest | Other	Guest Experience	Miscellaneous	MS-GE-001	Type of guest	Yes	No
+Issue Type	Multi-select Checkbox	Poor treatment | Complicated check-in | Unclear policies | Felt unwelcome | Different pricing than expected | Not given orientation | Other	Guest Experience	Miscellaneous	MS-GE-002	What guest issue occurred	Yes	No
+Hosting Member	Text		Guest Experience	Miscellaneous	MS-GE-003	Name of member who brought guest (if applicable)	No	No
+Staff Involved	Text		Guest Experience	Miscellaneous	MS-GE-004	Who interacted with guest	No	No
+Guest Feedback	Long Text		Guest Experience	Miscellaneous	MS-GE-005	What did the guest say	Yes	No
+Conversion Likelihood	Dropdown	Will join | Considering | Unlikely | Definitely not	Guest Experience	Miscellaneous	MS-GE-006	Will guest become member	Yes	No
+Accessibility Issue	Multi-select Checkbox	No ramp | Narrow passages | No elevator | Poor signage | Inaccessible washrooms | Other	Accessibility		FA-AC-001	What accessibility problem	Yes	No
+Area Affected	Dropdown	Entrance | Studio floor | Changing rooms | Washrooms | Parking | All areas	Accessibility		FA-AC-002	Where is the issue	Yes	No
+Impact on Visit	Dropdown	Could not enter | Had to leave | Unable to use facilities | Required assistance | Other	Accessibility		FA-AC-003	How it affected the person	Yes	No
+Suggested Fix	Text		Accessibility		FA-AC-004	What would make the studio accessible	No	No
+Issue Type	Multi-select Checkbox	Leak | Broken fixture | Electrical problem | Door/window issue | Paint/finish damage | Other	Maintenance Issues		FA-MI-001	Type of maintenance problem	Yes	No
+Location	Dropdown	Studio floor | Reception | Changing rooms | Washroom | Outside/parking | Other	Maintenance Issues		FA-MI-002	Where was the problem	Yes	No
+Severity	Dropdown	Low | Medium | High | Safety risk	Maintenance Issues		FA-MI-003	How severe is this	Yes	No
+Photo Attached	Radio Button	Yes - attached | No	Maintenance Issues		FA-MI-004	Is there a photo	No	No
+Modifications Available	Radio Button	Yes - adequate | Yes - inadequate | No modifications offered	Modifications Offered		CE-MO-001	Were suitable modifications offered	Yes	No
+Type Needed	Multi-select Checkbox	Lower impact options | Prop alternatives | Pregnancy modifications | Injury accommodations | Beginner variations | Other	Modifications Offered		CE-MO-002	Which modifications were needed	Yes	No
+Instructor Offered	Radio Button	Yes | No | Not sure	Modifications Offered		CE-MO-003	Did instructor give options	No	No
+Outcome	Dropdown	Got a suitable modification | Tried anyway | Had to stop participating | Other	Modifications Offered		CE-MO-004	What happened	No	No
+Instructor Energy Level	Dropdown	High | Moderate | Low | Inconsistent	Motivation & Energy		IR-ME-001	How energetic was the instructor	Yes	No
+Motivational Comments	Multi-select Checkbox	Encouraging | Neutral | Discouraging | None | Other	Motivation & Energy		IR-ME-002	Type of motivational behavior	Yes	No
+Specific Example	Long Text		Motivation & Energy		IR-ME-003	Describe what was said or done	No	No
+Music Issue	Multi-select Checkbox	Volume too loud | Volume too low | Inappropriate lyrics | Outdated playlist | Wrong genre | Other	Music & Playlist		CE-MP-001	What was wrong with the music	Yes	No
+Preferred Music Style	Text		Music & Playlist		CE-MP-002	What music would you prefer	No	No
+Impact on Class	Dropdown	Distracting | Reduced enjoyment | Couldn't follow beat | Neutral | Other	Music & Playlist		CE-MP-003	How music affected the class	No	No
+Parking Issue	Multi-select Checkbox	No parking available | Paid parking only | Unsafe parking | Valet issues | Signage unclear | Other	Parking		FA-PK-001	What parking problem	Yes	No
+Parking Location	Text		Parking		FA-PK-002	Where did you park/try to park	No	No
+Time of Day	Dropdown	Morning | Afternoon | Evening | Night	Parking		FA-PK-003	When issue occurred	No	No
+Payment Problem	Multi-select Checkbox	Declined transaction | Timeout | Duplicate charge | Refund not processed | Card not saved | Gateway error | Other	Payment Issues		MB-PI-001	Which payment problem	Yes	No
+Platform	Dropdown	iOS App | Android App | Website | POS at studio | Other	Payment Issues		MB-PI-002	Where payment was attempted	Yes	No
+Transaction Reference	Text		Payment Issues		MB-PI-003	Transaction ID if available	No	No
+Amount	Number		Payment Issues		MB-PI-004	Amount involved (INR)	No	No
+Professionalism Issue	Multi-select Checkbox	Late arrival | Inappropriate language | Unprepared | Poor hygiene | Dress code violation | Other	Professionalism		IR-PF-001	What professionalism issue	Yes	No
+Staff Role	Dropdown	Instructor | Front desk | Support staff | Management | Other	Professionalism		IR-PF-002	Who behaved unprofessionally	No	No
+Details	Long Text		Professionalism		IR-PF-003	Describe the incident	Yes	No
+Renewal Problem	Multi-select Checkbox	Auto-renewal without notice | Can't renew | Wrong price shown | Renewal failed | Duplicate renewal | Other	Renewal Issues		MB-RI-001	What happened during renewal	Yes	No
+Membership Type	Dropdown	All package types	Renewal Issues		MB-RI-002	Which membership	Yes	No
+Expected Renewal Date	Date		Renewal Issues		MB-RI-003	When it should have renewed	No	No
+Safety Concern	Multi-select Checkbox	Unsafe cues | Pushing beyond limits | Ignoring medical disclosure | Unsafe equipment | No first aid | Slippery floors | Other	Safety & Injury Prevention		HS-SI-001	What safety issues	Yes	No
+Injury Occurred	Radio Button	Yes | No	Safety & Injury Prevention		HS-SI-002	Did an injury happen	Yes	No
+Injury Details	Long Text		Safety & Injury Prevention		HS-SI-003	Describe injury if any	No	No
+Area Affected	Multi-select Checkbox	Studio floor | Changing room | Washroom | Reception | Equipment | All areas	Studio Cleanliness		FA-SC-001	Where cleanliness issue is	Yes	No
+Issue Type	Multi-select Checkbox	Dust/dirt | Smells | Stains | Trash not emptied | Equipment unclean | Towels dirty | Other	Studio Cleanliness		FA-SC-002	What's wrong	Yes	No
+When Observed	Dropdown	Morning | Afternoon | Evening | Night	Studio Cleanliness		FA-SC-003	When seen	No	No
+Layout Issue	Multi-select Checkbox	Obstructed flow | Visibility issues | Equipment blocking | Bad sightlines | Congestion | Other	Studio Layout		FA-SL2-001	What layout problem	Yes	No
+Area	Dropdown	Main studio | Second studio | Reception | Waiting area | Changing rooms | Other	Studio Layout		FA-SL2-002	Which area is affected	Yes	No
+Suggested Change	Text		Studio Layout		FA-SL2-003	What layout change would help	No	No
+Teaching Issue	Multi-select Checkbox	Lack of clear cues | Poor sequencing | Unsafe instruction | Not demonstrating | Wrong technique | Other	Teaching Quality		IR-TQ-001	What teaching problem	Yes	No
+Instructor	Dropdown	All trainers	Teaching Quality		IR-TQ-002	Who taught the class	No	No
+Example/Time	Text		Teaching Quality		IR-TQ-003	When did this happen (date/time)	No	No
+Temperature Issue	Radio Button	Too hot | Too cold | Fluctuating | AC not working | Poor ventilation	Temperature Control		FA-TC-001	What temperature problem	Yes	No
+Area	Dropdown	Main studio | Changing rooms | Reception | All areas | Other	Temperature Control		FA-TC-002	Where it was noticed	Yes	No
+Health Impact	Radio Button	None | Felt uncomfortable | Caused dizziness | Caused breathing issues | Other	Temperature Control		FA-TC-003	Any health effects	No	No
+Request Type	Radio Button	Upgrade | Downgrade | Confusion over applied change | Billing mismatch	Upgrade/Downgrade		MB-UD-001	What change is requested	Yes	No
+Current Package	Dropdown	All package types	Upgrade/Downgrade		MB-UD-002	Which package client currently has	Yes	No
+Requested Package	Text		Upgrade/Downgrade		MB-UD-003	Desired package/plan	No	No
+Washroom Issue	Multi-select Checkbox	No hot water | Dirty | No supplies | Broken shower | Drainage problem | No soap | Other	Washroom/Shower		FA-WS-001	What washroom/shower issue	Yes	No
+Location	Dropdown	Studio washroom | Changing room shower | Staff washroom | Other	Washroom/Shower		FA-WS-002	Which washroom	Yes	No
+Time Observed	Dropdown	Morning | Afternoon | Evening | Night	Washroom/Shower		FA-WS-003	When noticed	No	No
+Refreshment Issue	Multi-select Checkbox	No water available | Water tastes bad | Dispenser broken | No cups/containers | No refreshments available | Other	Water & Refreshments		FA-WR-001	What refreshment problem	Yes	No
+Area	Dropdown	Reception | Studio floor | Changing room | All areas	Water & Refreshments		FA-WR-002	Where issue observed	No	No
+Staff Notified	Radio Button	Yes | No	Water & Refreshments		FA-WR-003	Was staff alerted	No	No
