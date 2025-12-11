@@ -177,8 +177,7 @@ def generate_sql_updates(fields_map: Dict[str, List[Dict[str, Any]]], output_fil
             
             f.write(f"-- Update: {subcategory} ({category})\n")
             f.write(f"UPDATE subcategories \n")
-            f.write(f"SET form_fields = '{form_fields_json_escaped}'::jsonb,\n")
-            f.write(f"    updated_at = NOW()\n")
+            f.write(f"SET form_fields = '{form_fields_json_escaped}'::jsonb\n")
             subcategory_escaped = subcategory.replace("'", "''")
             category_escaped = category.replace("'", "''")
             f.write(f"WHERE name = '{subcategory_escaped}' \n")

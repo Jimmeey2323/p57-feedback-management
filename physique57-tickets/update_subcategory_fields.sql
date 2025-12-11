@@ -39,8 +39,7 @@ SET form_fields = '{
       "placeholder": "Enter client..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = '' 
   AND category_id = (SELECT id FROM categories WHERE name = '');
 
@@ -58,8 +57,7 @@ SET form_fields = '{
       "placeholder": "Enter product being sold..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Nutrition' 
   AND category_id = (SELECT id FROM categories WHERE name = '');
 
@@ -230,8 +228,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'App/Website Issues' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -496,8 +493,7 @@ SET form_fields = '{
       "placeholder": "Enter system error code..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Booking Failures' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -744,8 +740,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Cancellation Problems' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -1006,8 +1001,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Class Check-in' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -1169,8 +1163,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Class Visibility' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -1341,8 +1334,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Notifications' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -1654,8 +1646,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Payment Gateway' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -1802,8 +1793,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Profile Management' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -2001,8 +1991,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Technical Support' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -2237,8 +2226,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Waitlist Issues' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
@@ -2325,8 +2313,7 @@ SET form_fields = '{
       "placeholder": "Provide details for action taken at time..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Clique Behavior' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Community & Culture');
 
@@ -2433,8 +2420,7 @@ SET form_fields = '{
       "placeholder": "Enter organizer/responsible party..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Community Events' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Community & Culture');
 
@@ -2556,8 +2542,7 @@ SET form_fields = '{
       "description": "Does this need escalation"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Discrimination' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Community & Culture');
 
@@ -2663,8 +2648,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Inclusivity Issues' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Community & Culture');
 
@@ -2789,8 +2773,7 @@ SET form_fields = '{
       "description": "Was member given formal warning"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Member Behavior' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Community & Culture');
 
@@ -2907,8 +2890,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Studio Culture' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Community & Culture');
 
@@ -3107,8 +3089,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Communication Quality' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -3342,8 +3323,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Complaint Handling' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -3544,8 +3524,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Email/Chat Support' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -3747,8 +3726,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Front Desk Service' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -3982,8 +3960,7 @@ SET form_fields = '{
       "placeholder": "Enter resolution blockers..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Issue Resolution' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -4268,8 +4245,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Newcomer Experience' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -4463,8 +4439,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Phone Support' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -4602,8 +4577,7 @@ SET form_fields = '{
       "placeholder": "Select date and time..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Response Time' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -4817,8 +4791,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Staff Availability' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -5002,8 +4975,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Staff Knowledge' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -5188,8 +5160,7 @@ SET form_fields = '{
       "placeholder": "Enter staff response..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Staff Professionalism' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
 
@@ -5413,8 +5384,7 @@ SET form_fields = '{
       "description": "Supporting evidence or documentation"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'N/A' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Global');
 
@@ -5865,8 +5835,7 @@ SET form_fields = '{
       "placeholder": "Provide details for immediate action taken..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Air Quality' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
@@ -6187,8 +6156,7 @@ SET form_fields = '{
       "placeholder": "Enter staff member responsible..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'COVID/Health Protocols' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
@@ -6457,8 +6425,7 @@ SET form_fields = '{
       "description": "Does this violate safety regulations"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Emergency Preparedness' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
@@ -6725,8 +6692,7 @@ SET form_fields = '{
       "placeholder": "Provide details for immediate action taken..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Equipment Safety' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
@@ -7070,8 +7036,7 @@ SET form_fields = '{
       "placeholder": "Enter cleaning staff on duty..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Hygiene Protocols' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
@@ -7733,8 +7698,7 @@ SET form_fields = '{
       "placeholder": "Enter witness names..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Injury During Class' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
@@ -8076,8 +8040,7 @@ SET form_fields = '{
       "placeholder": "Provide details for system improvement needed..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Medical Disclosure' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
@@ -8251,8 +8214,7 @@ SET form_fields = '{
       "placeholder": "Provide details for improvement suggestion..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Feedback System' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Miscellaneous');
 
@@ -8377,8 +8339,7 @@ SET form_fields = '{
       "placeholder": "Provide details for detailed incident description..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Guest Experience' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Miscellaneous');
 
@@ -8519,8 +8480,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Lost & Found' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Miscellaneous');
 
@@ -8650,8 +8610,7 @@ SET form_fields = '{
       "placeholder": "Provide details for resolution required..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Multi-location Issues' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Miscellaneous');
 
@@ -8771,8 +8730,7 @@ SET form_fields = '{
       "description": "Was landlord/building informed"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Noise Disturbance' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Miscellaneous');
 
@@ -8866,8 +8824,7 @@ SET form_fields = '{
       "description": "Was there pressure to buy products"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Nutrition/Wellness Advice' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Miscellaneous');
 
@@ -9000,8 +8957,7 @@ SET form_fields = '{
       }
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Policy Changes' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Miscellaneous');
 
@@ -9106,8 +9062,7 @@ SET form_fields = '{
       "description": "Was client happy with outcome"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Pricing' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Retail & Merchandise');
 
@@ -9220,8 +9175,7 @@ SET form_fields = '{
       "description": "Was restock request made"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Product Availability' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Retail & Merchandise');
 
@@ -9273,8 +9227,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Product Quality' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Retail & Merchandise');
 
@@ -9419,8 +9372,7 @@ SET form_fields = '{
       "placeholder": "Provide details for resolution provided..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Return/Exchange' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Retail & Merchandise');
 
@@ -9516,8 +9468,7 @@ SET form_fields = '{
       "description": "Was client given correct info later"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Staff Knowledge' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Retail & Merchandise');
 
@@ -9803,8 +9754,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Aggressive Selling' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -9985,8 +9935,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Brand Communication' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -10172,8 +10121,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Communication Overload' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -10446,8 +10394,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Events & Workshops' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -10699,8 +10646,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Guest Passes/Referrals' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -10968,8 +10914,7 @@ SET form_fields = '{
       "placeholder": "Enter client expectation..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Misleading Information' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -11189,8 +11134,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Social Media' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -11490,8 +11434,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Trial Class Experience' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Sales & Marketing');
 
@@ -11622,8 +11565,7 @@ SET form_fields = '{
       "placeholder": "Provide details for resolution required..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Challenges & Competitions' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Special Programs');
 
@@ -11766,8 +11708,7 @@ SET form_fields = '{
       "description": "Is relationship in jeopardy"
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Corporate Programs' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Special Programs');
 
@@ -11933,8 +11874,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Private Sessions' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Special Programs');
 
@@ -12071,8 +12011,7 @@ SET form_fields = '{
       ]
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Special Needs Programs' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Special Programs');
 
@@ -12204,8 +12143,7 @@ SET form_fields = '{
       "placeholder": "Provide details for specific incident description..."
     }
   ]
-}'::jsonb,
-    updated_at = NOW()
+}'::jsonb
 WHERE name = 'Workshop Quality' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Special Programs');
 

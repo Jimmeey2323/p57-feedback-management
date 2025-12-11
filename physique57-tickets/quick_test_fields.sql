@@ -44,8 +44,7 @@ SET form_fields = '{
       "options": ["Yes, consistently", "Yes, sometimes", "No, it was one time"]
     }
   ]
-}'::jsonb,
-updated_at = NOW()
+}'::jsonb
 WHERE name = 'App/Website Issues'
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
