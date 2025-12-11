@@ -999,6 +999,58 @@ SET form_fields = '{
         "Yes",
         "No"
       ]
+    },
+    {
+      "id": "BT-CI-001",
+      "key": "checkInIssue",
+      "label": "Check-in Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What check-in problem occurred",
+      "options": [
+        "QR code not scanning",
+        "Manual check-in delays",
+        "Attendance not recorded",
+        "System error",
+        "Staff unavailable to help",
+        "Other"
+      ]
+    },
+    {
+      "id": "BT-CI-002",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class"
+    },
+    {
+      "id": "BT-CI-003",
+      "key": "checkInMethodAttempted",
+      "label": "Check-in Method Attempted",
+      "type": "radio",
+      "required": true,
+      "description": "How did client try to check in",
+      "options": [
+        "QR code",
+        "Manual at desk",
+        "App check-in",
+        "Other"
+      ]
+    },
+    {
+      "id": "BT-CI-004",
+      "key": "result",
+      "label": "Result",
+      "type": "dropdown",
+      "required": true,
+      "description": "What was the outcome",
+      "options": [
+        "Eventually checked in",
+        "Not checked in",
+        "Charged for no-show",
+        "Other"
+      ]
     }
   ]
 }'::jsonb
@@ -1160,6 +1212,57 @@ SET form_fields = '{
         "Yes",
         "No",
         "Unclear"
+      ]
+    },
+    {
+      "id": "BT-CV-001",
+      "key": "visibilityIssue",
+      "label": "Visibility Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What visibility problem exists",
+      "options": [
+        "Favorite instructors not showing",
+        "Schedule not updating",
+        "Wrong studio displayed",
+        "Classes missing",
+        "Filters not working",
+        "Other"
+      ]
+    },
+    {
+      "id": "BT-CV-002",
+      "key": "platform",
+      "label": "Platform",
+      "type": "dropdown",
+      "required": true,
+      "description": "Where is the issue",
+      "options": [
+        "iOS App",
+        "Android App",
+        "Website - Desktop",
+        "Website - Mobile"
+      ]
+    },
+    {
+      "id": "BT-CV-003",
+      "key": "specificExample",
+      "label": "Specific Example",
+      "type": "text",
+      "required": true,
+      "description": "What specifically can''t you see",
+      "placeholder": "Enter specific example..."
+    },
+    {
+      "id": "BT-CV-004",
+      "key": "workaroundFound",
+      "label": "Workaround Found",
+      "type": "radio",
+      "required": false,
+      "description": "Did you find another way",
+      "options": [
+        "Yes",
+        "No"
       ]
     }
   ]
@@ -1331,6 +1434,59 @@ SET form_fields = '{
         "Yes",
         "No",
         "N/A"
+      ]
+    },
+    {
+      "id": "BT-NT-001",
+      "key": "notificationIssue",
+      "label": "Notification Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What notification problem",
+      "options": [
+        "Missing class reminders",
+        "No cancellation alerts",
+        "Spam notifications",
+        "Too many notifications",
+        "Wrong notification content",
+        "Notification timing wrong",
+        "Other"
+      ]
+    },
+    {
+      "id": "BT-NT-002",
+      "key": "notificationType",
+      "label": "Notification Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "Which notifications affected"
+    },
+    {
+      "id": "BT-NT-003",
+      "key": "platform",
+      "label": "Platform",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which notification method",
+      "options": [
+        "Push notifications",
+        "Email",
+        "SMS",
+        "All"
+      ]
+    },
+    {
+      "id": "BT-NT-004",
+      "key": "clientPreference",
+      "label": "Client Preference",
+      "type": "radio",
+      "required": true,
+      "description": "What change is wanted",
+      "options": [
+        "Want more notifications",
+        "Want fewer",
+        "Want different content",
+        "Want better timing"
       ]
     }
   ]
@@ -1791,6 +1947,55 @@ SET form_fields = '{
         "Yes",
         "No"
       ]
+    },
+    {
+      "id": "BT-PM-001",
+      "key": "profileIssue",
+      "label": "Profile Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What profile issue exists",
+      "options": [
+        "Can''t update details",
+        "Incorrect information displayed",
+        "Photo upload issues",
+        "Email change problems",
+        "Phone number issues",
+        "Password reset problems",
+        "Other"
+      ]
+    },
+    {
+      "id": "BT-PM-002",
+      "key": "specificField",
+      "label": "Specific Field",
+      "type": "text",
+      "required": true,
+      "description": "Which profile field has issues",
+      "placeholder": "Enter specific field..."
+    },
+    {
+      "id": "BT-PM-003",
+      "key": "errorMessage",
+      "label": "Error Message",
+      "type": "text",
+      "required": false,
+      "description": "Any error message shown",
+      "placeholder": "Enter error message..."
+    },
+    {
+      "id": "BT-PM-004",
+      "key": "platform",
+      "label": "Platform",
+      "type": "dropdown",
+      "required": true,
+      "description": "Where is the issue",
+      "options": [
+        "iOS App",
+        "Android App",
+        "Website - Desktop",
+        "Website - Mobile"
+      ]
     }
   ]
 }'::jsonb
@@ -2230,6 +2435,572 @@ SET form_fields = '{
 WHERE name = 'Waitlist Issues' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Booking & Technology');
 
+-- Update: Class Duration (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-CD-001",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class"
+    },
+    {
+      "id": "CE-CD-002",
+      "key": "durationIssue",
+      "label": "Duration Issue",
+      "type": "radio",
+      "required": true,
+      "description": "What''s the duration problem",
+      "options": [
+        "Too short",
+        "Too long",
+        "Rushed transitions",
+        "Inadequate warm-up",
+        "Inadequate cool-down"
+      ]
+    },
+    {
+      "id": "CE-CD-003",
+      "key": "currentDuration",
+      "label": "Current Duration",
+      "type": "number",
+      "required": false,
+      "description": "Current class length in minutes",
+      "placeholder": "Enter current duration...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "CE-CD-004",
+      "key": "preferredDuration",
+      "label": "Preferred Duration",
+      "type": "number",
+      "required": false,
+      "description": "Ideal length in minutes",
+      "placeholder": "Enter preferred duration...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "CE-CD-005",
+      "key": "specificFeedback",
+      "label": "Specific Feedback",
+      "type": "textarea",
+      "required": true,
+      "description": "Detailed feedback on pacing",
+      "placeholder": "Provide details for specific feedback..."
+    }
+  ]
+}'::jsonb
+WHERE name = 'Class Duration' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
+-- Update: Class Level Appropriateness (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-LA-001",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class"
+    },
+    {
+      "id": "CE-LA-002",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "radio",
+      "required": true,
+      "description": "What was the mismatch",
+      "options": [
+        "Too difficult/advanced",
+        "Too easy/basic",
+        "Mixed levels confusing",
+        "Unclear level description"
+      ]
+    },
+    {
+      "id": "CE-LA-003",
+      "key": "clientExperienceLevel",
+      "label": "Client Experience Level",
+      "type": "dropdown",
+      "required": true,
+      "description": "Client''s fitness level",
+      "options": [
+        "Complete beginner",
+        "Beginner",
+        "Intermediate",
+        "Advanced",
+        "Expert"
+      ]
+    },
+    {
+      "id": "CE-LA-004",
+      "key": "modificationsOffered",
+      "label": "Modifications Offered",
+      "type": "radio",
+      "required": true,
+      "description": "Were modifications provided",
+      "options": [
+        "Yes - adequate",
+        "Yes - inadequate",
+        "No modifications offered"
+      ]
+    },
+    {
+      "id": "CE-LA-005",
+      "key": "suggestedSolution",
+      "label": "Suggested Solution",
+      "type": "text",
+      "required": false,
+      "description": "What would make this better",
+      "placeholder": "Enter suggested solution..."
+    }
+  ]
+}'::jsonb
+WHERE name = 'Class Level Appropriateness' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
+-- Update: Class Overcrowding (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-CO-001",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class was overcrowded"
+    },
+    {
+      "id": "CE-CO-002",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Who taught the class"
+    },
+    {
+      "id": "CE-CO-003",
+      "key": "numberOfParticipants",
+      "label": "Number of Participants",
+      "type": "number",
+      "required": false,
+      "description": "Approximate number of people",
+      "placeholder": "Enter number of participants...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "CE-CO-004",
+      "key": "studioCapacity",
+      "label": "Studio Capacity",
+      "type": "number",
+      "required": false,
+      "description": "What should be the maximum",
+      "placeholder": "Enter studio capacity...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "CE-CO-005",
+      "key": "specificIssues",
+      "label": "Specific Issues",
+      "type": "multiselect",
+      "required": true,
+      "description": "What problems did overcrowding cause",
+      "options": [
+        "Not enough space",
+        "Equipment shortage",
+        "Can''t see instructor",
+        "Uncomfortable proximity",
+        "Can''t move freely",
+        "Collisions with others",
+        "Other"
+      ]
+    },
+    {
+      "id": "CE-CO-006",
+      "key": "clientAction",
+      "label": "Client Action",
+      "type": "dropdown",
+      "required": true,
+      "description": "How did client respond",
+      "options": [
+        "Completed class uncomfortably",
+        "Left class early",
+        "Unable to participate fully",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Class Overcrowding' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
+-- Update: Class Pacing (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-CP-001",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class"
+    },
+    {
+      "id": "CE-CP-002",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Who taught the class"
+    },
+    {
+      "id": "CE-CP-003",
+      "key": "pacingIssue",
+      "label": "Pacing Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What pacing problems occurred",
+      "options": [
+        "Too fast overall",
+        "Too slow overall",
+        "Insufficient rest periods",
+        "Transitions too rushed",
+        "Unbalanced muscle targeting",
+        "Not enough recovery time",
+        "Other"
+      ]
+    },
+    {
+      "id": "CE-CP-004",
+      "key": "clientFitnessLevel",
+      "label": "Client Fitness Level",
+      "type": "dropdown",
+      "required": false,
+      "description": "Client''s fitness level",
+      "options": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ]
+    },
+    {
+      "id": "CE-CP-005",
+      "key": "impact",
+      "label": "Impact",
+      "type": "dropdown",
+      "required": true,
+      "description": "How did this affect the client",
+      "options": [
+        "Couldn''t keep up",
+        "Got injured",
+        "Too easy/boring",
+        "Muscle fatigue/soreness",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Class Pacing' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
+-- Update: Class Quality (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-CQ-001",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which instructor taught the class"
+    },
+    {
+      "id": "CE-CQ-002",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class format"
+    },
+    {
+      "id": "CE-CQ-003",
+      "key": "qualityIssueType",
+      "label": "Quality Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What aspects had quality issues",
+      "options": [
+        "Poor instruction",
+        "Unclear cues",
+        "Wrong technique demonstrated",
+        "Low energy",
+        "Music issues",
+        "Choreography problems",
+        "Rushed transitions",
+        "Other"
+      ]
+    },
+    {
+      "id": "CE-CQ-004",
+      "key": "specificDetails",
+      "label": "Specific Details",
+      "type": "textarea",
+      "required": true,
+      "description": "Detailed description of quality issues",
+      "placeholder": "Provide details for specific details..."
+    },
+    {
+      "id": "CE-CQ-005",
+      "key": "clientSatisfactionLevel",
+      "label": "Client Satisfaction Level",
+      "type": "dropdown",
+      "required": true,
+      "description": "How satisfied was the client",
+      "options": [
+        "Very Dissatisfied",
+        "Dissatisfied",
+        "Neutral",
+        "Satisfied",
+        "Very Satisfied"
+      ]
+    },
+    {
+      "id": "CE-CQ-006",
+      "key": "wouldClientRecommend",
+      "label": "Would Client Recommend",
+      "type": "radio",
+      "required": false,
+      "description": "Would they recommend this class",
+      "options": [
+        "Yes",
+        "No",
+        "Unsure"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Class Quality' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
+-- Update: Class Scheduling (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-CS-001",
+      "key": "schedulingIssueType",
+      "label": "Scheduling Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What scheduling issues occurred",
+      "options": [
+        "Not enough classes",
+        "Timing conflicts",
+        "Classes full",
+        "Cancellations",
+        "Schedule changes",
+        "Holiday schedule unclear",
+        "Peak hour congestion",
+        "Other"
+      ]
+    },
+    {
+      "id": "CE-CS-002",
+      "key": "preferredTimeSlot",
+      "label": "Preferred Time Slot",
+      "type": "text",
+      "required": false,
+      "description": "What time would work better",
+      "placeholder": "Enter preferred time slot..."
+    },
+    {
+      "id": "CE-CS-003",
+      "key": "classTypeAffected",
+      "label": "Class Type Affected",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class types are affected",
+      "options": [
+        "All class types",
+        "Multiple classes"
+      ]
+    },
+    {
+      "id": "CE-CS-004",
+      "key": "frequencyOfIssue",
+      "label": "Frequency of Issue",
+      "type": "dropdown",
+      "required": true,
+      "description": "How often does this occur",
+      "options": [
+        "One-time",
+        "Weekly",
+        "Daily",
+        "Ongoing"
+      ]
+    },
+    {
+      "id": "CE-CS-005",
+      "key": "impactOnClient",
+      "label": "Impact on Client",
+      "type": "dropdown",
+      "required": true,
+      "description": "How this impacts the client",
+      "options": [
+        "Minor inconvenience",
+        "Unable to attend preferred classes",
+        "Considering canceling membership",
+        "Already reduced visits"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Class Scheduling' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
+-- Update: Class Variety (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-CV-001",
+      "key": "currentConcern",
+      "label": "Current Concern",
+      "type": "multiselect",
+      "required": true,
+      "description": "What variety is lacking",
+      "options": [
+        "Limited class formats",
+        "Repetitive routines",
+        "Same music repeatedly",
+        "Lack of new instructors",
+        "Need more advanced options",
+        "Need more beginner options",
+        "Want specialty formats",
+        "Other"
+      ]
+    },
+    {
+      "id": "CE-CV-002",
+      "key": "requestedFormat",
+      "label": "Requested Format",
+      "type": "text",
+      "required": false,
+      "description": "What new class format would you like",
+      "placeholder": "Enter requested format..."
+    },
+    {
+      "id": "CE-CV-003",
+      "key": "frequencyAttending",
+      "label": "Frequency Attending",
+      "type": "dropdown",
+      "required": false,
+      "description": "How often client attends",
+      "options": [
+        "1-2 times/week",
+        "3-4 times/week",
+        "5+ times/week",
+        "Daily"
+      ]
+    },
+    {
+      "id": "CE-CV-004",
+      "key": "howLongMember",
+      "label": "How Long Member",
+      "type": "dropdown",
+      "required": false,
+      "description": "How long they''ve been a member",
+      "options": [
+        "Less than 1 month",
+        "1-3 months",
+        "3-6 months",
+        "6-12 months",
+        "1+ years"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Class Variety' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
+-- Update: Warm-up/Cool-down (Class Experience)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "CE-WC-001",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class"
+    },
+    {
+      "id": "CE-WC-002",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Who taught the class"
+    },
+    {
+      "id": "CE-WC-003",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "radio",
+      "required": true,
+      "description": "What was inadequate",
+      "options": [
+        "No warm-up",
+        "Inadequate warm-up",
+        "No cool-down",
+        "Inadequate cool-down",
+        "Rushed stretching"
+      ]
+    },
+    {
+      "id": "CE-WC-004",
+      "key": "physicalImpact",
+      "label": "Physical Impact",
+      "type": "text",
+      "required": false,
+      "description": "Did this cause injury or discomfort",
+      "placeholder": "Enter physical impact..."
+    },
+    {
+      "id": "CE-WC-005",
+      "key": "specificFeedback",
+      "label": "Specific Feedback",
+      "type": "textarea",
+      "required": true,
+      "description": "What should be improved",
+      "placeholder": "Provide details for specific feedback..."
+    }
+  ]
+}'::jsonb
+WHERE name = 'Warm-up/Cool-down' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Class Experience');
+
 -- Update: Clique Behavior (Community & Culture)
 UPDATE subcategories 
 SET form_fields = '{
@@ -2418,6 +3189,63 @@ SET form_fields = '{
       "required": false,
       "description": "Who was in charge",
       "placeholder": "Enter organizer/responsible party..."
+    },
+    {
+      "id": "CC-CE-001",
+      "key": "eventName",
+      "label": "Event Name",
+      "type": "text",
+      "required": true,
+      "description": "Which community event",
+      "placeholder": "Enter event name..."
+    },
+    {
+      "id": "CC-CE-002",
+      "key": "eventDate",
+      "label": "Event Date",
+      "type": "date",
+      "required": true,
+      "description": "When was the event",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "CC-CE-003",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What event issue occurred",
+      "options": [
+        "Poor organization",
+        "Low attendance",
+        "Lack of engagement",
+        "Event cancelled",
+        "Doesn''t foster community",
+        "Too infrequent",
+        "Other"
+      ]
+    },
+    {
+      "id": "CC-CE-004",
+      "key": "attendance",
+      "label": "Attendance",
+      "type": "number",
+      "required": false,
+      "description": "How many people attended",
+      "placeholder": "Enter attendance...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "CC-CE-005",
+      "key": "feedback",
+      "label": "Feedback",
+      "type": "textarea",
+      "required": true,
+      "description": "What could be improved",
+      "placeholder": "Provide details for feedback..."
     }
   ]
 }'::jsonb
@@ -3321,6 +4149,65 @@ SET form_fields = '{
         "No",
         "N/A"
       ]
+    },
+    {
+      "id": "CS-CH-001",
+      "key": "complaintAbout",
+      "label": "Complaint About",
+      "type": "text",
+      "required": true,
+      "description": "Original complaint topic",
+      "placeholder": "Enter complaint about..."
+    },
+    {
+      "id": "CS-CH-002",
+      "key": "handlingIssue",
+      "label": "Handling Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "How was complaint mishandled",
+      "options": [
+        "Dismissive attitude",
+        "Defensive response",
+        "No escalation option",
+        "Not taken seriously",
+        "Blamed customer",
+        "No follow-up",
+        "Other"
+      ]
+    },
+    {
+      "id": "CS-CH-003",
+      "key": "whoHandled",
+      "label": "Who Handled",
+      "type": "text",
+      "required": false,
+      "description": "Staff member who handled complaint",
+      "placeholder": "Enter who handled..."
+    },
+    {
+      "id": "CS-CH-004",
+      "key": "dateOfOriginalComplaint",
+      "label": "Date of Original Complaint",
+      "type": "date",
+      "required": true,
+      "description": "When was complaint first made",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "CS-CH-005",
+      "key": "resolutionStatus",
+      "label": "Resolution Status",
+      "type": "dropdown",
+      "required": true,
+      "description": "Current status",
+      "options": [
+        "Unresolved",
+        "Partially resolved",
+        "Unsatisfactory resolution",
+        "Ignored",
+        "Other"
+      ]
     }
   ]
 }'::jsonb
@@ -3522,6 +4409,74 @@ SET form_fields = '{
         "Didn''t Address Query",
         "N/A"
       ]
+    },
+    {
+      "id": "CS-EC-001",
+      "key": "supportIssue",
+      "label": "Support Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What support issue occurred",
+      "options": [
+        "Slow response",
+        "Generic replies",
+        "Issue unresolved",
+        "Multiple follow-ups needed",
+        "Transferred repeatedly",
+        "No response",
+        "Other"
+      ]
+    },
+    {
+      "id": "CS-EC-002",
+      "key": "channelUsed",
+      "label": "Channel Used",
+      "type": "radio",
+      "required": true,
+      "description": "How did you contact support",
+      "options": [
+        "Email",
+        "WhatsApp",
+        "Chat on website",
+        "Other"
+      ]
+    },
+    {
+      "id": "CS-EC-003",
+      "key": "originalQueryDate",
+      "label": "Original Query Date",
+      "type": "date",
+      "required": true,
+      "description": "When did you first contact support",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "CS-EC-004",
+      "key": "responseTime",
+      "label": "Response Time",
+      "type": "dropdown",
+      "required": true,
+      "description": "How long to get response",
+      "options": [
+        "No response yet",
+        "Hours",
+        "1 day",
+        "2-3 days",
+        "More than 3 days"
+      ]
+    },
+    {
+      "id": "CS-EC-005",
+      "key": "numberOfFollowups",
+      "label": "Number of Followups",
+      "type": "number",
+      "required": false,
+      "description": "How many times did you follow up",
+      "placeholder": "Enter number of followups...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
     }
   ]
 }'::jsonb
@@ -4242,6 +5197,74 @@ SET form_fields = '{
         "Unsure",
         "Probably No",
         "Definitely No"
+      ]
+    },
+    {
+      "id": "CS-NE-001",
+      "key": "newcomerType",
+      "label": "Newcomer Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Client status",
+      "options": [
+        "First-time visitor",
+        "Trial class",
+        "New member"
+      ]
+    },
+    {
+      "id": "CS-NE-002",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What newcomer issues occurred",
+      "options": [
+        "Poor onboarding",
+        "No orientation",
+        "Lack of guidance",
+        "Not welcomed",
+        "Felt lost/confused",
+        "Too rushed",
+        "No studio tour",
+        "Other"
+      ]
+    },
+    {
+      "id": "CS-NE-003",
+      "key": "whoInteracted",
+      "label": "Who Interacted",
+      "type": "text",
+      "required": false,
+      "description": "Staff members who helped (or didn''t)",
+      "placeholder": "Enter who interacted..."
+    },
+    {
+      "id": "CS-NE-004",
+      "key": "impactOnExperience",
+      "label": "Impact on Experience",
+      "type": "dropdown",
+      "required": true,
+      "description": "How this affected first impression",
+      "options": [
+        "Very negative",
+        "Somewhat negative",
+        "Neutral",
+        "Positive overall despite issue"
+      ]
+    },
+    {
+      "id": "CS-NE-005",
+      "key": "likelihoodToReturn",
+      "label": "Likelihood to Return",
+      "type": "dropdown",
+      "required": true,
+      "description": "Will they come back",
+      "options": [
+        "Will not return",
+        "Unsure",
+        "Will return despite issue",
+        "Will return"
       ]
     }
   ]
@@ -5158,11 +6181,494 @@ SET form_fields = '{
       "required": false,
       "description": "Staff reaction",
       "placeholder": "Enter staff response..."
+    },
+    {
+      "id": "CS-SP-001",
+      "key": "unprofessionalBehavior",
+      "label": "Unprofessional Behavior",
+      "type": "multiselect",
+      "required": true,
+      "description": "What unprofessional behavior observed",
+      "options": [
+        "Gossiping",
+        "Using personal phone",
+        "Eating at desk",
+        "Inappropriate conversations",
+        "Ignoring clients",
+        "Dress code violation",
+        "Other"
+      ]
+    },
+    {
+      "id": "CS-SP-002",
+      "key": "staffMember",
+      "label": "Staff Member",
+      "type": "text",
+      "required": false,
+      "description": "Which staff member (if known)",
+      "placeholder": "Enter staff member..."
+    },
+    {
+      "id": "CS-SP-003",
+      "key": "location",
+      "label": "Location",
+      "type": "dropdown",
+      "required": true,
+      "description": "Where did this occur",
+      "options": [
+        "Reception",
+        "Front desk",
+        "Studio floor",
+        "Changing room",
+        "Other"
+      ]
+    },
+    {
+      "id": "CS-SP-004",
+      "key": "frequency",
+      "label": "Frequency",
+      "type": "dropdown",
+      "required": true,
+      "description": "How often is this happening",
+      "options": [
+        "One-time",
+        "Occasional",
+        "Frequent",
+        "Consistent pattern"
+      ]
+    },
+    {
+      "id": "CS-SP-005",
+      "key": "impact",
+      "label": "Impact",
+      "type": "dropdown",
+      "required": true,
+      "description": "How this affected client",
+      "options": [
+        "Minor annoyance",
+        "Unprofessional atmosphere",
+        "Felt ignored",
+        "Other"
+      ]
     }
   ]
 }'::jsonb
 WHERE name = 'Staff Professionalism' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Customer Service');
+
+-- Update: Changing Room Issues (Facility & Amenities)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "FA-CR-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What changing room issues exist",
+      "options": [
+        "Cleanliness poor",
+        "Lockers broken",
+        "Insufficient space",
+        "No privacy",
+        "Missing amenities",
+        "Overcrowded",
+        "Maintenance needed",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-CR-002",
+      "key": "specificLocation",
+      "label": "Specific Location",
+      "type": "text",
+      "required": true,
+      "description": "Which changing room/area",
+      "placeholder": "Enter specific location..."
+    },
+    {
+      "id": "FA-CR-003",
+      "key": "timeObserved",
+      "label": "Time Observed",
+      "type": "dropdown",
+      "required": true,
+      "description": "When was issue noticed",
+      "options": [
+        "Morning",
+        "Afternoon",
+        "Evening",
+        "All day"
+      ]
+    },
+    {
+      "id": "FA-CR-004",
+      "key": "photographicEvidence",
+      "label": "Photographic Evidence",
+      "type": "radio",
+      "required": false,
+      "description": "Do you have photos",
+      "options": [
+        "Yes - Attached",
+        "No"
+      ]
+    },
+    {
+      "id": "FA-CR-005",
+      "key": "staffNotified",
+      "label": "Staff Notified",
+      "type": "radio",
+      "required": true,
+      "description": "Was staff informed",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Changing Room Issues' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Facility & Amenities');
+
+-- Update: Equipment Issues (Facility & Amenities)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "FA-EI-001",
+      "key": "equipmentType",
+      "label": "Equipment Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "Which equipment has issues",
+      "options": [
+        "Weights",
+        "Mats",
+        "Bands",
+        "Balls",
+        "Blocks",
+        "Barres",
+        "Bikes",
+        "Benches",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-EI-002",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What''s wrong with equipment",
+      "options": [
+        "Broken/damaged",
+        "Insufficient quantity",
+        "Dirty/unhygienic",
+        "Worn out",
+        "Missing items",
+        "Unsafe",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-EI-003",
+      "key": "specificDetails",
+      "label": "Specific Details",
+      "type": "textarea",
+      "required": true,
+      "description": "Describe the equipment issue",
+      "placeholder": "Provide details for specific details..."
+    },
+    {
+      "id": "FA-EI-004",
+      "key": "equipmentRemoved",
+      "label": "Equipment Removed",
+      "type": "radio",
+      "required": false,
+      "description": "Was it taken out of use",
+      "options": [
+        "Yes",
+        "No",
+        "Unknown"
+      ]
+    },
+    {
+      "id": "FA-EI-005",
+      "key": "safetyRisk",
+      "label": "Safety Risk",
+      "type": "radio",
+      "required": true,
+      "description": "Is this a safety concern",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Equipment Issues' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Facility & Amenities');
+
+-- Update: Hygiene Supplies (Facility & Amenities)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "FA-HS-001",
+      "key": "missingItems",
+      "label": "Missing Items",
+      "type": "multiselect",
+      "required": true,
+      "description": "What supplies are missing",
+      "options": [
+        "Hand wash/soap",
+        "Sanitizer",
+        "Tissues",
+        "Toilet paper",
+        "Paper towels",
+        "Feminine products",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-HS-002",
+      "key": "location",
+      "label": "Location",
+      "type": "multiselect",
+      "required": true,
+      "description": "Where are supplies missing",
+      "options": [
+        "Washroom",
+        "Changing room",
+        "Studio floor",
+        "Reception",
+        "All areas"
+      ]
+    },
+    {
+      "id": "FA-HS-003",
+      "key": "frequency",
+      "label": "Frequency",
+      "type": "dropdown",
+      "required": true,
+      "description": "How often are supplies missing",
+      "options": [
+        "One time",
+        "Occasional",
+        "Frequent",
+        "Always out"
+      ]
+    },
+    {
+      "id": "FA-HS-004",
+      "key": "staffNotified",
+      "label": "Staff Notified",
+      "type": "radio",
+      "required": true,
+      "description": "Was staff informed",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Hygiene Supplies' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Facility & Amenities');
+
+-- Update: Lighting & Ambiance (Facility & Amenities)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "FA-LA-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What lighting/ambiance issues",
+      "options": [
+        "Too bright",
+        "Too dim",
+        "Lights flickering",
+        "Bulbs out",
+        "Mirrors dirty/cracked",
+        "Sound system issues",
+        "No ambiance",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-LA-002",
+      "key": "areaAffected",
+      "label": "Area Affected",
+      "type": "multiselect",
+      "required": true,
+      "description": "Where is the issue",
+      "options": [
+        "Main studio",
+        "Second studio",
+        "Reception",
+        "Changing rooms",
+        "Washrooms",
+        "All areas"
+      ]
+    },
+    {
+      "id": "FA-LA-003",
+      "key": "impactOnClass",
+      "label": "Impact on Class",
+      "type": "radio",
+      "required": true,
+      "description": "How did this affect experience",
+      "options": [
+        "Couldn''t see properly",
+        "Distracting",
+        "Uncomfortable",
+        "Migraine/headache",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-LA-004",
+      "key": "staffAware",
+      "label": "Staff Aware",
+      "type": "radio",
+      "required": false,
+      "description": "Does staff know",
+      "options": [
+        "Yes",
+        "No",
+        "Unknown"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Lighting & Ambiance' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Facility & Amenities');
+
+-- Update: Seating & Waiting Area (Facility & Amenities)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "FA-SW-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What''s the issue",
+      "options": [
+        "Insufficient seating",
+        "Uncomfortable seats",
+        "Dirty/unclean",
+        "Too crowded",
+        "No privacy",
+        "Poor layout",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-SW-002",
+      "key": "timeNoticed",
+      "label": "Time Noticed",
+      "type": "dropdown",
+      "required": true,
+      "description": "When is this a problem",
+      "options": [
+        "Morning",
+        "Afternoon",
+        "Evening",
+        "All times"
+      ]
+    },
+    {
+      "id": "FA-SW-003",
+      "key": "numberOfPeopleWaiting",
+      "label": "Number of People Waiting",
+      "type": "number",
+      "required": false,
+      "description": "Approximate number waiting",
+      "placeholder": "Enter number of people waiting...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "FA-SW-004",
+      "key": "suggestedImprovement",
+      "label": "Suggested Improvement",
+      "type": "text",
+      "required": false,
+      "description": "What would make this better",
+      "placeholder": "Enter suggested improvement..."
+    }
+  ]
+}'::jsonb
+WHERE name = 'Seating & Waiting Area' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Facility & Amenities');
+
+-- Update: Storage & Lockers (Facility & Amenities)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "FA-SL-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What locker issues exist",
+      "options": [
+        "Insufficient lockers",
+        "Broken locks",
+        "Lockers too small",
+        "No charging points",
+        "Can''t fit belongings",
+        "Locker assignment unclear",
+        "Other"
+      ]
+    },
+    {
+      "id": "FA-SL-002",
+      "key": "specificLockerNumber",
+      "label": "Specific Locker Number",
+      "type": "text",
+      "required": false,
+      "description": "Which locker (if applicable)",
+      "placeholder": "Enter specific locker number..."
+    },
+    {
+      "id": "FA-SL-003",
+      "key": "frequency",
+      "label": "Frequency",
+      "type": "dropdown",
+      "required": true,
+      "description": "How often does this occur",
+      "options": [
+        "One-time issue",
+        "Occasional",
+        "Frequent",
+        "Always a problem"
+      ]
+    },
+    {
+      "id": "FA-SL-004",
+      "key": "itemsLostDamaged",
+      "label": "Items Lost/Damaged",
+      "type": "radio",
+      "required": true,
+      "description": "Were belongings lost or damaged",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Storage & Lockers' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Facility & Amenities');
 
 -- Update: N/A (Global)
 UPDATE subcategories 
@@ -8044,6 +9550,1071 @@ SET form_fields = '{
 WHERE name = 'Medical Disclosure' 
   AND category_id = (SELECT id FROM categories WHERE name = 'Health & Safety');
 
+-- Update: Attention & Correction (Instructor Related)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "IR-AC-001",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which instructor"
+    },
+    {
+      "id": "IR-AC-002",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class"
+    },
+    {
+      "id": "IR-AC-003",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What attention issues occurred",
+      "options": [
+        "No individual attention",
+        "No form corrections",
+        "Favoritism observed",
+        "Ignoring raised hands",
+        "Not checking on beginners",
+        "Only helping certain members",
+        "Other"
+      ]
+    },
+    {
+      "id": "IR-AC-004",
+      "key": "clientAttemptedContact",
+      "label": "Client Attempted Contact",
+      "type": "radio",
+      "required": false,
+      "description": "Did client try to get attention",
+      "options": [
+        "Yes - raised hand",
+        "Yes - approached after class",
+        "No - afraid to ask",
+        "Other"
+      ]
+    },
+    {
+      "id": "IR-AC-005",
+      "key": "impactOnExperience",
+      "label": "Impact on Experience",
+      "type": "dropdown",
+      "required": true,
+      "description": "How this affected client",
+      "options": [
+        "Minor frustration",
+        "Poor workout form",
+        "Risk of injury",
+        "Felt ignored",
+        "Considering not returning"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Attention & Correction' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Instructor Related');
+
+-- Update: Communication (Instructor Related)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "IR-CM-001",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which instructor"
+    },
+    {
+      "id": "IR-CM-002",
+      "key": "communicationIssue",
+      "label": "Communication Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What communication problems occurred",
+      "options": [
+        "Rude behavior",
+        "Dismissive attitude",
+        "Condescending tone",
+        "Language barrier",
+        "Poor English fluency",
+        "Poor Hindi fluency",
+        "Unclear instructions",
+        "Other"
+      ]
+    },
+    {
+      "id": "IR-CM-003",
+      "key": "specificIncident",
+      "label": "Specific Incident",
+      "type": "textarea",
+      "required": true,
+      "description": "Describe what was said or done",
+      "placeholder": "Provide details for specific incident..."
+    },
+    {
+      "id": "IR-CM-004",
+      "key": "witnessPresent",
+      "label": "Witness Present",
+      "type": "radio",
+      "required": false,
+      "description": "Were there witnesses",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "IR-CM-005",
+      "key": "clientEmotionalResponse",
+      "label": "Client Emotional Response",
+      "type": "dropdown",
+      "required": true,
+      "description": "How client felt",
+      "options": [
+        "Upset",
+        "Offended",
+        "Frustrated",
+        "Angry",
+        "Embarrassed",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Communication' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Instructor Related');
+
+-- Update: Instructor Cancellations (Instructor Related)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "IR-IC-001",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which instructor"
+    },
+    {
+      "id": "IR-IC-002",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class was cancelled"
+    },
+    {
+      "id": "IR-IC-003",
+      "key": "noticeGiven",
+      "label": "Notice Given",
+      "type": "dropdown",
+      "required": true,
+      "description": "How much advance notice",
+      "options": [
+        "No notice",
+        "Less than 1 hour",
+        "1-3 hours",
+        "3-12 hours",
+        "12-24 hours",
+        "More than 24 hours"
+      ]
+    },
+    {
+      "id": "IR-IC-004",
+      "key": "frequency",
+      "label": "Frequency",
+      "type": "dropdown",
+      "required": true,
+      "description": "How often does this instructor cancel",
+      "options": [
+        "First time",
+        "2nd time",
+        "3rd time",
+        "Frequent pattern"
+      ]
+    },
+    {
+      "id": "IR-IC-005",
+      "key": "substituteProvided",
+      "label": "Substitute Provided",
+      "type": "radio",
+      "required": true,
+      "description": "Was a replacement instructor offered",
+      "options": [
+        "Yes - good substitute",
+        "Yes - poor substitute",
+        "No substitute"
+      ]
+    },
+    {
+      "id": "IR-IC-006",
+      "key": "clientImpact",
+      "label": "Client Impact",
+      "type": "multiselect",
+      "required": true,
+      "description": "How this impacted the client",
+      "options": [
+        "Wasted travel time",
+        "Disrupted schedule",
+        "Credits/payment issue",
+        "Disappointed",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Instructor Cancellations' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Instructor Related');
+
+-- Update: Knowledge & Expertise (Instructor Related)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "IR-KE-001",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which instructor"
+    },
+    {
+      "id": "IR-KE-002",
+      "key": "knowledgeGap",
+      "label": "Knowledge Gap",
+      "type": "multiselect",
+      "required": true,
+      "description": "What knowledge issues observed",
+      "options": [
+        "Limited anatomy knowledge",
+        "Can''t answer technique questions",
+        "Incorrect form demonstration",
+        "Unsafe cues given",
+        "Can''t modify for injuries",
+        "Inexperienced",
+        "Other"
+      ]
+    },
+    {
+      "id": "IR-KE-003",
+      "key": "specificExample",
+      "label": "Specific Example",
+      "type": "textarea",
+      "required": true,
+      "description": "Describe the incident",
+      "placeholder": "Provide details for specific example..."
+    },
+    {
+      "id": "IR-KE-004",
+      "key": "safetyConcern",
+      "label": "Safety Concern",
+      "type": "radio",
+      "required": true,
+      "description": "Was there a safety risk",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "IR-KE-005",
+      "key": "clientConcernLevel",
+      "label": "Client Concern Level",
+      "type": "dropdown",
+      "required": true,
+      "description": "How concerned is the client",
+      "options": [
+        "Minor",
+        "Moderate",
+        "Serious",
+        "Very Serious"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Knowledge & Expertise' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Instructor Related');
+
+-- Update: Personal Boundaries (Instructor Related)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "IR-PB-001",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which instructor"
+    },
+    {
+      "id": "IR-PB-002",
+      "key": "boundaryIssue",
+      "label": "Boundary Issue",
+      "type": "multiselect",
+      "required": true,
+      "description": "What boundary was crossed",
+      "options": [
+        "Physical adjustments without asking",
+        "Inappropriate touching",
+        "Overly personal questions",
+        "Unwanted physical contact",
+        "Making client uncomfortable",
+        "Other"
+      ]
+    },
+    {
+      "id": "IR-PB-003",
+      "key": "incidentDescription",
+      "label": "Incident Description",
+      "type": "textarea",
+      "required": true,
+      "description": "Describe exactly what happened",
+      "placeholder": "Provide details for incident description..."
+    },
+    {
+      "id": "IR-PB-004",
+      "key": "clientGaveConsent",
+      "label": "Client Gave Consent",
+      "type": "radio",
+      "required": true,
+      "description": "Was consent requested",
+      "options": [
+        "Not asked",
+        "Asked and declined",
+        "Asked and agreed but uncomfortable",
+        "Other"
+      ]
+    },
+    {
+      "id": "IR-PB-005",
+      "key": "witnessPresent",
+      "label": "Witness Present",
+      "type": "radio",
+      "required": false,
+      "description": "Were others present",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "IR-PB-006",
+      "key": "actionRequested",
+      "label": "Action Requested",
+      "type": "dropdown",
+      "required": true,
+      "description": "What action does client want",
+      "options": [
+        "Verbal warning",
+        "Written warning",
+        "Retraining required",
+        "Do not assign to me again",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Personal Boundaries' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Instructor Related');
+
+-- Update: Punctuality (Instructor Related)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "IR-PT-001",
+      "key": "instructorName",
+      "label": "Instructor Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which instructor"
+    },
+    {
+      "id": "IR-PT-002",
+      "key": "classType",
+      "label": "Class Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which class"
+    },
+    {
+      "id": "IR-PT-003",
+      "key": "punctualityIssue",
+      "label": "Punctuality Issue",
+      "type": "radio",
+      "required": true,
+      "description": "What was the issue",
+      "options": [
+        "Started late",
+        "Ended early",
+        "Both started late and ended early",
+        "Extended beyond scheduled time"
+      ]
+    },
+    {
+      "id": "IR-PT-004",
+      "key": "minutesLateEarly",
+      "label": "Minutes Late/Early",
+      "type": "number",
+      "required": true,
+      "description": "How many minutes",
+      "placeholder": "Enter minutes late/early...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "IR-PT-005",
+      "key": "frequency",
+      "label": "Frequency",
+      "type": "dropdown",
+      "required": true,
+      "description": "How often does this occur",
+      "options": [
+        "First time",
+        "Occasional",
+        "Frequent",
+        "Every class"
+      ]
+    },
+    {
+      "id": "IR-PT-006",
+      "key": "impact",
+      "label": "Impact",
+      "type": "text",
+      "required": false,
+      "description": "How this affected clients",
+      "placeholder": "Enter impact..."
+    }
+  ]
+}'::jsonb
+WHERE name = 'Punctuality' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Instructor Related');
+
+-- Update: Billing Errors (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-BE-001",
+      "key": "errorType",
+      "label": "Error Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What billing error occurred",
+      "options": [
+        "Incorrect amount charged",
+        "Duplicate charge",
+        "Wrong package applied",
+        "GST calculation error",
+        "Unexpected charge",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-BE-002",
+      "key": "expectedAmount",
+      "label": "Expected Amount",
+      "type": "number",
+      "required": true,
+      "description": "What should have been charged (INR)",
+      "placeholder": "Enter expected amount...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "MB-BE-003",
+      "key": "actualAmount",
+      "label": "Actual Amount",
+      "type": "number",
+      "required": true,
+      "description": "What was actually charged (INR)",
+      "placeholder": "Enter actual amount...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "MB-BE-004",
+      "key": "transactionDate",
+      "label": "Transaction Date",
+      "type": "date",
+      "required": true,
+      "description": "When did transaction occur",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "MB-BE-005",
+      "key": "invoiceNumber",
+      "label": "Invoice Number",
+      "type": "text",
+      "required": false,
+      "description": "Invoice or receipt number",
+      "placeholder": "Enter invoice number..."
+    },
+    {
+      "id": "MB-BE-006",
+      "key": "resolutionRequested",
+      "label": "Resolution Requested",
+      "type": "radio",
+      "required": true,
+      "description": "What resolution is needed",
+      "options": [
+        "Refund",
+        "Adjustment",
+        "Correction",
+        "Explanation"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Billing Errors' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
+-- Update: Contract Terms (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-CT-001",
+      "key": "concernType",
+      "label": "Concern Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What contract issue exists",
+      "options": [
+        "Unclear terms",
+        "Disagreement on clause",
+        "Lock-in period dispute",
+        "Cancellation terms unclear",
+        "Auto-renewal issue",
+        "Hidden charges",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-CT-002",
+      "key": "specificClause",
+      "label": "Specific Clause",
+      "type": "text",
+      "required": true,
+      "description": "Which contract term is unclear/disputed",
+      "placeholder": "Enter specific clause..."
+    },
+    {
+      "id": "MB-CT-003",
+      "key": "contractDate",
+      "label": "Contract Date",
+      "type": "date",
+      "required": false,
+      "description": "When was contract signed",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "MB-CT-004",
+      "key": "whatClientUnderstood",
+      "label": "What Client Understood",
+      "type": "textarea",
+      "required": true,
+      "description": "What did client think the terms were",
+      "placeholder": "Provide details for what client understood..."
+    },
+    {
+      "id": "MB-CT-005",
+      "key": "requestedAction",
+      "label": "Requested Action",
+      "type": "dropdown",
+      "required": true,
+      "description": "What does client want",
+      "options": [
+        "Clarification",
+        "Amendment",
+        "Contract review",
+        "Cancellation",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Contract Terms' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
+-- Update: Credits/Class Pack (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-CP-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What credit/pack issue",
+      "options": [
+        "Credits expired",
+        "Unused credits",
+        "Can''t transfer credits",
+        "Credit balance incorrect",
+        "Pack terms unclear",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-CP-002",
+      "key": "packageType",
+      "label": "Package Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which package/pack"
+    },
+    {
+      "id": "MB-CP-003",
+      "key": "creditsRemaining",
+      "label": "Credits Remaining",
+      "type": "number",
+      "required": false,
+      "description": "How many credits left",
+      "placeholder": "Enter credits remaining...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "MB-CP-004",
+      "key": "expiryDate",
+      "label": "Expiry Date",
+      "type": "date",
+      "required": false,
+      "description": "When do/did credits expire",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "MB-CP-005",
+      "key": "resolutionRequested",
+      "label": "Resolution Requested",
+      "type": "dropdown",
+      "required": true,
+      "description": "What solution is needed",
+      "options": [
+        "Extension",
+        "Refund",
+        "Transfer",
+        "Freeze",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Credits/Class Pack' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
+-- Update: Invoice/Receipt (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-IR-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What invoice issue",
+      "options": [
+        "Missing invoice",
+        "Incorrect details on invoice",
+        "GST issues",
+        "Wrong amount",
+        "Delayed generation",
+        "Need duplicate",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-IR-002",
+      "key": "transactionDate",
+      "label": "Transaction Date",
+      "type": "date",
+      "required": true,
+      "description": "Date of transaction",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "MB-IR-003",
+      "key": "amount",
+      "label": "Amount",
+      "type": "number",
+      "required": true,
+      "description": "Transaction amount (INR)",
+      "placeholder": "Enter amount...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "MB-IR-004",
+      "key": "what''sNeeded",
+      "label": "What''s Needed",
+      "type": "radio",
+      "required": true,
+      "description": "What is required",
+      "options": [
+        "Generate invoice",
+        "Correct existing",
+        "GST invoice",
+        "Duplicate copy",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-IR-005",
+      "key": "urgency",
+      "label": "Urgency",
+      "type": "dropdown",
+      "required": false,
+      "description": "How urgent",
+      "options": [
+        "Urgent - tax filing",
+        "Urgent - reimbursement",
+        "Routine request"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Invoice/Receipt' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
+-- Update: Membership Cancellation (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-MC-001",
+      "key": "cancellationReason",
+      "label": "Cancellation Reason",
+      "type": "dropdown",
+      "required": true,
+      "description": "Why cancelling",
+      "options": [
+        "Relocating",
+        "Financial reasons",
+        "Health issues",
+        "Switching studios",
+        "Service dissatisfaction",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-MC-002",
+      "key": "difficultyType",
+      "label": "Difficulty Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What''s making cancellation difficult",
+      "options": [
+        "Can''t find cancellation option",
+        "Process too complex",
+        "Not allowed to cancel",
+        "Penalty too high",
+        "Refund refused",
+        "No response to request",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-MC-003",
+      "key": "membershipType",
+      "label": "Membership Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Current membership"
+    },
+    {
+      "id": "MB-MC-004",
+      "key": "requestedCancellationDate",
+      "label": "Requested Cancellation Date",
+      "type": "date",
+      "required": true,
+      "description": "When should membership end",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "MB-MC-005",
+      "key": "refundExpected",
+      "label": "Refund Expected",
+      "type": "radio",
+      "required": false,
+      "description": "Expecting a refund",
+      "options": [
+        "Yes",
+        "No",
+        "Unsure"
+      ]
+    },
+    {
+      "id": "MB-MC-006",
+      "key": "resolutionSought",
+      "label": "Resolution Sought",
+      "type": "dropdown",
+      "required": true,
+      "description": "What outcome is wanted",
+      "options": [
+        "Cancel immediately",
+        "Cancel at period end",
+        "Partial refund",
+        "Full refund",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Membership Cancellation' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
+-- Update: Membership Freeze (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-MF-001",
+      "key": "freezeReason",
+      "label": "Freeze Reason",
+      "type": "dropdown",
+      "required": true,
+      "description": "Why freeze membership",
+      "options": [
+        "Medical/health",
+        "Travel",
+        "Pregnancy",
+        "Temporary relocation",
+        "Financial",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-MF-002",
+      "key": "freezeDurationRequested",
+      "label": "Freeze Duration Requested",
+      "type": "dropdown",
+      "required": true,
+      "description": "How long to freeze",
+      "options": [
+        "1 month",
+        "2 months",
+        "3 months",
+        "Longer"
+      ]
+    },
+    {
+      "id": "MB-MF-003",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What freeze issue occurred",
+      "options": [
+        "Request denied",
+        "Process too complicated",
+        "Charges during freeze",
+        "Can''t unfreeze",
+        "Freeze terms unclear",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-MF-004",
+      "key": "currentStatus",
+      "label": "Current Status",
+      "type": "radio",
+      "required": true,
+      "description": "Current freeze status",
+      "options": [
+        "Freeze not yet processed",
+        "Freeze denied",
+        "Freeze active but issues",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-MF-005",
+      "key": "supportingDocumentation",
+      "label": "Supporting Documentation",
+      "type": "radio",
+      "required": false,
+      "description": "Do you have supporting docs",
+      "options": [
+        "Yes - attached",
+        "No",
+        "Not required"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Membership Freeze' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
+-- Update: Package/Plan Confusion (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-PC-001",
+      "key": "confusionType",
+      "label": "Confusion Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What''s confusing",
+      "options": [
+        "Unclear package terms",
+        "Misleading information",
+        "Hidden charges",
+        "Validity confusion",
+        "Usage limits unclear",
+        "Multi-studio access unclear",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-PC-002",
+      "key": "packageName",
+      "label": "Package Name",
+      "type": "dropdown",
+      "required": true,
+      "description": "Which package"
+    },
+    {
+      "id": "MB-PC-003",
+      "key": "whatClientUnderstood",
+      "label": "What Client Understood",
+      "type": "textarea",
+      "required": true,
+      "description": "What did client think package included",
+      "placeholder": "Provide details for what client understood..."
+    },
+    {
+      "id": "MB-PC-004",
+      "key": "actualTerms",
+      "label": "Actual Terms",
+      "type": "textarea",
+      "required": false,
+      "description": "What are the actual terms (if known)",
+      "placeholder": "Provide details for actual terms..."
+    },
+    {
+      "id": "MB-PC-005",
+      "key": "whereInformationFrom",
+      "label": "Where Information From",
+      "type": "dropdown",
+      "required": true,
+      "description": "Where did client get info",
+      "options": [
+        "Sales rep",
+        "Website",
+        "Email",
+        "Phone call",
+        "Social media",
+        "Other"
+      ]
+    }
+  ]
+}'::jsonb
+WHERE name = 'Package/Plan Confusion' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
+-- Update: Promotional Offers (Membership & Billing)
+UPDATE subcategories 
+SET form_fields = '{
+  "fields": [
+    {
+      "id": "MB-PO-001",
+      "key": "offerType",
+      "label": "Offer Type",
+      "type": "text",
+      "required": true,
+      "description": "Which promotion/offer",
+      "placeholder": "Enter offer type..."
+    },
+    {
+      "id": "MB-PO-002",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What offer issue occurred",
+      "options": [
+        "Not honored",
+        "Misleading terms",
+        "Eligibility dispute",
+        "Promo code not working",
+        "Discount not applied",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-PO-003",
+      "key": "offerSource",
+      "label": "Offer Source",
+      "type": "dropdown",
+      "required": true,
+      "description": "Where did client see offer",
+      "options": [
+        "Email",
+        "SMS",
+        "Social media",
+        "Website",
+        "Sales rep",
+        "Referral",
+        "Other"
+      ]
+    },
+    {
+      "id": "MB-PO-004",
+      "key": "promoCode",
+      "label": "Promo Code",
+      "type": "text",
+      "required": false,
+      "description": "Promo code used (if applicable)",
+      "placeholder": "Enter promo code..."
+    },
+    {
+      "id": "MB-PO-005",
+      "key": "expectedBenefit",
+      "label": "Expected Benefit",
+      "type": "text",
+      "required": true,
+      "description": "What discount/benefit was expected",
+      "placeholder": "Enter expected benefit..."
+    },
+    {
+      "id": "MB-PO-006",
+      "key": "whatActuallyHappened",
+      "label": "What Actually Happened",
+      "type": "textarea",
+      "required": true,
+      "description": "What occurred instead",
+      "placeholder": "Provide details for what actually happened..."
+    }
+  ]
+}'::jsonb
+WHERE name = 'Promotional Offers' 
+  AND category_id = (SELECT id FROM categories WHERE name = 'Membership & Billing');
+
 -- Update: Feedback System (Miscellaneous)
 UPDATE subcategories 
 SET form_fields = '{
@@ -8337,6 +10908,80 @@ SET form_fields = '{
       "required": true,
       "description": "Complete description",
       "placeholder": "Provide details for detailed incident description..."
+    },
+    {
+      "id": "MS-GE-001",
+      "key": "guestType",
+      "label": "Guest Type",
+      "type": "dropdown",
+      "required": true,
+      "description": "Type of guest",
+      "options": [
+        "Hosted class guest",
+        "Trial visitor",
+        "Drop-in",
+        "Brought by member",
+        "Corporate guest",
+        "Other"
+      ]
+    },
+    {
+      "id": "MS-GE-002",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What guest issue occurred",
+      "options": [
+        "Poor treatment",
+        "Complicated check-in",
+        "Unclear policies",
+        "Felt unwelcome",
+        "Different pricing than expected",
+        "Not given orientation",
+        "Other"
+      ]
+    },
+    {
+      "id": "MS-GE-003",
+      "key": "hostingMember",
+      "label": "Hosting Member",
+      "type": "text",
+      "required": false,
+      "description": "Name of member who brought guest (if applicable)",
+      "placeholder": "Enter hosting member..."
+    },
+    {
+      "id": "MS-GE-004",
+      "key": "staffInvolved",
+      "label": "Staff Involved",
+      "type": "text",
+      "required": false,
+      "description": "Who interacted with guest",
+      "placeholder": "Enter staff involved..."
+    },
+    {
+      "id": "MS-GE-005",
+      "key": "guestFeedback",
+      "label": "Guest Feedback",
+      "type": "textarea",
+      "required": true,
+      "description": "What did the guest say",
+      "placeholder": "Provide details for guest feedback..."
+    },
+    {
+      "id": "MS-GE-006",
+      "key": "conversionLikelihood",
+      "label": "Conversion Likelihood",
+      "type": "dropdown",
+      "required": true,
+      "description": "Will guest become member",
+      "options": [
+        "Will join",
+        "Considering",
+        "Unlikely",
+        "Definitely not"
+      ]
     }
   ]
 }'::jsonb
@@ -9466,6 +12111,56 @@ SET form_fields = '{
       "type": "radio",
       "required": true,
       "description": "Was client given correct info later"
+    },
+    {
+      "id": "RM-SK-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What knowledge gap exists",
+      "options": [
+        "Product features unknown",
+        "Sizing info wrong",
+        "Pricing unclear",
+        "Availability info incorrect",
+        "Wrong recommendations",
+        "Can''t answer questions",
+        "Other"
+      ]
+    },
+    {
+      "id": "RM-SK-002",
+      "key": "product",
+      "label": "Product",
+      "type": "text",
+      "required": true,
+      "description": "Which product were you asking about",
+      "placeholder": "Enter product..."
+    },
+    {
+      "id": "RM-SK-003",
+      "key": "staffMember",
+      "label": "Staff Member",
+      "type": "text",
+      "required": false,
+      "description": "Who provided information",
+      "placeholder": "Enter staff member..."
+    },
+    {
+      "id": "RM-SK-004",
+      "key": "impact",
+      "label": "Impact",
+      "type": "dropdown",
+      "required": true,
+      "description": "How did this affect client",
+      "options": [
+        "Minor inconvenience",
+        "Wrong purchase made",
+        "Delayed purchase",
+        "Lost sale",
+        "Other"
+      ]
     }
   ]
 }'::jsonb
@@ -10392,6 +13087,74 @@ SET form_fields = '{
         "Pending",
         "N/A"
       ]
+    },
+    {
+      "id": "SM-EW-001",
+      "key": "eventName",
+      "label": "Event Name",
+      "type": "text",
+      "required": true,
+      "description": "Which event or workshop",
+      "placeholder": "Enter event name..."
+    },
+    {
+      "id": "SM-EW-002",
+      "key": "eventDate",
+      "label": "Event Date",
+      "type": "date",
+      "required": true,
+      "description": "When was/is the event",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "SM-EW-003",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What event issue occurred",
+      "options": [
+        "Poor organization",
+        "Event cancelled",
+        "Misleading event details",
+        "Registration issues",
+        "Quality didn''t match promise",
+        "Other"
+      ]
+    },
+    {
+      "id": "SM-EW-004",
+      "key": "specificDetails",
+      "label": "Specific Details",
+      "type": "textarea",
+      "required": true,
+      "description": "Describe what went wrong",
+      "placeholder": "Provide details for specific details..."
+    },
+    {
+      "id": "SM-EW-005",
+      "key": "eventFeePaid",
+      "label": "Event Fee Paid",
+      "type": "number",
+      "required": false,
+      "description": "Amount paid (if applicable)",
+      "placeholder": "Enter event fee paid...",
+      "validation": {
+        "type": "number",
+        "min": 0
+      }
+    },
+    {
+      "id": "SM-EW-006",
+      "key": "refundRequested",
+      "label": "Refund Requested",
+      "type": "radio",
+      "required": false,
+      "description": "Requesting a refund",
+      "options": [
+        "Yes",
+        "No"
+      ]
     }
   ]
 }'::jsonb
@@ -10644,6 +13407,59 @@ SET form_fields = '{
         "No",
         "Pending"
       ]
+    },
+    {
+      "id": "SM-GR-001",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What guest/referral issue",
+      "options": [
+        "Guest pass issues",
+        "Referral benefit not credited",
+        "Restrictions not mentioned",
+        "Can''t use pass",
+        "Pass expired",
+        "Referral code not working",
+        "Other"
+      ]
+    },
+    {
+      "id": "SM-GR-002",
+      "key": "passReferralCode",
+      "label": "Pass/Referral Code",
+      "type": "text",
+      "required": false,
+      "description": "Guest pass number or referral code",
+      "placeholder": "Enter pass/referral code..."
+    },
+    {
+      "id": "SM-GR-003",
+      "key": "whenObtained",
+      "label": "When Obtained",
+      "type": "date",
+      "required": false,
+      "description": "When was pass/referral given",
+      "placeholder": "Select date..."
+    },
+    {
+      "id": "SM-GR-004",
+      "key": "expectedBenefit",
+      "label": "Expected Benefit",
+      "type": "text",
+      "required": true,
+      "description": "What benefit was promised",
+      "placeholder": "Enter expected benefit..."
+    },
+    {
+      "id": "SM-GR-005",
+      "key": "whatHappened",
+      "label": "What Happened",
+      "type": "textarea",
+      "required": true,
+      "description": "What actually occurred",
+      "placeholder": "Provide details for what happened..."
     }
   ]
 }'::jsonb
@@ -12009,6 +14825,83 @@ SET form_fields = '{
         "High demand",
         "Unknown"
       ]
+    },
+    {
+      "id": "SP-SN-001",
+      "key": "programType",
+      "label": "Program Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "Which special needs program",
+      "options": [
+        "Prenatal",
+        "Postnatal",
+        "Seniors",
+        "Injury recovery",
+        "Adaptive fitness",
+        "Other special needs"
+      ]
+    },
+    {
+      "id": "SP-SN-002",
+      "key": "issueType",
+      "label": "Issue Type",
+      "type": "multiselect",
+      "required": true,
+      "description": "What is the issue",
+      "options": [
+        "Program not offered",
+        "Limited availability",
+        "Inadequate modifications",
+        "Instructor not trained",
+        "Unsafe practices",
+        "Not accommodating enough",
+        "Other"
+      ]
+    },
+    {
+      "id": "SP-SN-003",
+      "key": "specificNeed",
+      "label": "Specific Need",
+      "type": "textarea",
+      "required": true,
+      "description": "What accommodation is needed",
+      "placeholder": "Provide details for specific need..."
+    },
+    {
+      "id": "SP-SN-004",
+      "key": "modificationRequested",
+      "label": "Modification Requested",
+      "type": "textarea",
+      "required": false,
+      "description": "What modification was needed",
+      "placeholder": "Provide details for modification requested..."
+    },
+    {
+      "id": "SP-SN-005",
+      "key": "safetyConcern",
+      "label": "Safety Concern",
+      "type": "radio",
+      "required": true,
+      "description": "Is there a safety issue",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "id": "SP-SN-006",
+      "key": "programDemand",
+      "label": "Program Demand",
+      "type": "dropdown",
+      "required": false,
+      "description": "How often is this requested",
+      "options": [
+        "Single request",
+        "Occasional requests",
+        "Frequent requests",
+        "High demand"
+      ]
     }
   ]
 }'::jsonb
@@ -12149,4 +15042,4 @@ WHERE name = 'Workshop Quality'
 
 COMMIT;
 
--- Total subcategories updated: 62
+-- Total subcategories updated: 90

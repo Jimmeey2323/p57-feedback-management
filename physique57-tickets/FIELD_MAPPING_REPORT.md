@@ -4,11 +4,11 @@ Generated: {"timestamp": "now"}
 
 ## Summary
 
-- Total Categories: 9
-- Total Subcategories: 61
-- Subcategories with Fields: 62
+- Total Categories: 13
+- Total Subcategories: 89
+- Subcategories with Fields: 90
 - Global Fields: 18
-- Total Mapped Fields: 936
+- Total Mapped Fields: 1147
 
 ## Categories & Subcategories
 
@@ -16,17 +16,27 @@ Generated: {"timestamp": "now"}
 - ✓ App/Website Issues (15 fields)
 - ✓ Booking Failures (16 fields)
 - ✓ Cancellation Problems (19 fields)
-- ✓ Class Check-in (17 fields)
-- ✓ Class Visibility (14 fields)
-- ✓ Notifications (14 fields)
+- ✓ Class Check-in (21 fields)
+- ✓ Class Visibility (18 fields)
+- ✓ Notifications (18 fields)
 - ✓ Payment Gateway (22 fields)
-- ✓ Profile Management (10 fields)
+- ✓ Profile Management (14 fields)
 - ✓ Technical Support (15 fields)
 - ✓ Waitlist Issues (17 fields)
 
+### Class Experience
+- ✓ Class Duration (5 fields)
+- ✓ Class Level Appropriateness (5 fields)
+- ✓ Class Overcrowding (6 fields)
+- ✓ Class Pacing (5 fields)
+- ✓ Class Quality (6 fields)
+- ✓ Class Scheduling (5 fields)
+- ✓ Class Variety (4 fields)
+- ✓ Warm-up/Cool-down (5 fields)
+
 ### Community & Culture
 - ✓ Clique Behavior (8 fields)
-- ✓ Community Events (9 fields)
+- ✓ Community Events (14 fields)
 - ✓ Discrimination (10 fields)
 - ✓ Inclusivity Issues (8 fields)
 - ✓ Member Behavior (11 fields)
@@ -34,16 +44,24 @@ Generated: {"timestamp": "now"}
 
 ### Customer Service
 - ✓ Communication Quality (16 fields)
-- ✓ Complaint Handling (18 fields)
-- ✓ Email/Chat Support (16 fields)
+- ✓ Complaint Handling (23 fields)
+- ✓ Email/Chat Support (21 fields)
 - ✓ Front Desk Service (16 fields)
 - ✓ Issue Resolution (18 fields)
-- ✓ Newcomer Experience (20 fields)
+- ✓ Newcomer Experience (25 fields)
 - ✓ Phone Support (15 fields)
 - ✓ Response Time (12 fields)
 - ✓ Staff Availability (16 fields)
 - ✓ Staff Knowledge (15 fields)
-- ✓ Staff Professionalism (14 fields)
+- ✓ Staff Professionalism (19 fields)
+
+### Facility & Amenities
+- ✓ Changing Room Issues (5 fields)
+- ✓ Equipment Issues (5 fields)
+- ✓ Hygiene Supplies (4 fields)
+- ✓ Lighting & Ambiance (4 fields)
+- ✓ Seating & Waiting Area (4 fields)
+- ✓ Storage & Lockers (4 fields)
 
 ### Global
 - ✗ Global (0 fields)
@@ -58,9 +76,27 @@ Generated: {"timestamp": "now"}
 - ✓ Injury During Class (51 fields)
 - ✓ Medical Disclosure (30 fields)
 
+### Instructor Related
+- ✓ Attention & Correction (5 fields)
+- ✓ Communication (5 fields)
+- ✓ Instructor Cancellations (6 fields)
+- ✓ Knowledge & Expertise (5 fields)
+- ✓ Personal Boundaries (6 fields)
+- ✓ Punctuality (6 fields)
+
+### Membership & Billing
+- ✓ Billing Errors (6 fields)
+- ✓ Contract Terms (5 fields)
+- ✓ Credits/Class Pack (5 fields)
+- ✓ Invoice/Receipt (5 fields)
+- ✓ Membership Cancellation (6 fields)
+- ✓ Membership Freeze (5 fields)
+- ✓ Package/Plan Confusion (5 fields)
+- ✓ Promotional Offers (6 fields)
+
 ### Miscellaneous
 - ✓ Feedback System (13 fields)
-- ✓ Guest Experience (10 fields)
+- ✓ Guest Experience (16 fields)
 - ✓ Lost & Found (11 fields)
 - ✓ Multi-location Issues (11 fields)
 - ✓ Noise Disturbance (10 fields)
@@ -72,14 +108,14 @@ Generated: {"timestamp": "now"}
 - ✓ Product Availability (9 fields)
 - ✓ Product Quality (3 fields)
 - ✓ Return/Exchange (12 fields)
-- ✓ Staff Knowledge (8 fields)
+- ✓ Staff Knowledge (12 fields)
 
 ### Sales & Marketing
 - ✓ Aggressive Selling (19 fields)
 - ✓ Brand Communication (14 fields)
 - ✓ Communication Overload (13 fields)
-- ✓ Events & Workshops (23 fields)
-- ✓ Guest Passes/Referrals (21 fields)
+- ✓ Events & Workshops (29 fields)
+- ✓ Guest Passes/Referrals (26 fields)
 - ✓ Misleading Information (19 fields)
 - ✓ Social Media (17 fields)
 - ✓ Trial Class Experience (20 fields)
@@ -88,7 +124,7 @@ Generated: {"timestamp": "now"}
 - ✓ Challenges & Competitions (11 fields)
 - ✓ Corporate Programs (12 fields)
 - ✓ Private Sessions (13 fields)
-- ✓ Special Needs Programs (11 fields)
+- ✓ Special Needs Programs (17 fields)
 - ✓ Workshop Quality (11 fields)
 
 ## Global Fields
@@ -449,7 +485,7 @@ These fields appear in all tickets:
 
 ### Class Check-in (Booking & Technology)
 
-**17 fields:**
+**21 fields:**
 
 - **Class** (`BT-CHKIN-001`)
   - Type: `dropdown`
@@ -548,9 +584,32 @@ These fields appear in all tickets:
   - Description: If credit needs adjustment
   - Options: Yes, No
 
+- **Check-in Issue** (`BT-CI-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What check-in problem occurred
+  - Options: QR code not scanning, Manual check-in delays, Attendance not recorded, System error, Staff unavailable to help ... (6 total)
+
+- **Class Type** (`BT-CI-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class
+
+- **Check-in Method Attempted** (`BT-CI-003`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: How did client try to check in
+  - Options: QR code, Manual at desk, App check-in, Other
+
+- **Result** (`BT-CI-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: What was the outcome
+  - Options: Eventually checked in, Not checked in, Charged for no-show, Other
+
 ### Class Visibility (Booking & Technology)
 
-**14 fields:**
+**18 fields:**
 
 - **Issue Type** (`BT-VIS-001`)
   - Type: `dropdown`
@@ -627,9 +686,32 @@ These fields appear in all tickets:
   - Description: Whether classes exist in system
   - Options: Yes, No, Unclear
 
+- **Visibility Issue** (`BT-CV-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What visibility problem exists
+  - Options: Favorite instructors not showing, Schedule not updating, Wrong studio displayed, Classes missing, Filters not working ... (6 total)
+
+- **Platform** (`BT-CV-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Where is the issue
+  - Options: iOS App, Android App, Website - Desktop, Website - Mobile
+
+- **Specific Example** (`BT-CV-003`)
+  - Type: `text`
+  - Required: Yes
+  - Description: What specifically can't you see
+
+- **Workaround Found** (`BT-CV-004`)
+  - Type: `radio`
+  - Required: No
+  - Description: Did you find another way
+  - Options: Yes, No
+
 ### Notifications (Booking & Technology)
 
-**14 fields:**
+**18 fields:**
 
 - **Issue Type** (`BT-NOTIF-001`)
   - Type: `dropdown`
@@ -707,6 +789,29 @@ These fields appear in all tickets:
   - Required: Yes
   - Description: Whether settings were adjusted
   - Options: Yes, No, N/A
+
+- **Notification Issue** (`BT-NT-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What notification problem
+  - Options: Missing class reminders, No cancellation alerts, Spam notifications, Too many notifications, Wrong notification content ... (7 total)
+
+- **Notification Type** (`BT-NT-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: Which notifications affected
+
+- **Platform** (`BT-NT-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which notification method
+  - Options: Push notifications, Email, SMS, All
+
+- **Client Preference** (`BT-NT-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: What change is wanted
+  - Options: Want more notifications, Want fewer, Want different content, Want better timing
 
 ### Payment Gateway (Booking & Technology)
 
@@ -836,7 +941,7 @@ These fields appear in all tickets:
 
 ### Profile Management (Booking & Technology)
 
-**10 fields:**
+**14 fields:**
 
 - **Issue Type** (`BT-PROF-001`)
   - Type: `dropdown`
@@ -894,6 +999,28 @@ These fields appear in all tickets:
   - Required: Yes
   - Description: Profile information confirmed correct
   - Options: Yes, No
+
+- **Profile Issue** (`BT-PM-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What profile issue exists
+  - Options: Can't update details, Incorrect information displayed, Photo upload issues, Email change problems, Phone number issues ... (7 total)
+
+- **Specific Field** (`BT-PM-002`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Which profile field has issues
+
+- **Error Message** (`BT-PM-003`)
+  - Type: `text`
+  - Required: No
+  - Description: Any error message shown
+
+- **Platform** (`BT-PM-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Where is the issue
+  - Options: iOS App, Android App, Website - Desktop, Website - Mobile
 
 ### Technical Support (Booking & Technology)
 
@@ -1076,6 +1203,263 @@ These fields appear in all tickets:
   - Description: Whether staff manually added client
   - Options: Yes, No
 
+### Class Duration (Class Experience)
+
+**5 fields:**
+
+- **Class Type** (`CE-CD-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class
+
+- **Duration Issue** (`CE-CD-002`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: What's the duration problem
+  - Options: Too short, Too long, Rushed transitions, Inadequate warm-up, Inadequate cool-down
+
+- **Current Duration** (`CE-CD-003`)
+  - Type: `number`
+  - Required: No
+  - Description: Current class length in minutes
+
+- **Preferred Duration** (`CE-CD-004`)
+  - Type: `number`
+  - Required: No
+  - Description: Ideal length in minutes
+
+- **Specific Feedback** (`CE-CD-005`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: Detailed feedback on pacing
+
+### Class Level Appropriateness (Class Experience)
+
+**5 fields:**
+
+- **Class Type** (`CE-LA-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class
+
+- **Issue Type** (`CE-LA-002`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: What was the mismatch
+  - Options: Too difficult/advanced, Too easy/basic, Mixed levels confusing, Unclear level description
+
+- **Client Experience Level** (`CE-LA-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Client's fitness level
+  - Options: Complete beginner, Beginner, Intermediate, Advanced, Expert
+
+- **Modifications Offered** (`CE-LA-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Were modifications provided
+  - Options: Yes - adequate, Yes - inadequate, No modifications offered
+
+- **Suggested Solution** (`CE-LA-005`)
+  - Type: `text`
+  - Required: No
+  - Description: What would make this better
+
+### Class Overcrowding (Class Experience)
+
+**6 fields:**
+
+- **Class Type** (`CE-CO-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class was overcrowded
+
+- **Instructor Name** (`CE-CO-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Who taught the class
+
+- **Number of Participants** (`CE-CO-003`)
+  - Type: `number`
+  - Required: No
+  - Description: Approximate number of people
+
+- **Studio Capacity** (`CE-CO-004`)
+  - Type: `number`
+  - Required: No
+  - Description: What should be the maximum
+
+- **Specific Issues** (`CE-CO-005`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What problems did overcrowding cause
+  - Options: Not enough space, Equipment shortage, Can't see instructor, Uncomfortable proximity, Can't move freely ... (7 total)
+
+- **Client Action** (`CE-CO-006`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How did client respond
+  - Options: Completed class uncomfortably, Left class early, Unable to participate fully, Other
+
+### Class Pacing (Class Experience)
+
+**5 fields:**
+
+- **Class Type** (`CE-CP-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class
+
+- **Instructor Name** (`CE-CP-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Who taught the class
+
+- **Pacing Issue** (`CE-CP-003`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What pacing problems occurred
+  - Options: Too fast overall, Too slow overall, Insufficient rest periods, Transitions too rushed, Unbalanced muscle targeting ... (7 total)
+
+- **Client Fitness Level** (`CE-CP-004`)
+  - Type: `dropdown`
+  - Required: No
+  - Description: Client's fitness level
+  - Options: Beginner, Intermediate, Advanced
+
+- **Impact** (`CE-CP-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How did this affect the client
+  - Options: Couldn't keep up, Got injured, Too easy/boring, Muscle fatigue/soreness, Other
+
+### Class Quality (Class Experience)
+
+**6 fields:**
+
+- **Instructor Name** (`CE-CQ-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which instructor taught the class
+
+- **Class Type** (`CE-CQ-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class format
+
+- **Quality Issue Type** (`CE-CQ-003`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What aspects had quality issues
+  - Options: Poor instruction, Unclear cues, Wrong technique demonstrated, Low energy, Music issues ... (8 total)
+
+- **Specific Details** (`CE-CQ-004`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: Detailed description of quality issues
+
+- **Client Satisfaction Level** (`CE-CQ-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How satisfied was the client
+  - Options: Very Dissatisfied, Dissatisfied, Neutral, Satisfied, Very Satisfied
+
+- **Would Client Recommend** (`CE-CQ-006`)
+  - Type: `radio`
+  - Required: No
+  - Description: Would they recommend this class
+  - Options: Yes, No, Unsure
+
+### Class Scheduling (Class Experience)
+
+**5 fields:**
+
+- **Scheduling Issue Type** (`CE-CS-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What scheduling issues occurred
+  - Options: Not enough classes, Timing conflicts, Classes full, Cancellations, Schedule changes ... (8 total)
+
+- **Preferred Time Slot** (`CE-CS-002`)
+  - Type: `text`
+  - Required: No
+  - Description: What time would work better
+
+- **Class Type Affected** (`CE-CS-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class types are affected
+  - Options: All class types, Multiple classes
+
+- **Frequency of Issue** (`CE-CS-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How often does this occur
+  - Options: One-time, Weekly, Daily, Ongoing
+
+- **Impact on Client** (`CE-CS-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How this impacts the client
+  - Options: Minor inconvenience, Unable to attend preferred classes, Considering canceling membership, Already reduced visits
+
+### Class Variety (Class Experience)
+
+**4 fields:**
+
+- **Current Concern** (`CE-CV-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What variety is lacking
+  - Options: Limited class formats, Repetitive routines, Same music repeatedly, Lack of new instructors, Need more advanced options ... (8 total)
+
+- **Requested Format** (`CE-CV-002`)
+  - Type: `text`
+  - Required: No
+  - Description: What new class format would you like
+
+- **Frequency Attending** (`CE-CV-003`)
+  - Type: `dropdown`
+  - Required: No
+  - Description: How often client attends
+  - Options: 1-2 times/week, 3-4 times/week, 5+ times/week, Daily
+
+- **How Long Member** (`CE-CV-004`)
+  - Type: `dropdown`
+  - Required: No
+  - Description: How long they've been a member
+  - Options: Less than 1 month, 1-3 months, 3-6 months, 6-12 months, 1+ years
+
+### Warm-up/Cool-down (Class Experience)
+
+**5 fields:**
+
+- **Class Type** (`CE-WC-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class
+
+- **Instructor Name** (`CE-WC-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Who taught the class
+
+- **Issue Type** (`CE-WC-003`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: What was inadequate
+  - Options: No warm-up, Inadequate warm-up, No cool-down, Inadequate cool-down, Rushed stretching
+
+- **Physical Impact** (`CE-WC-004`)
+  - Type: `text`
+  - Required: No
+  - Description: Did this cause injury or discomfort
+
+- **Specific Feedback** (`CE-WC-005`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What should be improved
+
 ### Clique Behavior (Community & Culture)
 
 **8 fields:**
@@ -1123,7 +1507,7 @@ These fields appear in all tickets:
 
 ### Community Events (Community & Culture)
 
-**9 fields:**
+**14 fields:**
 
 - **Event Name** (`CC_EVT_001`)
   - Type: `text`
@@ -1170,6 +1554,32 @@ These fields appear in all tickets:
   - Type: `text`
   - Required: No
   - Description: Who was in charge
+
+- **Event Name** (`CC-CE-001`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Which community event
+
+- **Event Date** (`CC-CE-002`)
+  - Type: `date`
+  - Required: Yes
+  - Description: When was the event
+
+- **Issue Type** (`CC-CE-003`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What event issue occurred
+  - Options: Poor organization, Low attendance, Lack of engagement, Event cancelled, Doesn't foster community ... (7 total)
+
+- **Attendance** (`CC-CE-004`)
+  - Type: `number`
+  - Required: No
+  - Description: How many people attended
+
+- **Feedback** (`CC-CE-005`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What could be improved
 
 ### Discrimination (Community & Culture)
 
@@ -1482,7 +1892,7 @@ These fields appear in all tickets:
 
 ### Complaint Handling (Customer Service)
 
-**18 fields:**
+**23 fields:**
 
 - **Original Complaint Category** (`CS-COMPL-001`)
   - Type: `dropdown`
@@ -1584,9 +1994,36 @@ These fields appear in all tickets:
   - Description: Whether escalation happened
   - Options: Yes, No, N/A
 
+- **Complaint About** (`CS-CH-001`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Original complaint topic
+
+- **Handling Issue** (`CS-CH-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: How was complaint mishandled
+  - Options: Dismissive attitude, Defensive response, No escalation option, Not taken seriously, Blamed customer ... (7 total)
+
+- **Who Handled** (`CS-CH-003`)
+  - Type: `text`
+  - Required: No
+  - Description: Staff member who handled complaint
+
+- **Date of Original Complaint** (`CS-CH-004`)
+  - Type: `date`
+  - Required: Yes
+  - Description: When was complaint first made
+
+- **Resolution Status** (`CS-CH-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Current status
+  - Options: Unresolved, Partially resolved, Unsatisfactory resolution, Ignored, Other
+
 ### Email/Chat Support (Customer Service)
 
-**16 fields:**
+**21 fields:**
 
 - **Channel** (`CS-EMAIL-001`)
   - Type: `dropdown`
@@ -1675,6 +2112,34 @@ These fields appear in all tickets:
   - Required: Yes
   - Description: Quality of support received
   - Options: Helpful & Complete, Generic/Unhelpful, Wrong Information, Didn't Address Query, N/A
+
+- **Support Issue** (`CS-EC-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What support issue occurred
+  - Options: Slow response, Generic replies, Issue unresolved, Multiple follow-ups needed, Transferred repeatedly ... (7 total)
+
+- **Channel Used** (`CS-EC-002`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: How did you contact support
+  - Options: Email, WhatsApp, Chat on website, Other
+
+- **Original Query Date** (`CS-EC-003`)
+  - Type: `date`
+  - Required: Yes
+  - Description: When did you first contact support
+
+- **Response Time** (`CS-EC-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How long to get response
+  - Options: No response yet, Hours, 1 day, 2-3 days, More than 3 days
+
+- **Number of Followups** (`CS-EC-005`)
+  - Type: `number`
+  - Required: No
+  - Description: How many times did you follow up
 
 ### Front Desk Service (Customer Service)
 
@@ -1872,7 +2337,7 @@ These fields appear in all tickets:
 
 ### Newcomer Experience (Customer Service)
 
-**20 fields:**
+**25 fields:**
 
 - **Client's First Visit Date** (`CS-NEW-001`)
   - Type: `date`
@@ -1985,6 +2450,35 @@ These fields appear in all tickets:
   - Required: Yes
   - Description: Client's stated intention
   - Options: Definitely Yes, Probably Yes, Unsure, Probably No, Definitely No
+
+- **Newcomer Type** (`CS-NE-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Client status
+  - Options: First-time visitor, Trial class, New member
+
+- **Issue Type** (`CS-NE-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What newcomer issues occurred
+  - Options: Poor onboarding, No orientation, Lack of guidance, Not welcomed, Felt lost/confused ... (8 total)
+
+- **Who Interacted** (`CS-NE-003`)
+  - Type: `text`
+  - Required: No
+  - Description: Staff members who helped (or didn't)
+
+- **Impact on Experience** (`CS-NE-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How this affected first impression
+  - Options: Very negative, Somewhat negative, Neutral, Positive overall despite issue
+
+- **Likelihood to Return** (`CS-NE-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Will they come back
+  - Options: Will not return, Unsure, Will return despite issue, Will return
 
 ### Phone Support (Customer Service)
 
@@ -2321,7 +2815,7 @@ These fields appear in all tickets:
 
 ### Staff Professionalism (Customer Service)
 
-**14 fields:**
+**19 fields:**
 
 - **Staff Member** (`CS-PROF-001`)
   - Type: `dropdown`
@@ -2400,6 +2894,210 @@ These fields appear in all tickets:
   - Type: `text`
   - Required: No
   - Description: Staff reaction
+
+- **Unprofessional Behavior** (`CS-SP-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What unprofessional behavior observed
+  - Options: Gossiping, Using personal phone, Eating at desk, Inappropriate conversations, Ignoring clients ... (7 total)
+
+- **Staff Member** (`CS-SP-002`)
+  - Type: `text`
+  - Required: No
+  - Description: Which staff member (if known)
+
+- **Location** (`CS-SP-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Where did this occur
+  - Options: Reception, Front desk, Studio floor, Changing room, Other
+
+- **Frequency** (`CS-SP-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How often is this happening
+  - Options: One-time, Occasional, Frequent, Consistent pattern
+
+- **Impact** (`CS-SP-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How this affected client
+  - Options: Minor annoyance, Unprofessional atmosphere, Felt ignored, Other
+
+### Changing Room Issues (Facility & Amenities)
+
+**5 fields:**
+
+- **Issue Type** (`FA-CR-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What changing room issues exist
+  - Options: Cleanliness poor, Lockers broken, Insufficient space, No privacy, Missing amenities ... (8 total)
+
+- **Specific Location** (`FA-CR-002`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Which changing room/area
+
+- **Time Observed** (`FA-CR-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: When was issue noticed
+  - Options: Morning, Afternoon, Evening, All day
+
+- **Photographic Evidence** (`FA-CR-004`)
+  - Type: `radio`
+  - Required: No
+  - Description: Do you have photos
+  - Options: Yes - Attached, No
+
+- **Staff Notified** (`FA-CR-005`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Was staff informed
+  - Options: Yes, No
+
+### Equipment Issues (Facility & Amenities)
+
+**5 fields:**
+
+- **Equipment Type** (`FA-EI-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: Which equipment has issues
+  - Options: Weights, Mats, Bands, Balls, Blocks ... (9 total)
+
+- **Issue Type** (`FA-EI-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What's wrong with equipment
+  - Options: Broken/damaged, Insufficient quantity, Dirty/unhygienic, Worn out, Missing items ... (7 total)
+
+- **Specific Details** (`FA-EI-003`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: Describe the equipment issue
+
+- **Equipment Removed** (`FA-EI-004`)
+  - Type: `radio`
+  - Required: No
+  - Description: Was it taken out of use
+  - Options: Yes, No, Unknown
+
+- **Safety Risk** (`FA-EI-005`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Is this a safety concern
+  - Options: Yes, No
+
+### Hygiene Supplies (Facility & Amenities)
+
+**4 fields:**
+
+- **Missing Items** (`FA-HS-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What supplies are missing
+  - Options: Hand wash/soap, Sanitizer, Tissues, Toilet paper, Paper towels ... (7 total)
+
+- **Location** (`FA-HS-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: Where are supplies missing
+  - Options: Washroom, Changing room, Studio floor, Reception, All areas
+
+- **Frequency** (`FA-HS-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How often are supplies missing
+  - Options: One time, Occasional, Frequent, Always out
+
+- **Staff Notified** (`FA-HS-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Was staff informed
+  - Options: Yes, No
+
+### Lighting & Ambiance (Facility & Amenities)
+
+**4 fields:**
+
+- **Issue Type** (`FA-LA-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What lighting/ambiance issues
+  - Options: Too bright, Too dim, Lights flickering, Bulbs out, Mirrors dirty/cracked ... (8 total)
+
+- **Area Affected** (`FA-LA-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: Where is the issue
+  - Options: Main studio, Second studio, Reception, Changing rooms, Washrooms ... (6 total)
+
+- **Impact on Class** (`FA-LA-003`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: How did this affect experience
+  - Options: Couldn't see properly, Distracting, Uncomfortable, Migraine/headache, Other
+
+- **Staff Aware** (`FA-LA-004`)
+  - Type: `radio`
+  - Required: No
+  - Description: Does staff know
+  - Options: Yes, No, Unknown
+
+### Seating & Waiting Area (Facility & Amenities)
+
+**4 fields:**
+
+- **Issue Type** (`FA-SW-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What's the issue
+  - Options: Insufficient seating, Uncomfortable seats, Dirty/unclean, Too crowded, No privacy ... (7 total)
+
+- **Time Noticed** (`FA-SW-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: When is this a problem
+  - Options: Morning, Afternoon, Evening, All times
+
+- **Number of People Waiting** (`FA-SW-003`)
+  - Type: `number`
+  - Required: No
+  - Description: Approximate number waiting
+
+- **Suggested Improvement** (`FA-SW-004`)
+  - Type: `text`
+  - Required: No
+  - Description: What would make this better
+
+### Storage & Lockers (Facility & Amenities)
+
+**4 fields:**
+
+- **Issue Type** (`FA-SL-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What locker issues exist
+  - Options: Insufficient lockers, Broken locks, Lockers too small, No charging points, Can't fit belongings ... (7 total)
+
+- **Specific Locker Number** (`FA-SL-002`)
+  - Type: `text`
+  - Required: No
+  - Description: Which locker (if applicable)
+
+- **Frequency** (`FA-SL-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How often does this occur
+  - Options: One-time issue, Occasional, Frequent, Always a problem
+
+- **Items Lost/Damaged** (`FA-SL-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Were belongings lost or damaged
+  - Options: Yes, No
 
 ### N/A (Global)
 
@@ -3667,6 +4365,483 @@ These fields appear in all tickets:
   - Required: No
   - Description: What process changes are needed
 
+### Attention & Correction (Instructor Related)
+
+**5 fields:**
+
+- **Instructor Name** (`IR-AC-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which instructor
+
+- **Class Type** (`IR-AC-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class
+
+- **Issue Type** (`IR-AC-003`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What attention issues occurred
+  - Options: No individual attention, No form corrections, Favoritism observed, Ignoring raised hands, Not checking on beginners ... (7 total)
+
+- **Client Attempted Contact** (`IR-AC-004`)
+  - Type: `radio`
+  - Required: No
+  - Description: Did client try to get attention
+  - Options: Yes - raised hand, Yes - approached after class, No - afraid to ask, Other
+
+- **Impact on Experience** (`IR-AC-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How this affected client
+  - Options: Minor frustration, Poor workout form, Risk of injury, Felt ignored, Considering not returning
+
+### Communication (Instructor Related)
+
+**5 fields:**
+
+- **Instructor Name** (`IR-CM-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which instructor
+
+- **Communication Issue** (`IR-CM-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What communication problems occurred
+  - Options: Rude behavior, Dismissive attitude, Condescending tone, Language barrier, Poor English fluency ... (8 total)
+
+- **Specific Incident** (`IR-CM-003`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: Describe what was said or done
+
+- **Witness Present** (`IR-CM-004`)
+  - Type: `radio`
+  - Required: No
+  - Description: Were there witnesses
+  - Options: Yes, No
+
+- **Client Emotional Response** (`IR-CM-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How client felt
+  - Options: Upset, Offended, Frustrated, Angry, Embarrassed ... (6 total)
+
+### Instructor Cancellations (Instructor Related)
+
+**6 fields:**
+
+- **Instructor Name** (`IR-IC-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which instructor
+
+- **Class Type** (`IR-IC-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class was cancelled
+
+- **Notice Given** (`IR-IC-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How much advance notice
+  - Options: No notice, Less than 1 hour, 1-3 hours, 3-12 hours, 12-24 hours ... (6 total)
+
+- **Frequency** (`IR-IC-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How often does this instructor cancel
+  - Options: First time, 2nd time, 3rd time, Frequent pattern
+
+- **Substitute Provided** (`IR-IC-005`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Was a replacement instructor offered
+  - Options: Yes - good substitute, Yes - poor substitute, No substitute
+
+- **Client Impact** (`IR-IC-006`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: How this impacted the client
+  - Options: Wasted travel time, Disrupted schedule, Credits/payment issue, Disappointed, Other
+
+### Knowledge & Expertise (Instructor Related)
+
+**5 fields:**
+
+- **Instructor Name** (`IR-KE-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which instructor
+
+- **Knowledge Gap** (`IR-KE-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What knowledge issues observed
+  - Options: Limited anatomy knowledge, Can't answer technique questions, Incorrect form demonstration, Unsafe cues given, Can't modify for injuries ... (7 total)
+
+- **Specific Example** (`IR-KE-003`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: Describe the incident
+
+- **Safety Concern** (`IR-KE-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Was there a safety risk
+  - Options: Yes, No
+
+- **Client Concern Level** (`IR-KE-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How concerned is the client
+  - Options: Minor, Moderate, Serious, Very Serious
+
+### Personal Boundaries (Instructor Related)
+
+**6 fields:**
+
+- **Instructor Name** (`IR-PB-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which instructor
+
+- **Boundary Issue** (`IR-PB-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What boundary was crossed
+  - Options: Physical adjustments without asking, Inappropriate touching, Overly personal questions, Unwanted physical contact, Making client uncomfortable ... (6 total)
+
+- **Incident Description** (`IR-PB-003`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: Describe exactly what happened
+
+- **Client Gave Consent** (`IR-PB-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Was consent requested
+  - Options: Not asked, Asked and declined, Asked and agreed but uncomfortable, Other
+
+- **Witness Present** (`IR-PB-005`)
+  - Type: `radio`
+  - Required: No
+  - Description: Were others present
+  - Options: Yes, No
+
+- **Action Requested** (`IR-PB-006`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: What action does client want
+  - Options: Verbal warning, Written warning, Retraining required, Do not assign to me again, Other
+
+### Punctuality (Instructor Related)
+
+**6 fields:**
+
+- **Instructor Name** (`IR-PT-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which instructor
+
+- **Class Type** (`IR-PT-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which class
+
+- **Punctuality Issue** (`IR-PT-003`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: What was the issue
+  - Options: Started late, Ended early, Both started late and ended early, Extended beyond scheduled time
+
+- **Minutes Late/Early** (`IR-PT-004`)
+  - Type: `number`
+  - Required: Yes
+  - Description: How many minutes
+
+- **Frequency** (`IR-PT-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How often does this occur
+  - Options: First time, Occasional, Frequent, Every class
+
+- **Impact** (`IR-PT-006`)
+  - Type: `text`
+  - Required: No
+  - Description: How this affected clients
+
+### Billing Errors (Membership & Billing)
+
+**6 fields:**
+
+- **Error Type** (`MB-BE-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What billing error occurred
+  - Options: Incorrect amount charged, Duplicate charge, Wrong package applied, GST calculation error, Unexpected charge ... (6 total)
+
+- **Expected Amount** (`MB-BE-002`)
+  - Type: `number`
+  - Required: Yes
+  - Description: What should have been charged (INR)
+
+- **Actual Amount** (`MB-BE-003`)
+  - Type: `number`
+  - Required: Yes
+  - Description: What was actually charged (INR)
+
+- **Transaction Date** (`MB-BE-004`)
+  - Type: `date`
+  - Required: Yes
+  - Description: When did transaction occur
+
+- **Invoice Number** (`MB-BE-005`)
+  - Type: `text`
+  - Required: No
+  - Description: Invoice or receipt number
+
+- **Resolution Requested** (`MB-BE-006`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: What resolution is needed
+  - Options: Refund, Adjustment, Correction, Explanation
+
+### Contract Terms (Membership & Billing)
+
+**5 fields:**
+
+- **Concern Type** (`MB-CT-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What contract issue exists
+  - Options: Unclear terms, Disagreement on clause, Lock-in period dispute, Cancellation terms unclear, Auto-renewal issue ... (7 total)
+
+- **Specific Clause** (`MB-CT-002`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Which contract term is unclear/disputed
+
+- **Contract Date** (`MB-CT-003`)
+  - Type: `date`
+  - Required: No
+  - Description: When was contract signed
+
+- **What Client Understood** (`MB-CT-004`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What did client think the terms were
+
+- **Requested Action** (`MB-CT-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: What does client want
+  - Options: Clarification, Amendment, Contract review, Cancellation, Other
+
+### Credits/Class Pack (Membership & Billing)
+
+**5 fields:**
+
+- **Issue Type** (`MB-CP-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What credit/pack issue
+  - Options: Credits expired, Unused credits, Can't transfer credits, Credit balance incorrect, Pack terms unclear ... (6 total)
+
+- **Package Type** (`MB-CP-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which package/pack
+
+- **Credits Remaining** (`MB-CP-003`)
+  - Type: `number`
+  - Required: No
+  - Description: How many credits left
+
+- **Expiry Date** (`MB-CP-004`)
+  - Type: `date`
+  - Required: No
+  - Description: When do/did credits expire
+
+- **Resolution Requested** (`MB-CP-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: What solution is needed
+  - Options: Extension, Refund, Transfer, Freeze, Other
+
+### Invoice/Receipt (Membership & Billing)
+
+**5 fields:**
+
+- **Issue Type** (`MB-IR-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What invoice issue
+  - Options: Missing invoice, Incorrect details on invoice, GST issues, Wrong amount, Delayed generation ... (7 total)
+
+- **Transaction Date** (`MB-IR-002`)
+  - Type: `date`
+  - Required: Yes
+  - Description: Date of transaction
+
+- **Amount** (`MB-IR-003`)
+  - Type: `number`
+  - Required: Yes
+  - Description: Transaction amount (INR)
+
+- **What's Needed** (`MB-IR-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: What is required
+  - Options: Generate invoice, Correct existing, GST invoice, Duplicate copy, Other
+
+- **Urgency** (`MB-IR-005`)
+  - Type: `dropdown`
+  - Required: No
+  - Description: How urgent
+  - Options: Urgent - tax filing, Urgent - reimbursement, Routine request
+
+### Membership Cancellation (Membership & Billing)
+
+**6 fields:**
+
+- **Cancellation Reason** (`MB-MC-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Why cancelling
+  - Options: Relocating, Financial reasons, Health issues, Switching studios, Service dissatisfaction ... (6 total)
+
+- **Difficulty Type** (`MB-MC-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What's making cancellation difficult
+  - Options: Can't find cancellation option, Process too complex, Not allowed to cancel, Penalty too high, Refund refused ... (7 total)
+
+- **Membership Type** (`MB-MC-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Current membership
+
+- **Requested Cancellation Date** (`MB-MC-004`)
+  - Type: `date`
+  - Required: Yes
+  - Description: When should membership end
+
+- **Refund Expected** (`MB-MC-005`)
+  - Type: `radio`
+  - Required: No
+  - Description: Expecting a refund
+  - Options: Yes, No, Unsure
+
+- **Resolution Sought** (`MB-MC-006`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: What outcome is wanted
+  - Options: Cancel immediately, Cancel at period end, Partial refund, Full refund, Other
+
+### Membership Freeze (Membership & Billing)
+
+**5 fields:**
+
+- **Freeze Reason** (`MB-MF-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Why freeze membership
+  - Options: Medical/health, Travel, Pregnancy, Temporary relocation, Financial ... (6 total)
+
+- **Freeze Duration Requested** (`MB-MF-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How long to freeze
+  - Options: 1 month, 2 months, 3 months, Longer
+
+- **Issue Type** (`MB-MF-003`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What freeze issue occurred
+  - Options: Request denied, Process too complicated, Charges during freeze, Can't unfreeze, Freeze terms unclear ... (6 total)
+
+- **Current Status** (`MB-MF-004`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Current freeze status
+  - Options: Freeze not yet processed, Freeze denied, Freeze active but issues, Other
+
+- **Supporting Documentation** (`MB-MF-005`)
+  - Type: `radio`
+  - Required: No
+  - Description: Do you have supporting docs
+  - Options: Yes - attached, No, Not required
+
+### Package/Plan Confusion (Membership & Billing)
+
+**5 fields:**
+
+- **Confusion Type** (`MB-PC-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What's confusing
+  - Options: Unclear package terms, Misleading information, Hidden charges, Validity confusion, Usage limits unclear ... (7 total)
+
+- **Package Name** (`MB-PC-002`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Which package
+
+- **What Client Understood** (`MB-PC-003`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What did client think package included
+
+- **Actual Terms** (`MB-PC-004`)
+  - Type: `textarea`
+  - Required: No
+  - Description: What are the actual terms (if known)
+
+- **Where Information From** (`MB-PC-005`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Where did client get info
+  - Options: Sales rep, Website, Email, Phone call, Social media ... (6 total)
+
+### Promotional Offers (Membership & Billing)
+
+**6 fields:**
+
+- **Offer Type** (`MB-PO-001`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Which promotion/offer
+
+- **Issue Type** (`MB-PO-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What offer issue occurred
+  - Options: Not honored, Misleading terms, Eligibility dispute, Promo code not working, Discount not applied ... (6 total)
+
+- **Offer Source** (`MB-PO-003`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Where did client see offer
+  - Options: Email, SMS, Social media, Website, Sales rep ... (7 total)
+
+- **Promo Code** (`MB-PO-004`)
+  - Type: `text`
+  - Required: No
+  - Description: Promo code used (if applicable)
+
+- **Expected Benefit** (`MB-PO-005`)
+  - Type: `text`
+  - Required: Yes
+  - Description: What discount/benefit was expected
+
+- **What Actually Happened** (`MB-PO-006`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What occurred instead
+
 ### Feedback System (Miscellaneous)
 
 **13 fields:**
@@ -3744,7 +4919,7 @@ These fields appear in all tickets:
 
 ### Guest Experience (Miscellaneous)
 
-**10 fields:**
+**16 fields:**
 
 - **Guest Name** (`MS_GST_001`)
   - Type: `text`
@@ -3799,6 +4974,39 @@ These fields appear in all tickets:
   - Type: `textarea`
   - Required: Yes
   - Description: Complete description
+
+- **Guest Type** (`MS-GE-001`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Type of guest
+  - Options: Hosted class guest, Trial visitor, Drop-in, Brought by member, Corporate guest ... (6 total)
+
+- **Issue Type** (`MS-GE-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What guest issue occurred
+  - Options: Poor treatment, Complicated check-in, Unclear policies, Felt unwelcome, Different pricing than expected ... (7 total)
+
+- **Hosting Member** (`MS-GE-003`)
+  - Type: `text`
+  - Required: No
+  - Description: Name of member who brought guest (if applicable)
+
+- **Staff Involved** (`MS-GE-004`)
+  - Type: `text`
+  - Required: No
+  - Description: Who interacted with guest
+
+- **Guest Feedback** (`MS-GE-005`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What did the guest say
+
+- **Conversion Likelihood** (`MS-GE-006`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: Will guest become member
+  - Options: Will join, Considering, Unlikely, Definitely not
 
 ### Lost & Found (Miscellaneous)
 
@@ -4277,7 +5485,7 @@ These fields appear in all tickets:
 
 ### Staff Knowledge (Retail & Merchandise)
 
-**8 fields:**
+**12 fields:**
 
 - **Staff Member Name** (`RM_STF_001`)
   - Type: `dropdown`
@@ -4320,6 +5528,28 @@ These fields appear in all tickets:
   - Type: `radio`
   - Required: Yes
   - Description: Was client given correct info later
+
+- **Issue Type** (`RM-SK-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What knowledge gap exists
+  - Options: Product features unknown, Sizing info wrong, Pricing unclear, Availability info incorrect, Wrong recommendations ... (7 total)
+
+- **Product** (`RM-SK-002`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Which product were you asking about
+
+- **Staff Member** (`RM-SK-003`)
+  - Type: `text`
+  - Required: No
+  - Description: Who provided information
+
+- **Impact** (`RM-SK-004`)
+  - Type: `dropdown`
+  - Required: Yes
+  - Description: How did this affect client
+  - Options: Minor inconvenience, Wrong purchase made, Delayed purchase, Lost sale, Other
 
 ### Aggressive Selling (Sales & Marketing)
 
@@ -4595,7 +5825,7 @@ These fields appear in all tickets:
 
 ### Events & Workshops (Sales & Marketing)
 
-**23 fields:**
+**29 fields:**
 
 - **Event Name** (`SM-EVENT-001`)
   - Type: `text`
@@ -4721,9 +5951,41 @@ These fields appear in all tickets:
   - Description: Refund status
   - Options: Yes, No, Pending, N/A
 
+- **Event Name** (`SM-EW-001`)
+  - Type: `text`
+  - Required: Yes
+  - Description: Which event or workshop
+
+- **Event Date** (`SM-EW-002`)
+  - Type: `date`
+  - Required: Yes
+  - Description: When was/is the event
+
+- **Issue Type** (`SM-EW-003`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What event issue occurred
+  - Options: Poor organization, Event cancelled, Misleading event details, Registration issues, Quality didn't match promise ... (6 total)
+
+- **Specific Details** (`SM-EW-004`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: Describe what went wrong
+
+- **Event Fee Paid** (`SM-EW-005`)
+  - Type: `number`
+  - Required: No
+  - Description: Amount paid (if applicable)
+
+- **Refund Requested** (`SM-EW-006`)
+  - Type: `radio`
+  - Required: No
+  - Description: Requesting a refund
+  - Options: Yes, No
+
 ### Guest Passes/Referrals (Sales & Marketing)
 
-**21 fields:**
+**26 fields:**
 
 - **Issue Type** (`SM-GUEST-001`)
   - Type: `dropdown`
@@ -4838,6 +6100,32 @@ These fields appear in all tickets:
   - Required: Yes
   - Description: Resolution status
   - Options: Yes, No, Pending
+
+- **Issue Type** (`SM-GR-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What guest/referral issue
+  - Options: Guest pass issues, Referral benefit not credited, Restrictions not mentioned, Can't use pass, Pass expired ... (7 total)
+
+- **Pass/Referral Code** (`SM-GR-002`)
+  - Type: `text`
+  - Required: No
+  - Description: Guest pass number or referral code
+
+- **When Obtained** (`SM-GR-003`)
+  - Type: `date`
+  - Required: No
+  - Description: When was pass/referral given
+
+- **Expected Benefit** (`SM-GR-004`)
+  - Type: `text`
+  - Required: Yes
+  - Description: What benefit was promised
+
+- **What Happened** (`SM-GR-005`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What actually occurred
 
 ### Misleading Information (Sales & Marketing)
 
@@ -5366,7 +6654,7 @@ These fields appear in all tickets:
 
 ### Special Needs Programs (Special Programs)
 
-**11 fields:**
+**17 fields:**
 
 - **Program Type** (`SP_SPC_001`)
   - Type: `multiselect`
@@ -5427,6 +6715,40 @@ These fields appear in all tickets:
   - Required: Yes
   - Description: How often is this requested
   - Options: Single request, Occasional requests, Frequent requests, High demand, Unknown
+
+- **Program Type** (`SP-SN-001`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: Which special needs program
+  - Options: Prenatal, Postnatal, Seniors, Injury recovery, Adaptive fitness ... (6 total)
+
+- **Issue Type** (`SP-SN-002`)
+  - Type: `multiselect`
+  - Required: Yes
+  - Description: What is the issue
+  - Options: Program not offered, Limited availability, Inadequate modifications, Instructor not trained, Unsafe practices ... (7 total)
+
+- **Specific Need** (`SP-SN-003`)
+  - Type: `textarea`
+  - Required: Yes
+  - Description: What accommodation is needed
+
+- **Modification Requested** (`SP-SN-004`)
+  - Type: `textarea`
+  - Required: No
+  - Description: What modification was needed
+
+- **Safety Concern** (`SP-SN-005`)
+  - Type: `radio`
+  - Required: Yes
+  - Description: Is there a safety issue
+  - Options: Yes, No
+
+- **Program Demand** (`SP-SN-006`)
+  - Type: `dropdown`
+  - Required: No
+  - Description: How often is this requested
+  - Options: Single request, Occasional requests, Frequent requests, High demand
 
 ### Workshop Quality (Special Programs)
 
