@@ -290,7 +290,14 @@ export const CreateTicketFormNew: React.FC = () => {
   };
 
   const getDynamicFields = () => {
-    if (!selectedSubcategory) return [];
+    if (!selectedSubcategory) {
+      console.log('❌ No subcategory selected');
+      return [];
+    }
+    
+    console.log('🔍 Checking fields for subcategory:', selectedSubcategory.name);
+    console.log('📋 Raw form_fields data:', selectedSubcategory.form_fields);
+    console.log('📋 Type of form_fields:', typeof selectedSubcategory.form_fields);
     
     let fields = null;
     
@@ -299,26 +306,34 @@ export const CreateTicketFormNew: React.FC = () => {
       try {
         const parsed = JSON.parse(selectedSubcategory.form_fields);
         fields = Array.isArray(parsed) ? parsed : parsed.fields;
+        console.log('✅ Parsed string form_fields:', fields);
       } catch (e) {
-        console.error('Error parsing form_fields:', e);
+        console.error('❌ Error parsing form_fields string:', e);
         return [];
       }
     } else if (Array.isArray(selectedSubcategory.form_fields)) {
       fields = selectedSubcategory.form_fields;
+      console.log('✅ Using array form_fields:', fields);
     } else if (selectedSubcategory.form_fields?.fields) {
       fields = selectedSubcategory.form_fields.fields;
+      console.log('✅ Using nested fields:', fields);
+    } else if (selectedSubcategory.form_fields && typeof selectedSubcategory.form_fields === 'object') {
+      // Try to extract fields from object
+      fields = selectedSubcategory.form_fields.fields || selectedSubcategory.form_fields;
+      console.log('✅ Extracted from object:', fields);
     }
     
     if (!fields || !Array.isArray(fields)) {
-      console.log('No fields found for subcategory:', selectedSubcategory.name);
+      console.log('⚠️ No fields array found for subcategory:', selectedSubcategory.name);
+      console.log('⚠️ form_fields structure:', JSON.stringify(selectedSubcategory.form_fields, null, 2));
       return [];
     }
     
-    console.log('Processing', fields.length, 'fields for', selectedSubcategory.name);
+    console.log(`✅ Processing ${fields.length} fields for ${selectedSubcategory.name}`);
     
-    return fields.map((field: any) => ({
-      name: field.key || field.id,
-      label: field.label,
+    const mappedFields = fields.map((field: any) => ({
+      name: field.key || field.id || field.name,
+      label: field.label || field.name,
       type: field.type || 'text',
       required: field.required || false,
       options: field.options,
@@ -326,6 +341,9 @@ export const CreateTicketFormNew: React.FC = () => {
       helpText: field.help_text || field.helpText || field.description,
       description: field.description,
     }));
+    
+    console.log('✅ Mapped fields:', mappedFields);
+    return mappedFields;
   };
 
   const handleSubmit = async () => {
@@ -679,7 +697,7 @@ export const CreateTicketFormNew: React.FC = () => {
           </div>
 
           {/* Subcategory-Specific Fields */}
-          {getDynamicFields().length > 0 && (
+          {selectedSubcategory && (
             <div className="mb-8 bg-white rounded-xl overflow-hidden shadow-md">
               <div className="bg-gradient-to-r from-black to-[#0041a8] px-6 py-4">
                 <h2 className="text-2xl font-bold text-white" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
@@ -687,11 +705,32 @@ export const CreateTicketFormNew: React.FC = () => {
                 </h2>
               </div>
               <div className="p-6">
-                <DynamicFieldsGrid
-                  fields={getDynamicFields()}
-                  formData={dynamicFieldData}
-                  setFormData={setDynamicFieldData}
-                />
+                {getDynamicFields().length > 0 ? (
+                  <DynamicFieldsGrid
+                    fields={getDynamicFields()}
+                    formData={dynamicFieldData}
+                    setFormData={setDynamicFieldData}
+                  />
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                      <div className="text-yellow-600 text-lg font-semibold mb-2">
+                        ⚠️ No Additional Fields Configured
+                      </div>
+                      <p className="text-gray-600 mb-4">
+                        The database needs to be updated with form fields for this subcategory.
+                      </p>
+                      <div className="text-sm text-gray-500 text-left bg-white p-4 rounded border border-gray-200">
+                        <p className="font-semibold mb-2">To add fields:</p>
+                        <ol className="list-decimal list-inside space-y-1">
+                          <li>Open Supabase SQL Editor</li>
+                          <li>Run the file: <code className="bg-gray-100 px-2 py-1 rounded">update_subcategory_fields.sql</code></li>
+                          <li>Refresh this page</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
